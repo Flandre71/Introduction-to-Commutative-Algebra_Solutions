@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\newtheoremstyle{breakstyle}
+	{5pt}
+	{10pt}
+	{\normalfont}
+	{0pt}
+	{\bfseries}
+	{}
+	{\newline}
+	{}
+\theoremstyle{breakstyle}
+\newtheorem{exercise}{Exercise}
+\title{Chapter 1 - Rings and Ideals}
+\author{Flandre}
+\date{23 Jan 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+	Suppose $x^{r}=0$.
+	Notice
+	\begin{align*}
+		(1+x)\left( 1-x+x^2-x^3+\ldots +(-1)^{r-1}x^{r-1} \right) 
+		&= 1-x^{r} \\
+		&= 1 \\
+	\end{align*}
+	So $1+x$ is a unit in $A$.
+	\qed
+\end{exercise}
+
+\begin{exercise}
+	\leavevmode \vspace{-\baselineskip}
+	\begin{enumerate}[label=({\roman*})]
+		\item 
+			\begin{enumerate}[label=({\alph*})]
+				\item $(\Rightarrow)$:
+
+					Let $g=b_0+b_1x+\ldots +b_{m}x^{m}$ be the inverse of $f$.
+					Now
+					$$
+					(a_0+a_1x+\ldots +a_{n}x^{n})(b_0+b_1x+\ldots +b_{m}x^{m})=1
+					$$
+					By checking the coefficients of $x^{n+m},x^{n+m-1},x^{n+m-2}\ldots $, we get
+					$$
+					\begin{cases}
+						a_{n}b_{m}=0\\
+						a_{n}^2b_{m-1}=0\\
+						a_{n}^3b_{m-2}=0\\
+						\vdots\\
+						a_{n}^{m}b_1=0\\
+						a_{n}^{m+1}b_0=0
+					\end{cases}
+					$$
+					On the other hand, by checking the constant term directly,
+					 $$
+					a_0b_0=1
+					$$
+					Therefore $a_0$ is unit, and $a_{n}^{m+1}=a_{n}^{m+1}b_0a_0=0$.
+					So $a_{n}$ is nilpotent.
+
+					Moreover, $-a_{n}x^{n}$ is a nilpotent element in $A[x]$.
+					By \emph{Ex.1},
+					$$
+					f-a_{n}x^{n}=a_0+a_1x+\ldots +a_{n-1}x^{n-1}
+					$$
+					is a unit in $A[x]$, so by iterating the process above we'll see $a_{n-1},\ldots ,a_1$ are nilpotent.
+				\item $(\Leftarrow)$:
+			\end{enumerate}
+	\end{enumerate}
+\end{exercise}
+
+\end{document}
