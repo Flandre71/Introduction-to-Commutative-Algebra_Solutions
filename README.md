@@ -15,9 +15,9 @@ Please note:
 
 If you are looking for a comprehensive, standard, and authoritative set of solutions (or if my solutions are incomplete), I strongly recommend consulting:
 
-- **_A Term of Commutative Algebra_** by Allen Altman and Steven Kleiman.
+- [**_A Term of Commutative Algebra_**](https://dspace.mit.edu/handle/1721.1/116075) by Allen Altman and Steven Kleiman.
 
-Their work is widely regarded as the standard companion to Atiyah & MacDonald, and it's free to read online!
+Their work is widely regarded as the standard companion to Atiyah & MacDonald, and it's open source and free to read online!
 
 ## Disclaimer
 
