@@ -6,17 +6,20 @@
 \usepackage{amsmath, amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
+\usepackage{blkarray}
+\newtheorem{remark}{Remark}
 \newtheoremstyle{breakstyle}
-	{5pt}
-	{10pt}
-	{\normalfont}
-	{0pt}
-	{\bfseries}
-	{}
-	{\newline}
-	{}
+    {5pt}
+    {10pt}
+    {\normalfont}
+    {0pt}
+    {\bfseries}
+    {\newline\indent}
+    {0pt}
+    {}
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
+\DeclareMathOperator{\rad}{Rad}
 \title{Chapter 1 - Rings and Ideals}
 \author{Flandre}
 \date{23 Jan 2026}
@@ -25,56 +28,368 @@
 \maketitle
 
 \begin{exercise}
-	Suppose $x^{r}=0$.
-	Notice
-	\begin{align*}
-		(1+x)\left( 1-x+x^2-x^3+\ldots +(-1)^{r-1}x^{r-1} \right) 
-		&= 1-x^{r} \\
-		&= 1 \\
-	\end{align*}
-	So $1+x$ is a unit in $A$.
-	\qed
+    Suppose $x^{r}=0$.
+    Notice
+    \begin{align*}
+        (1+x)\left( 1-x+x^2-x^3+\ldots +(-1)^{r-1}x^{r-1} \right) 
+        &= 1-x^{r} \\
+        &= 1 \\
+    \end{align*}
+    So $1+x$ is a unit in $A$.
+    \qed
 \end{exercise}
 
 \begin{exercise}
-	\leavevmode \vspace{-\baselineskip}
-	\begin{enumerate}[label=({\roman*})]
-		\item 
-			\begin{enumerate}[label=({\alph*})]
-				\item $(\Rightarrow)$:
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Rightarrow)$:
+                    Let $g=b_0+b_1x+\ldots +b_{m}x^{m}$ be the inverse of $f$.
+                    Now
+                    $$
+                    (a_0+a_1x+\ldots +a_{n}x^{n})(b_0+b_1x+\ldots +b_{m}x^{m})=1
+                    $$
+                    By checking the coefficients of $x^{n+m},x^{n+m-1},x^{n+m-2}\ldots $, we get
+                    $$
+                    \begin{cases}
+                        a_{n}b_{m}=0\\
+                        a_{n}^2b_{m-1}=0\\
+                        a_{n}^3b_{m-2}=0\\
+                        \vdots\\
+                        a_{n}^{m}b_1=0\\
+                        a_{n}^{m+1}b_0=0
+                    \end{cases}
+                    $$
+                    On the other hand, by checking the constant term directly,
+                     $$
+                    a_0b_0=1
+                    $$
+                    Therefore $a_0$ is unit, and $a_{n}^{m+1}=a_{n}^{m+1}b_0a_0=0$.
+                    So $a_{n}$ is nilpotent.
 
-					Let $g=b_0+b_1x+\ldots +b_{m}x^{m}$ be the inverse of $f$.
-					Now
-					$$
-					(a_0+a_1x+\ldots +a_{n}x^{n})(b_0+b_1x+\ldots +b_{m}x^{m})=1
-					$$
-					By checking the coefficients of $x^{n+m},x^{n+m-1},x^{n+m-2}\ldots $, we get
-					$$
-					\begin{cases}
-						a_{n}b_{m}=0\\
-						a_{n}^2b_{m-1}=0\\
-						a_{n}^3b_{m-2}=0\\
-						\vdots\\
-						a_{n}^{m}b_1=0\\
-						a_{n}^{m+1}b_0=0
-					\end{cases}
-					$$
-					On the other hand, by checking the constant term directly,
-					 $$
-					a_0b_0=1
-					$$
-					Therefore $a_0$ is unit, and $a_{n}^{m+1}=a_{n}^{m+1}b_0a_0=0$.
-					So $a_{n}$ is nilpotent.
+                    Moreover, $-a_{n}x^{n}$ is a nilpotent element in $A[x]$.
+                    By \emph{Ex.1},
+                    $$
+                    f-a_{n}x^{n}=a_0+a_1x+\ldots +a_{n-1}x^{n-1}
+                    $$
+                    is a unit in $A[x]$, so by iterating the process above we'll see $a_{n-1},\ldots ,a_1$ are nilpotent.
+                \item $(\Leftarrow)$: By \emph{Ex.1}, the sum of a unit and a nilpotent element is a unit.
+                    Notice $a_1x,a_2x^2,\ldots ,a_{n}s^{n}$ are nilpotent in $A[x]$ while $a_0$ is a unit in $A[x]$,
+                    so their sum $f$ is a unit in $A[x]$.
+            \end{enumerate}
+            \qed
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Rightarrow):$
+                    Consider the constant term of power of $f$, from which we know $a_0$ is nilpotnet.
+                    Nilpotent elements are closed under addition, so
+                    $$
+                    a_1x+a_2x^2+\ldots +a_{n}x^{n}=f-a_0
+                    $$
+                    is nilpotent, i.e.
+                    $$
+                    a_1+a_2x+\ldots +a_{n}x^{n-1}
+                    $$
+                    is nilpotent.
+                    By induction we can have $a_0,a_1,\ldots ,a_{n}$ being nilpotent.
+                \item $(\Leftarrow):$
+                    When $a_0,a_1,\ldots ,a_{n}$ are all nilpotent, let $k\in \mathbb{Z}^{+}$ be sufficiently large,
+                    and obviously we can finally reach $f^{k}=0$.
+            \end{enumerate}
+            \qed
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Rightarrow):$ 
+                    Suppose we have $g=b_0+b_1x+\ldots +b_{m}x^{m}$ such that $fg=0$.
 
-					Moreover, $-a_{n}x^{n}$ is a nilpotent element in $A[x]$.
-					By \emph{Ex.1},
-					$$
-					f-a_{n}x^{n}=a_0+a_1x+\ldots +a_{n-1}x^{n-1}
-					$$
-					is a unit in $A[x]$, so by iterating the process above we'll see $a_{n-1},\ldots ,a_1$ are nilpotent.
-				\item $(\Leftarrow)$:
-			\end{enumerate}
-	\end{enumerate}
+                    If $b_{m}=0$, we're done.
+                    Otherwise, simmilar to \emph{(i)}, by checking the coefficients of $x^{m+n},x^{m+n-1},\ldots $ respectively,
+                    we'll obtain
+                    $$
+                    \begin{cases}
+                        a_{n}b_{m}=0\\
+                        a_{n-1}b_{m}=0\\
+                        a_{n-2}b_{m}^2=0\\
+                        \vdots\\
+                        a_{1}b_{m}^{n-1}=0\\
+                        a_0b_{m}^{n}=0
+                    \end{cases}
+                    $$
+                    So $f\cdot b_{m}^{n}=0$.
+                \item $(\Leftarrow):$
+                    Trivial.
+            \end{enumerate}
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Leftarrow):$
+                    Let $g=b_0+b_1x+..+b_{m}x^{m}$.
+                    Since $g$ is primitive, $\exists \lambda_0,\lambda_1,\ldots ,\lambda_{m}\in A,s.t.$ 
+                    $$
+                    \lambda_0b_0+\lambda_1b_1+\ldots +\lambda_{m}b_{m}=1
+                    $$
+                    Therefore
+                    $$
+                    \lambda_0b_0f+\lambda_1b_1f+\ldots +\lambda_{m}b_{m}f=f
+                    $$
+                    Also, suppose
+                    $$
+                    \mu_0a_0+\mu_1a_1+\ldots +\mu_{n}a_{n}=1
+                    $$
+                    Since
+                    $$
+                    \begin{array}{r@{\:}l@{\:}l@{\:}l@{\:}l}
+                    fg = \lambda_0 \mu_0 b_0 a_0 & + \lambda_1 \mu_0 b_1 a_0 x & + \lambda_2 \mu_0 b_2 a_0 x^2 & + \dots & + \lambda_m \mu_n b_m a_n x^{m+n} \\
+                                                 & + \lambda_0 \mu_1 b_0 a_1 x & + \lambda_1 \mu_1 b_1 a_1 x^2 & + \dots \\
+                                                 &                             & + \lambda_0 \mu_2 b_0 a_2 x^2 & + \dots \\
+                                                 &                             & \vdots
+                    \end{array}
+                    $$
+                    So
+                    $$
+                    (\lambda_0\mu_0b_0a_0)+(\lambda_0\mu_1b_0a_1+\lambda_1\mu_0b_1a_0)+(\lambda_0\mu_2b_0a_2+\lambda_1\mu_1b_1a_1+\lambda_2\mu_0b_2a_0)+\ldots +(\lambda_{m}\mu_{n}b_{m}a_{n})=1
+                    $$
+                \item $(\Rightarrow):$ When $fg$ is primitive.
+                    We prove by contradiction and suppose $g$ is not primitive.
+                    Since $fg$ is primitive, we may assume
+                    $$
+                    b_0a_0\xi_0+(b_1a_0+b_0a_1)\xi_1+(b_2a_0+b_1a_1+b_0a_2)\xi_2+\ldots +b_{m}a_{n}\xi_{m+n}=1
+                    $$
+                    Therefore
+                    \begin{align*}
+                        &(a_0\xi_0+a_1\xi_1+\ldots +a_{n}\xi_{n})b_0\\
+                        +&(a_0\xi_1+a_1\xi_2+\ldots +a_{n}\xi_{n+1})b_{1}\\
+                        +&(a_0\xi_2+a_1\xi_3+\ldots +a_{n}\xi_{n+2})b_{2}\\
+                        &\vdots\\
+                        +&(a_0\xi_{m}+a_1\xi_{m+1}+\ldots +a_{n}+\xi_{m+n})b_{m}=1
+                    \end{align*}
+                    Contradictory.
+            \end{enumerate}
+        \qed
+    \end{enumerate}
+\end{exercise}
+
+\begin{remark}
+Consider the sum of terms in each of $n+m-1$ anti-diagonals
+$$
+\begin{blockarray}{cccccc}
+ & \lambda_0 & \lambda_1 & \lambda_2 & \cdots & \lambda_m \\
+\begin{block}{c[ccccc]}
+  \mu_0 & b_0 a_0 & b_1 a_0 x & b_2 a_0 x^2 & \cdots & b_m a_0 x^m \\
+  \mu_1 & b_0 a_1 x & b_1 a_1 x^2 & b_2 a_1 x^3 & \cdots & b_m a_1 x^{m+1} \\
+  \mu_2 & b_0 a_2 x^2 & b_1 a_2 x^3 & b_2 a_2 x^4 & \cdots & b_m a_2 x^{m+2} \\
+  \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \mu_n & b_0 a_n x^n & b_1 a_n x^{n+1} & b_2 a_n x^{n+2} & \cdots & b_m a_n x^{m+n} \\
+\end{block}
+\end{blockarray}
+$$
+\end{remark}
+
+\begin{exercise}
+    We can prove it by induction. View $A[x_1,\ldots ,x_{n}]$ as a ring over $A[x_1,\ldots ,x_{n-1}]$ in an indeterminate $x_{n}$.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    Recall that the Jacobson radical is the intersection of all maximal ideals, while the nilradical is the intersection of all prime ideals.
+    We'll prove that every prime ideal $p\subseteq A[x]$ is maximal:
+
+    $$
+    \forall \text{prime ideal }p,\text{ it's maximal }
+    $$
+    $\Leftrightarrow$ 
+    $$
+    \forall\text{ prime ideal }p,\text{ Krull dimension of }p\text{ is }0
+    $$
+    $\Leftrightarrow$
+    $$
+    \dim{A[x]}=0
+    $$
+    $\Leftrightarrow$(By \emph{[Algebraic Geometry - Hartshorne]Proposition 1.7}) 
+    $$
+    \dim{\left\{ \emptyset \right\} }=0\text{, }\left\{ \emptyset \right\} \text{in affine }1\text{-space }A
+    $$
+    Which is trivial.
+\end{exercise}
+
+\begin{remark}
+    By induction, we'll get Jacobson radical being equal to nilradical in $A[x_1,x_2,\ldots ,x_{n}],\forall n \in \mathbb{Z}^{+}$
+\end{remark}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Rightarrow):$ Suppose $fg=1$, where
+                    $$
+                    g=\sum_{n=0}^{\infty} b_{n}x^{n} 
+                    $$
+                    By checking the constant term of $fg$, we get
+                    $$
+                    a_0b_0=1
+                    $$
+                    Thus $a_0$ is a unit in $A$.
+                \item $(\Leftarrow):$ Notice
+                    $$
+                    (a_0+a_1x+\ldots )(a_0^{-1}-a_1a_0^{-2}x+(a_1^2a_0^{-3}-a_2a_0^{-2})+\ldots )=1
+                    $$
+                    Such construction of $f^{-1}$ can goes forever, so $f$ is a unit in $A[[x]]$.
+            \end{enumerate}
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item When $f$ is nilpotent, obviously $a_0$ is nilpotent.
+                    Nilpotent elements closed under addition, so $f-a_0$ is nilpotnet, indicating $a_1$ being nilpotent.
+                    Iterate the process above and we get $a_0,a_1,a_2,\ldots $ being nilpotent.
+                \item No. Counterexample can be reached on \emph{MathStackExchange}.
+            \end{enumerate}
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(\Leftarrow):$
+                    For $a_0$ in maximal ideal $I$, we can easily check that
+                    $$
+                    \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
+                    $$
+                    Is a maximal ideal in $A[[x]]$.
+                    Therefore $f=\sum_{n=0}^{\infty} a_{n}x^{n}\in \mathfrak{I}_{I} $.
+                    
+                    So when $a_0$ is in the Jacobson Radical of $A$, $f$ must be in the Jacobson Radical of $A[[x]]$.
+                 \item $(\Rightarrow):$
+                     We only need to prove the maximal ideals of $A[[x]]$ are all in the form
+                     $$
+                    \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
+                     $$
+                     where $I$ is a maximal ideal of $A$.
+
+                     Indeed, it's easy to see that the constant terms of all the elements in a arbitary ideal $\mathfrak{I}$ of $A[[x]]$ forms an ideal in $A$,
+                     we denote then by $I$ and let $\mathfrak{I}_{I}=\mathfrak{I}$.
+                     When $\mathfrak{I}_{I}$ is maximal, $I$ must be maximal in $A$, otherwise $\mathfrak{I}_{I}$ can expand to a larger ideal $\mathfrak{I}_{\overline{I}}$ where $\overline{I}$ is a maximal ideal containing $I$.
+
+                     Hence the ideal of $A[[x]]$ is maximal if and only if the constant term ideal is maximal in $A$.
+                     And $f$ is in a arbitary maximal ideal will indicate $a_0$ belongs to the correspond maximal ideal.
+                     Deduction of Jacobson Radical follows immediately.
+            \end{enumerate}
+        \item Proved in $(iii)$ above.
+        \item 
+            \textbf{(UNFINISHED)}
+            \emph{(I'm not sure whether I understood this problem correctly.)}
+
+            Consider
+            \begin{align*}
+                \varphi:A&\longrightarrow A[[x]]\\
+                a&\longrightarrow a+0x+0x^2+\ldots 
+            \end{align*}
+            And define $\varphi^{-1}$ by taking the constant term in the formal power series.
+            For prime ideal $\mathfrak{p}\subseteq A$,
+            $$
+            \mathfrak{p}A[[x]]=\left\{ a_0+a_1x+a_2x^2+\ldots \mid a_0,a_1,\ldots \in \mathfrak{p} \right\} 
+            $$
+            We can prove it's a 
+            % So its preimage is 
+    \end{enumerate}
+\end{exercise}
+
+\begin{remark}
+    The proof in \textbf{Ex.1.5(ii)} is identical to the one in \textbf{Ex.1.2(ii)}
+\end{remark}
+
+\begin{exercise}
+    \textbf{(UNFINISHED)}
+
+    By \emph{Proposition 1.11}, if the nilradical is equal to the Jacobson radical,
+    since any prime ideal would contain the Jacobson radical, i.e. intersection of all maximal ideals,
+    it would contain some of those maixmal ideals.
+
+    Therefore the problem is equivalent to prove that every prime ideals in $A$ is maximal,
+    % which is to say the Krull dimension of $A$ is $0$.
+
+    % By \emph{Algebraic Geometry - Hartshorne[Proposition 1.7]}
+\end{exercise}
+
+\begin{exercise}
+    For any prime ideal $\mathfrak{p}\subseteq A$, consider the map
+    $$
+    A\longrightarrow A / \mathfrak{p}
+    $$
+
+    From the problem we know $\forall x\in A,\exists n>0,\mathrm{s.t.}\ x^{n}=x$.
+    So $x(x^{n-1}-1)=0$, and we obtain
+    $$
+    \overline{x}(\overline{x}^{n-1}-\overline{1})=0
+    $$
+
+    We may assume $x\not\in \mathfrak{p}$, i.e. $\overline{x}\neq 0$.
+    Since $\mathfrak{p}$ is prime, $A / \mathfrak{p}$ is a integral domain.
+    So $\overline{x}^{n-1}=\overline{1}$, $\overline{x}$ has its inverse in $A / \mathfrak{p}$.
+    Because $x$ was an arbitary element in $A \backslash \mathfrak{p}$, $A / \mathfrak{p}$ is a field.
+    Hence $\mathfrak{p}$ is maximal.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    Consider the intersection of all prime ideals of $A$, which is the nilradical and obviously minimal with respect to inclusion.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    Recall that $\rad(\mathfrak{a})$ is the intersection of all prime ideals containing $\mathfrak{a}$.
+    The proof can be obtained directly from it.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\alph*})]
+        \item  $(i)\Rightarrow(ii):$
+            If $A$ has exactly one prime ideal $\mathfrak{p}$, such ideal will be the unique maximal ideal of $A$.
+
+            Recall that, by \emph{Corollary 1.5}, every non-unit of $A$ lies in $\mathfrak{p}$, therefore nilpotent.
+            On the other hand, others will be the uni of $A$.
+        \item $(ii)\Rightarrow(iii):$ 
+            $\forall \text{non-zero }\overline{a}\in \overline{A},\exists a^{-1}\in A\backslash \mathfrak{R},\mathrm{s.t.}\ aa^{-1}=1$.
+            And we have $\overline{a}\overline{a^{-1}}=\overline{1}$.
+        \item $(iii)\Rightarrow(i):$
+            $A / \mathfrak{R}$ is a field if and only if $\mathfrak{R}$ is a maximal ideal.
+            Because a nilradial is the intersection of all prime ideals, we can see $\mathfrak{p}$ is unique and maximal in $A$.
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item $2x=4x^2=4x$, so $2x=0$.
+        \item For any prime ideal $\mathfrak{p}$, consider the map
+            $$
+            \varphi:A\longrightarrow A / \mathfrak{p}
+            $$
+            $$
+            x\longrightarrow \overline{x}
+            $$
+            Since $x^2=x$, $\overline{x}^2=\overline{x},\overline{x}(\overline{x}-1)=0$.
+            $A / \mathfrak{p}$ is a integral domain, so $\overline{x}=0$ or $\overline{x}=1$.
+            Hence $A / \mathfrak{p}$ only contains two elements, i.e. $\overline{1}$ and $\overline{0}$, and it's a field for sure.
+        \item For $I=(x,y)$, consider $z=x+y+xy$, we'll prove $(z)=(x,y)$.
+
+            By definition, $(z)\subseteq (x,y)$.
+            Also, notice
+            $$
+            zx=(x+y+xy)x=x+xy+xy=x
+            $$
+            So $x\in (z)$.
+            In the same way we have $y\in (z)$,
+            thus $(z)=(x,y)$.
+            Rest of the proof can be done by induction.
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    
+\end{exercise}
+
+\begin{exercise}
+    
 \end{exercise}
 
 \end{document}
