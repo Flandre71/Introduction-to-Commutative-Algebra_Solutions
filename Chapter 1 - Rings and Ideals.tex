@@ -20,6 +20,7 @@
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
 \DeclareMathOperator{\rad}{Rad}
+\DeclareMathOperator{\spec}{Spec}
 \title{Chapter 1 - Rings and Ideals}
 \author{Flandre}
 \date{23 Jan 2026}
@@ -104,7 +105,7 @@
                     Suppose we have $g=b_0+b_1x+\ldots +b_{m}x^{m}$ such that $fg=0$.
 
                     If $b_{m}=0$, we're done.
-                    Otherwise, simmilar to \emph{(i)}, by checking the coefficients of $x^{m+n},x^{m+n-1},\ldots $ respectively,
+                    Otherwise, similar to \emph{(i)}, by checking the coefficients of $x^{m+n},x^{m+n-1},\ldots $ respectively,
                     we'll obtain
                     $$
                     \begin{cases}
@@ -385,11 +386,130 @@ $$
 \end{exercise}
 
 \begin{exercise}
-    
+    Suppse we have a nontrivial idempotent $e$.
+    By $e^2=e$ we have
+    $$
+    e(1-e)=0
+    $$
+
+    So both $e$ and $1-e$ is a zero-divisor, hence they're not unit and lies in the unique maximal ideal.
+    Therefore $1=e+(1-e)$ is in the maximal ideal, contradictory.
+    % Denote the local ring by $R$, which has a unique maximal ideal $I$.
+    % Consider
+    % $$
+    % R\longrightarrow R / I
+    % $$
+    % For idempotent element $e^2=e$, it'll be mapped into $\overline{e}^2=\overline{e}$, i.e.
+    % $$
+    % \overline{e}(\overline{e}-\overline{1})=\overline{0}
+    % $$
+
+    % Since $R / I$ is a field, we have $\overline{e}=0$ or $\overline{e}=1$, which is to say $e\in I$ or $e\in 1+I$
+    % (Notice $I\cap (1+I)=\emptyset$).
+    % \begin{itemize}
+    %     \item If $e\in 1+I$, $e\not\in I$.
+    %         So $e$ is a unit.
+    %         Now by $e^2=e$ we have
+    %         $$
+    %         e=1
+    %         $$
+    %     \item If $e\in I$, then $e$ is non-unit.
+    % \end{itemize}
 \end{exercise}
 
 \begin{exercise}
-    
+    \textbf{(POOR-WRITTEN UNCLEAR PROOF)}
+
+    We prove by contradiction: Suppose $\mathfrak{a}=(1)$, then $\exists \text{polynomial }F\in A[f(x_{f})]$,
+    for all $f$ and $x_{f}$,
+    such that
+    $$
+    F(f(x_{f}),\ldots )=1,\text{ finitely many }f\in \Sigma
+    $$
+    For those $F$, we pick out one with the least number of $f\in \Sigma$ being involved.
+
+    For a specific $f_0\in \Sigma$ which was involved in the polynomial $F$ above,
+    consider the terms of $f_0$ with its highest degree $\alpha_0$ in $F(f(x_{f}),\ldots )$.
+    Because $F(f(x_{f}),\ldots )=1$, those terms with degree $\alpha_0$ sums up to $0$, i.e.
+    $$
+    f(x_{f})^{\alpha_0}(\text{rest of the terms})=0
+    $$
+    Apparently $f(x_{f})^{\alpha_0}\neq 0$, so the rest of the terms sums up to $0$.
+    Then for the rest of the terms, we can again similarly pick out a $f_1,\alpha_1$ and sort out "rest of the terms" to be $0$.
+    We iterate the process above.
+    Since there're only finitely many terms, the process must stop, making a contradiction.
+
+    \emph{(We don't need to worry about characteristic of $K$ is finite or not, since w.l.o.g. we can let those terms in $F$ which adds up over the characteristic vanish in the first place.)}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item By Zorn's lemma, $\Sigma$ has maximal elements.
+        \item $\forall\text{maximal } I\subseteq \Sigma$, suppose $a,b\in A,\mathrm{s.t.}\ ab\in I$.
+            $I$ consists of zero-divisors, so $\exists u\in I,\mathrm{s.t.}\ (ab)u=0$.
+            Then
+            $$
+            a(bu)=0
+            $$
+            indicating $a$ being a zero-divisor, so does $b$.
+            Since $I$ is maximal, $a\in I$ (or $b\in I$) 
+        \item This can be obtained immediately by taking the union of every maximal element in $\Sigma$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Trivial. \emph{(See [Abstract Algebra - D\&F(3rd Edition)]Chap 12, [Algebraic Geometry - Hartshorne]Sect 1)}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item $\spec(\mathbb{Z})=\left\{ (p)\mid p\in \mathbb{Z}\text{ is prime } \right\} $
+        \item $\spec(\mathbb{R})=\left\{ (0) \right\} $
+        \item $\spec(\mathbb{C}[x])=\left\{\left( p(x) \right) \mid p(x)\in \mathbb{C}[x],\deg p=1 \right\} $
+        \item $\spec(\mathbb{R}[x])=\left\{ \left( p(x) \right) \mid p(x)\in \mathbb{R}[x]\text{ prime (or we can say irreducible) } \right\} $
+        \item \textbf{(UNFINISHED)}
+
+            $\spec(\mathbb{Z}[x])=\left\{  \right\} $
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Obviously they form a basis of open sets for Zariski topology.
+    \begin{enumerate}[label=({\roman*})]
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+        \item 
+            $$
+            \forall \bigcup_{k \in I} X_{f_{k}}\supseteq X=\spec(A)
+            \implies\exists f_{k_{1}},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i =1} ^{n}X_{f_{k_{i}}}\supseteq X
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall \bigcap_{k \in I} V(f_{k})\subseteq \emptyset
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq \emptyset
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall \bigcap_{k \in I} V(f_{k})=\emptyset
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})=\emptyset
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall (f_1,f_2,\ldots )=(1)
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ (f_{k_1},\ldots ,f_{k_{n}})=(1)
+            $$
+
+            When $\forall (f_1,f_2,\ldots )=(1)$, $\exists g_{k_1},\ldots ,g_{k_{n}}\in A,
+            \mathrm{s.t.}\ 1=\sum_{}^{} a_{k_{i}}f_{k_{i}},a\in A$,
+            which implies $(1)=(f_{k_1},\ldots ,f_{k_{n}})$.
+        \item 
+            % To prove $X_{f}$ is quasi-compact, we only need to consider the proof in \emph{(v)} where $X,X_{f_{k}}$ is repalced by $X_{f},X_{f_{k}}\cap X_{f}$.
+        \item 
+    \end{enumerate}
 \end{exercise}
 
 \end{document}
