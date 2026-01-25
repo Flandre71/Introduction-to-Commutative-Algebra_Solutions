@@ -5,6 +5,7 @@
 
 \usepackage{amsmath, amssymb}
 \usepackage{amsthm}
+\usepackage{mathrsfs}
 \usepackage{enumitem}
 \usepackage{blkarray}
 \newtheorem{remark}{Remark}
@@ -20,6 +21,7 @@
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
 \DeclareMathOperator{\rad}{Rad}
+\DeclareMathOperator{\obj}{Obj}
 \DeclareMathOperator{\spec}{Spec}
 \title{Chapter 1 - Rings and Ideals}
 \author{Flandre}
@@ -351,7 +353,7 @@ $$
             And we have $\overline{a}\overline{a^{-1}}=\overline{1}$.
         \item $(iii)\Rightarrow(i):$
             $A / \mathfrak{R}$ is a field if and only if $\mathfrak{R}$ is a maximal ideal.
-            Because a nilradial is the intersection of all prime ideals, we can see $\mathfrak{p}$ is unique and maximal in $A$.
+            Because a nilradical is the intersection of all prime ideals, we can see $\mathfrak{p}$ is unique and maximal in $A$.
     \end{enumerate}
     \qed
 \end{exercise}
@@ -578,6 +580,74 @@ $$
             then by \emph{(iii)} we get $\mathfrak{p}_{x}=\mathfrak{p}_{y}$, contradictory.
     \end{enumerate}
     \qed
+\end{exercise}
+
+\begin{exercise}
+    \emph{(Beautiful!)}
+
+    In ring $A$, we consider the category $\mathscr{C}$ of ideals, morphisms umder inclusions.
+    We take its subcategory $\mathscr{C}_{0}$ of prime ideals, i.e.$\obj(\mathscr{C}_0)=\spec(A)$.
+
+    In this case, the initial object of $\mathscr{C}$ is the nilradial of $A$,
+    and it lies in $\mathscr{C}_{0}$ if and only if the nilradical is prime.
+    Therefore, $\mathscr{C}_{0}$ has a initial object,
+    i.e. the partially ordered set of $\spec(A)$ consists of a connected tree instead of a union of disjoint trees,
+    if and only if $\mathfrak{N}(A)$ is prime.
+
+    On the other hand, for any two subsets of $A$, denoted by $E,F$,
+    we denote the complement of $V(E),V(F)$ by $X_{E},X_{F}$ respectively.
+    We can have
+    $$
+    X_{E}\cap X_{F}\neq \emptyset
+    $$
+    $\Leftrightarrow$ 
+    $$
+    V(E)\cup V(F)\neq \spec(A)
+    $$
+    $\Leftrightarrow$ 
+    $$
+    \mathfrak{N}(A)\subseteq \spec(A)
+    $$
+    (Becuase $V(\mathfrak{N}(A))=\spec(A)=X$.
+    Otherwise when nilradical is not prime,
+    $\mathscr{C}_{0}$ consists of distinct trees with each root $r_1,r_2,\ldots $,
+    from which we can let $E=\left\{ r_1 \right\} ,F=\left\{ r_2,\ldots  \right\} $ and have $V(E)\cup V(F)=X$.)
+\end{exercise}
+
+\begin{exercise}
+    \textbf{(SKIPPED)}
+    \emph{(I haven't learnt topology yet.)}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item For $\mathfrak{q}\in Y_{\phi(f)}$,
+            $$
+            \mathfrak{q}\in \phi^{*-1}(X_{f})
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \phi^{*}(\mathfrak{q})\in X_{f}
+            $$
+            $\Leftrightarrow$
+            $$
+            \phi^{*}\mathfrak{q}\not\in V(f)
+            $$
+            $\Leftrightarrow$ 
+            $$
+            f\not\in \phi^{*}(\mathfrak{q})=\phi^{-1}(\mathfrak{q})
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \phi(f)\not\in \mathfrak{q}
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \mathfrak{q}\in Y_{\phi_{(f)}}
+            $$
+            So $\phi^{*-1}(X_{f})=Y_{\phi(f)}$.
+    \end{enumerate}
 \end{exercise}
 
 \end{document}
