@@ -476,13 +476,17 @@ $$
 \end{exercise}
 
 \begin{exercise}
+    \textbf{(UNFINISHED)}
     Obviously they form a basis of open sets for Zariski topology.
     \begin{enumerate}[label=({\roman*})]
         \item Trivial.
         \item Trivial.
         \item Trivial.
         \item Trivial.
-        \item 
+        \item Without loss of generation ww may only conside $X$ convered by basic open sets $X_{f_{i}}$,
+            since every general open sets can be in the form of union of basis.
+
+            Now
             $$
             \forall \bigcup_{k \in I} X_{f_{k}}\supseteq X=\spec(A)
             \implies\exists f_{k_{1}},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i =1} ^{n}X_{f_{k_{i}}}\supseteq X
@@ -506,10 +510,74 @@ $$
             When $\forall (f_1,f_2,\ldots )=(1)$, $\exists g_{k_1},\ldots ,g_{k_{n}}\in A,
             \mathrm{s.t.}\ 1=\sum_{}^{} a_{k_{i}}f_{k_{i}},a\in A$,
             which implies $(1)=(f_{k_1},\ldots ,f_{k_{n}})$.
-        \item 
+        \item Similarly,
+            $$
+            \forall \bigcup_{k \in I} X_{f_{k}}\supseteq  X_{f}
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i=1 }^{n}X_{f_{k_{i}}}\supseteq X_{f}
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall \bigcap_{k\in I} V(f_{k})\subseteq V(f)
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq V(f)
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall f_1,f_2,\ldots \mathrm{s.t.}\ f\in (f_1,f_2,\ldots )
+            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ f=a_1f_1+\ldots +a_{n}f_{n},(a_{k}\in A)
+            $$
+            Which is trivial.
             % To prove $X_{f}$ is quasi-compact, we only need to consider the proof in \emph{(v)} where $X,X_{f_{k}}$ is repalced by $X_{f},X_{f_{k}}\cap X_{f}$.
-        \item 
+        \item Since $\left\{ X_{f} \right\} $ forms a basis for $\spec(A)$,
+            $\exists \text{famliy}\mathcal{F},\mathrm{s.t.}\ X_0=\bigcup_{f \in \mathcal{F}} X_{f}$.
+            Now
+            $$
+            X_0\text{ quasi compact}
+            $$
+            $\Leftrightarrow$
+            $$
+            \forall X_{f_1},X_{f_2},\ldots \in A,
+            \mathrm{s.t.}\ \bigcup_{k =1} ^{\infty}X_{f_{k}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f},
+            \exists f_{k_1},\ldots ,f_{k_{n}},
+            \mathrm{s.t.}\ \bigcup_{i=1} ^{n}X_{f_{k_{i}}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f}
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall f_1,f_2,\ldots ,
+            \mathrm{s.t.}\ \bigcap_{k =1} ^{\infty}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f),
+            \exists f_{k_1},\ldots ,f_{k_{n}},
+            \mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f)
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \forall f_1,f_2,\ldots \in A,
+            \mathrm{s.t.}\ \mathcal{F}\subseteq (f_1,f_2,\ldots ),
+            \exists f_{k_1},\ldots ,f_{k_{n}},
+            \mathrm{s.t.}\ \mathcal{F}\subseteq (f_{k_1},\ldots ,f_{k_{n}})
+            $$
+            \begin{enumerate}[label=({\roman*})]
+                \item $(\Rightarrow):$
+                    We prove by contradiction and suppose $\mathcal{F}$ can only be infinite,
+                    then let $f_1,f_2\ldots $ be the elements in $\mathcal{F}$, and such $f_{k_1},\ldots ,f_{k_{n}}$ cannot exist.
+                \item $(\Leftarrow):$ 
+                    When $\mathcal{F}$ is finite, it is a direct proposition from  \emph{(vi)}.
+            \end{enumerate}
     \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item $\left\{ x \right\} $ is closed if and only if the only prime ideal containing $\mathfrak{p}_{x}$ is $\mathfrak{p}_{x}$ itself, which is equivalent to $\mathfrak{p}_{x}$ being maximal.
+        \item Trivial.
+        \item $y\in \left\{ \overline{x} \right\} \Leftrightarrow \mathfrak{p}_{y}\in V(\mathfrak{p}_{x})\Leftrightarrow\mathfrak{p}_{x}\subseteq \mathfrak{p}_{y}$.
+        \item \emph{(What's the definition of "neighborhood" here? I'll interpret it as "closed neighborhood" anyway.)}
+
+            Consider $V(x),V(y)$, which is a neighborhood of $x,y$ respectively.
+            Soppose $x\in V(\mathfrak{p}_{y}),y\in V(\mathfrak{p}_{x})$,
+            then by \emph{(iii)} we get $\mathfrak{p}_{x}=\mathfrak{p}_{y}$, contradictory.
+    \end{enumerate}
+    \qed
 \end{exercise}
 
 \end{document}
