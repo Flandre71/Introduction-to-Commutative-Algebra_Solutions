@@ -21,6 +21,8 @@
     {}
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
 \DeclareMathOperator{\rad}{Rad}
 \DeclareMathOperator{\nil}{Nil}
 \DeclareMathOperator{\obj}{Obj}
@@ -677,7 +679,17 @@ $$
             \mathfrak{q}\in V(\phi(\mathfrak{a}))=V(\mathfrak{a}^{e})
             $$
             So $\phi^{*-1}(V(\mathfrak{a}))=V(\mathfrak{a}^{e})$.
-        \item 
+        \item $\forall \mathfrak{q}\in V(\mathfrak{b})$ 
+            $$
+            \phi^{-1}(\mathfrak{b})\subseteq \phi^{*}(\mathfrak{q})
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \mathfrak{b}\subseteq \mathfrak{q}
+            $$
+            Which is true by definition,
+            so $\overline{\phi^{*}(V(\mathfrak{b}))}\subseteq V(\phi^{-1}(\mathfrak{b}))$.
+            \textbf{(UNFINISHED)}
             % $$
             % \mathfrak{b}\in V(\mathfrak{b})
             % $$
@@ -700,9 +712,59 @@ $$
             % \mathfrak{a'}\subseteq \phi^{*}(b)
             % $$
             % Contradictory!
-        \item From \emph{(i)} we already know $\phi^{*}$ is continuous.
-            Since we now have $\phi$ being surjection,
-            $\phi^{*}$ is obviously a bijection.
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item From \emph{(i)} we already know $\phi^{*}$ is continuous.
+                    Since we now have $\phi$ being surjection,
+                    $\phi^{*}$ is obviously a bijection.
+                    Also, the continuity of derives directly from \emph{(iii)}.
+                \item In particular, let $Y=A / \mathfrak{R}$ and $\phi$ be the canonical homomorphism.
+            \end{enumerate}
+        \item We directly prove the "More precisely" part:
+            $$
+            \phi^{*}(Y)\text{ dense in  }X
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \overline{\phi^{*}(Y)}=X
+            \eqno{(1)}
+            $$
+            $\Leftrightarrow$
+            $$
+            \overline{\phi^{*}(V(\nil(B)))}=X
+            $$
+            $\Leftrightarrow$
+            $$
+            \overline{\phi^{*}(V(\nil(B)))}=V(\nil(A))
+            $$
+            $\Leftrightarrow$ (by \emph{(iii)})
+            $$
+            V(\nil(B)^{c})=V(\nil(A))
+            $$
+            $\Leftrightarrow$ 
+            $$
+            V(\phi^{-1}(\nil(B)))=V(\nil(A))
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \rad(\phi^{-1}(\nil(B)))=\nil(A)
+            \eqno{(2)}
+            $$
+            To prove $((1)\Leftrightarrow(2))$, we only need
+            $$
+            \ker(\phi)\subseteq \rad(\phi^{-1}(\nil(B)))
+            $$
+            $\Leftarrow$ 
+            $$
+            \ker(\phi)\subseteq \phi^{-1}(\nil(B))
+            $$
+            $\Leftrightarrow$ 
+            $$
+            0_{B}\subseteq \nil(B)
+            $$
+            Which is trivial.
+        \item Trivial.
+        \item 
     \end{enumerate}
 \end{exercise}
 
