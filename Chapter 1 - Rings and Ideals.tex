@@ -8,6 +8,7 @@
 \usepackage{mathrsfs}
 \usepackage{enumitem}
 \usepackage{blkarray}
+\usepackage{tikz-cd}
 \newtheorem{remark}{Remark}
 \newtheoremstyle{breakstyle}
     {5pt}
@@ -21,6 +22,7 @@
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
 \DeclareMathOperator{\rad}{Rad}
+\DeclareMathOperator{\nil}{Nil}
 \DeclareMathOperator{\obj}{Obj}
 \DeclareMathOperator{\spec}{Spec}
 \title{Chapter 1 - Rings and Ideals}
@@ -592,7 +594,7 @@ $$
     and it lies in $\mathscr{C}_{0}$ if and only if the nilradical is prime.
     Therefore, $\mathscr{C}_{0}$ has a initial object,
     i.e. the partially ordered set of $\spec(A)$ consists of a connected tree instead of a union of disjoint trees,
-    if and only if $\mathfrak{N}(A)$ is prime.
+    if and only if $\nil(A)$ is prime.
 
     On the other hand, for any two subsets of $A$, denoted by $E,F$,
     we denote the complement of $V(E),V(F)$ by $X_{E},X_{F}$ respectively.
@@ -620,7 +622,13 @@ $$
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+    \textbf{(UNFINISHED)}
+    $$
+    \begin{tikzcd}
+    A \arrow[r, "\phi"] \arrow[d, "V()"] & B \arrow[d, "V()"]                     \\
+    X=\mathrm{Spec}(A)                   & Y=\mathrm{Spec}(B) \arrow[l, "\phi^*"]
+    \end{tikzcd}
+    $$
     \begin{enumerate}[label=({\roman*})]
         \item For $\mathfrak{q}\in Y_{\phi(f)}$,
             $$
@@ -647,7 +655,59 @@ $$
             \mathfrak{q}\in Y_{\phi_{(f)}}
             $$
             So $\phi^{*-1}(X_{f})=Y_{\phi(f)}$.
+        \item 
+            For any prime ideal $\mathfrak{q}\in Y$,
+            $$
+            \mathfrak{q}\in \phi^{*-1}(V(\mathfrak{a}))
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \phi^{*}(\mathfrak{q})\in V(\mathfrak{a})
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \mathfrak{a}\subseteq \phi^{*}(\mathfrak{q})
+            $$
+            $\Leftrightarrow$ 
+            $$
+             \phi(\mathfrak{a})\subseteq \phi(\phi^{*}(\mathfrak{q}))=\mathfrak{q}
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \mathfrak{q}\in V(\phi(\mathfrak{a}))=V(\mathfrak{a}^{e})
+            $$
+            So $\phi^{*-1}(V(\mathfrak{a}))=V(\mathfrak{a}^{e})$.
+        \item 
+            % $$
+            % \mathfrak{b}\in V(\mathfrak{b})
+            % $$
+            % $\Rightarrow$ 
+            % $$
+            % \phi^{*}(\mathfrak{b})\in \phi^{*}(V(\mathfrak{b}))
+            % $$
+            % $\Rightarrow$ 
+            % $$
+            % V(\phi^{*}(\mathfrak{b}))\supseteq \overline{\phi^{*}(V(\mathfrak{b}))}
+            % $$
+            % We prove by contradiction and suppose
+            % $$
+            % \overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})\subsetneq V(\phi^{*}(\mathfrak{b}))
+            % $$
+            % Therefore $\mathfrak{a'}\supsetneq\phi^{*}(\mathfrak{b})$.
+            % However, $\overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})$ indicate that $\forall I\in \phi^{*}(V(\mathfrak{b})),\mathfrak{a'}\subseteq I$.
+            % Let $I=\phi^{*}(b)$, we obtain
+            % $$
+            % \mathfrak{a'}\subseteq \phi^{*}(b)
+            % $$
+            % Contradictory!
+        \item From \emph{(i)} we already know $\phi^{*}$ is continuous.
+            Since we now have $\phi$ being surjection,
+            $\phi^{*}$ is obviously a bijection.
     \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    
 \end{exercise}
 
 \end{document}
