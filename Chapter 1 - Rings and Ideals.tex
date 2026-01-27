@@ -610,9 +610,9 @@ $$
     $$
     $\Leftrightarrow$ 
     $$
-    \mathfrak{N}(A)\subseteq \spec(A)
+    \nil(A)\subseteq \spec(A)
     $$
-    (Becuase $V(\mathfrak{N}(A))=\spec(A)=X$.
+    (Becuase $V(\nil(A))=\spec(A)=X$.
     Otherwise when nilradical is not prime,
     $\mathscr{C}_{0}$ consists of distinct trees with each root $r_1,r_2,\ldots $,
     from which we can let $E=\left\{ r_1 \right\} ,F=\left\{ r_2,\ldots  \right\} $ and have $V(E)\cup V(F)=X$.)
@@ -769,7 +769,83 @@ $$
 \end{exercise}
 
 \begin{exercise}
-    
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\alph*})]
+        \item $\forall k\in [1,n]\cap Z$,
+            $$
+            X_{k}=\left\{ A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}\mid \mathfrak{p}\in \spec(A_{k}) \right\} 
+            $$
+            So we can define a map
+            $$
+            \varphi:\spec(A_{k})\longrightarrow X_{k}
+            $$
+            by
+            $$
+            \mathfrak{p}\longmapsto A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}
+            $$
+            and the homeomorphic property is trivial in the Zariski topology defined in this way.
+        \item 
+            \begin{enumerate}[label=({\Roman*})]
+                \item $(ii)\Rightarrow(i):$
+                    From \emph{(a)} we see
+                    $$
+                    X_1=\left\{ \mathfrak{p}\times A_2\mid \mathfrak{p}\in \spec(A_1) \right\} ,X_2=\left\{ A_1\times \mathfrak{p}\mid \mathfrak{p}\in \spec(A_2) \right\} 
+                    $$
+                    So $X_1\cap X_2=\emptyset$.
+                \item $(iii)\Rightarrow(ii):$
+                    Suppose we have $e\in A,\text{s.t. }e^2=2,e\not\in \left\{ 0,1 \right\} $.
+                    Then $A\cong eA\times (1-e)A$.
+                \item $(i)\Rightarrow(iii):$
+                    $$
+                    X\text{ disconnect }
+                    $$
+                    $\Leftrightarrow$
+                    $$
+                    X\text{ is a union of disjoint nontrivial clopen set }
+                    $$
+                    $\Leftrightarrow$ 
+                    $$
+                    \exists \text{ideal }I,J,\text{s.t. }V(I)\cap V(J)=V(I+J)=\emptyset,V(I)\cup V(J)=V(IJ)=V(I\cap J)=X
+                    $$
+                    When such $I,J$ exist, let $a\in I,b\in J,\text{s.t. }a+b=1$.
+                    Since $V(IJ)=X,IJ\subseteq \nil(A)$, so $\exists n\in \mathbb{Z}^{+},\text{s.t. }(ab)^{n}=0$.
+                    Consider
+                    $$
+                    s_1=\mathrm{C}_{2n}^{0}a^{2n}+\mathrm{C}_{2n}^{1}a^{2n-1}b+\ldots +\mathrm{C}_{2n}^{n-1}a^{n+1}b^{n-1}
+                    $$
+                    $$
+                    s_2=\mathrm{C}_{2n}^{2n}b^{2n}+\mathrm{C}_{2n}^{2n-1}ab^{2n-1}+\ldots +\mathrm{C}_{2n}^{n+1}a^{n-1}b^{n+1}
+                    $$
+                    Now
+                    $$
+                    s_1+s_2=s_1+s_2+\mathrm{C}_{2n}^{n}a^{n}b^{n}=(a+b)^{2n}=1
+                    $$
+                    
+                    and
+                    $$
+                    s_1s_2=0
+                    $$
+                    So
+                    $$
+                    s_1(1-s_1)=0
+                    $$
+                    $s_1,s_2$ are nontrivial idempotent.
+            \end{enumerate}
+            \qed
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            From \emph{Ex-1.11(ii)} we know every prime ideal in $A$ is maximal.
+            Therefore the $spec(A)$ category $\mathscr{C}$ 
+            (defined in \emph{Ex-1.19})
+            consists of distinct objects with no inclusion (morphisms).
+            Therefore $\forall f\in A$ is a subtree (closed set),
+            and it's also the complement of $\bigcup_{g \in A\backslash f} V(g)$.
+    \end{enumerate}
 \end{exercise}
 
 \end{document}
