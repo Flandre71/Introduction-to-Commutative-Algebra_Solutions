@@ -839,13 +839,175 @@ $$
     \leavevmode \vspace{-\baselineskip}
     \begin{enumerate}[label=({\roman*})]
         \item 
-            From \emph{Ex-1.11(ii)} we know every prime ideal in $A$ is maximal.
-            Therefore the $spec(A)$ category $\mathscr{C}$ 
-            (defined in \emph{Ex-1.19})
-            consists of distinct objects with no inclusion (morphisms).
-            Therefore $\forall f\in A$ is a subtree (closed set),
-            and it's also the complement of $\bigcup_{g \in A\backslash f} V(g)$.
+            $X_{f}$ is open by definition, and we only have to prove that $X_{f}$ is closed.
+
+            For any nonzero, non-unital $f\in A$ consider $1-f$.
+            Notice:
+            \begin{align*}
+                V(f)\cap V(1-f)
+                &= V((f)+(1-f)) \\
+                &= V(1) \\
+                &= \emptyset
+            \end{align*}
+            \begin{align*}
+                V(f)\cup V(1-f)&= V((f)(1-f)) \\
+                &= V(0) \\
+                &= X
+            \end{align*}
+            Therefore $V(f)=X_{1-f}$.
+        \item Because
+            $$
+            \bigcap_{k=1} ^{n}V(f_{k})=V\left( \sum_{k=1}^{n} \left( f_{k} \right)   \right) 
+            $$
+            where the ideal $\sum_{k=1}^{n} \left( f_{k} \right) $ is finitely generated, therefore principal by \emph{Ex-1.11(iii)}.
+            So $\exists f\in A,\text{s.t. }$ 
+            $$
+            (f)=(f_1,f_2,\ldots .,f_{n})=\sum_{k=1}^{n} \left( f_{k} \right) 
+            $$
+            and therefore
+            $$
+            V(f)=\bigcap_{k=1} ^{n}V(f_{k})
+            $$
+        \item For any clopen subset $Y\subseteq X$, let $Z=X\backslash Y$.
+            By definition $Z$ is also clopen.
+            From \emph{Prop-1.11(i)}, 
+            $$
+            \forall \mathfrak{p}\in Y,\mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q} \right) 
+            $$
+            is nonempty.
+            Thus we can pick out $f\in \mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q}\right) $ and consider $(1-f)$:
+            From \emph{(i)} we know $V(f),V(1-f)$ is a partition of $X$, so by $f\in \mathfrak{p},\mathfrak{p}\in Y$ we have
+            $$
+            V(f)=Y,V(1-f)=Z
+            $$
+            But since $f\not\in \bigcup_{\mathfrak{q} \in Y} \mathfrak{q}$, $V(f)\subsetneq Y$, contradictory.
+        \item $X$ is compact by \emph{Ex-17(iv)}.
+
+            To prove $X$ is Hausdorff, we need to prove for $\forall \mathfrak{p},\mathfrak{q}\in X,\mathfrak{p}\neq \mathfrak{q}$,
+            $$
+            \exists \text{open set }X_1,X_2,\text{s.t. }
+            \mathfrak{p}\in X_1,\mathfrak{q}\in X_2,X_1\cap X_2=\emptyset
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\not\in V_1,\mathfrak{q}\not\in V_2,V_1\cup V_2=X
+            $$
+            $\Leftrightarrow$ 
+            $$
+            \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\in V_2\backslash V_1,\mathfrak{q}\in V_1\backslash V_2,V_1\cup V_2=X
+            $$
+            Such $V_1,V_2$ can be obtained by
+            $$
+            V_1=X\backslash \left\{ \mathfrak{q} \right\} ,V_2=X\backslash \left\{ \mathfrak{p} \right\}
+            $$
     \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\alph*})]
+        \item 
+            \begin{enumerate}[label=({\Roman*})]
+                \item For addition:
+                    \begin{enumerate}[label=({\roman*})]
+                        \item $+$ is commutative because $\wedge, \vee $ are both commutative.
+                        \item 
+                            \begin{align*}
+                                a+0&= (a\wedge 1)\vee (a'\wedge 0) \\
+                                &= a\vee 0 \\
+                                &= a
+                            \end{align*}
+                        \item 
+                            \begin{align*}
+                                a+a'&= (a\wedge a')\vee (a'\wedge a) \\
+                                &= 0\vee 0 \\
+                                &=0
+                            \end{align*}
+                        \item 
+                            \begin{align*}
+                                (a+b)+c&= (ab'\vee a'b)+c \\
+                                &= (ab'\vee a'b)c\vee (ab+a'b')c \\
+                                &= abc\vee a'bc\vee ab'c\vee abc'
+                            \end{align*}
+                            Which is symmetric with respect to $a,b,c$, therefore addition is associative.
+                    \end{enumerate}
+                \item For multiplication:
+                    \begin{enumerate}[label=({\roman*})]
+                        \item 
+                            $$
+                            ab=a\wedge b=b\wedge a=ba
+                            $$
+                        \item 
+                            $$
+                            a\cdot 1=a\wedge 1=a
+                            $$
+                        \item Associative of multiplication is given by the associativity of $\vee $.
+                        \item 
+                            \begin{align*}
+                                a(b+c)&= a(bc'\vee b'c) \\
+                                &= abc'\vee ab'c
+                            \end{align*}
+                            \begin{align*}
+                                ab+ac&= ((a'\vee b')ac)\vee (ab(a'\vee c')) \\
+                                &= ab'c\vee abc'
+                            \end{align*}
+                            And we obtian the distributive law.
+                    \end{enumerate}
+                \item For Boolean property:
+                    $a^2=a\wedge a=a$.
+            \end{enumerate}
+        \item We'll prove one side, the other side cna be obtained by duality.
+            \begin{enumerate}[label=({\roman*})]
+                \item Associativity:
+                    \begin{align*}
+                        a\vee (b\vee c)&= a\vee (b+c+bc) \\
+                        &= a+b+c+bc+ab+ca+abc
+                    \end{align*}
+                    \begin{align*}
+                        (a\vee b)\vee c&= (a+b+ab)\vee c \\
+                        &= a+b+c+ab+ca+bc+abc \\
+                    \end{align*}
+                    So $(a\vee b)\vee c=a\vee (b\vee c)$.
+                \item Commutavity: Because multiplication is commutative.
+                \item Absorption:
+                    \begin{align*}
+                        a\vee (a\wedge b)&= a\vee (ab) \\
+                        &= a+ab+aab \\
+                        &= 3a \\
+                        &= a
+                    \end{align*}
+                \item Identity:
+                    $a\vee 0=a$ 
+                \item Distributivity:
+                    \begin{align*}
+                        a\vee (b\wedge c)&= a\vee (bc) \\
+                        &= a+bc+abc
+                    \end{align*}
+                    \begin{align*}
+                        (a\vee b)\wedge (a\vee c)&= (a+b+ab)(a+c+ac) \\
+                        &= a+ac+ac+ab+bc+abc+ab+abc+abc \\
+                        &= a+bc+abc
+                    \end{align*}
+                    So $a\vee (b\wedge c)=(a\vee b)\wedge (a\vee c)$.
+                \item Complements:
+                    \begin{align*}
+                        a\vee a'&= a+(1-a)+a(1-a) \\
+                        &= 1
+                    \end{align*}
+            \end{enumerate}
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \emph{(Beautiful!)}
+
+    Every Boolean lattice, namely $L$, is isomorphic to $Y=\left\{ X_{f}\mid f\in A(L),X=\spec(A(L)) \right\} $
+\end{exercise}
+
+\begin{exercise}
+    
 \end{exercise}
 
 \end{document}
