@@ -29,7 +29,7 @@ I am a freshman undergraduate student currently taking a course in Algebraic Geo
 
 ## Progress
 
-- [ ] Chapter 1: Rings and Ideals
+- [X] Chapter 1: Rings and Ideals
 - [ ] Chapter 2: Modules
 - [ ] Chapter 3: Rings and Modules of Fractions
 - [ ] Chapter 4: Primary Decomposition
