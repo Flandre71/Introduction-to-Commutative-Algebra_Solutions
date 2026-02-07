@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{blkarray}
+\usepackage{tikz-cd}
+\newtheorem{remark}{Remark}
+\newtheoremstyle{breakstyle}
+    {5pt}
+    {10pt}
+    {\normalfont}
+    {0pt}
+    {\bfseries}
+    {\newline\indent}
+    {0pt}
+    {}
+\theoremstyle{breakstyle}
+\newtheorem{exercise}{Exercise}
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
+\DeclareMathOperator{\im}{Im}
+% \let\max\relax
+% \DeclareMathOperator{\max}{Max}
+% \DeclareMathOperator{\rad}{Rad}
+% \DeclareMathOperator{\nil}{Nil}
+% \DeclareMathOperator{\obj}{Obj}
+% \DeclareMathOperator{\spec}{Spec}
+\title{Chapter 2 - Modules}
+\author{Flandre}
+\date{7 Feb 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+    Since $\gcd(m,n)=1,\exists u,v\in \mathbb{Z},\text{s.t. }$
+    $$
+    mu+nv=1
+    $$
+
+    Now for $\forall x\otimes y\in \left( \mathbb{Z} /m\mathbb{Z} \right) \otimes _{\mathbb{Z}}\left( \mathbb{Z} / n\mathbb{Z} \right) $,
+    \begin{align*}
+        x\otimes y&= (mu+nv)(x\otimes y) \\
+        &= mu(x\otimes y)+nv(x\otimes y) \\
+        &= 0 \\
+    \end{align*}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    Consider the exact sequence
+    $$
+    \mathfrak{a}\xrightarrow{f} A\xrightarrow[]{g} A / \mathfrak{a}\rightarrow 0
+    $$
+    By \emph{Proposition 2.18}, we have the following exact sequence
+    $$
+    \mathfrak{a}\otimes M\xrightarrow[]{f\otimes 1} A\otimes M\xrightarrow[]{g\otimes 1}\left( A / \mathfrak{a} \right)  \otimes M\longrightarrow 0
+    $$
+    Notice there exist trivial isomorphism $\mathfrak{a}\otimes M\cong \mathfrak{a}M,A\otimes M\cong M$.
+    So we can have the exact sequence
+    $$
+    \mathfrak{a}M\xrightarrow[]{\varphi} M\xrightarrow[]{\psi} \left( A / \mathfrak{a} \right) \otimes M\rightarrow 0
+    $$
+
+    With $\im{\varphi}=\ker{\psi},\im{\psi}=\left( A / \mathfrak{a} \right) \otimes M$.
+    Which is to say
+    $$
+    \im{\psi}=\left( A / \mathfrak{a} \right) \otimes M,\ker{\psi}=\mathfrak{a}M
+    $$
+    So by \emph{Module Isomorphism Theorem},
+    $$
+    \left( A / \mathfrak{a} \right) \otimes M\cong M / \mathfrak{a}M
+    $$
+    \qed
+\end{exercise}
+
+\end{document}
