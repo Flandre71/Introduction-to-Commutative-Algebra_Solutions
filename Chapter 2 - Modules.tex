@@ -23,7 +23,11 @@
 \newtheorem{exercise}{Exercise}
 \let\ker\relax
 \DeclareMathOperator{\ker}{Ker}
+\DeclareMathOperator{\coker}{Coker}
+\DeclareMathOperator{\coim}{Coim}
 \DeclareMathOperator{\im}{Im}
+\let\dim\relax
+\DeclareMathOperator{\dim}{Dim}
 % \let\max\relax
 % \DeclareMathOperator{\max}{Max}
 % \DeclareMathOperator{\rad}{Rad}
@@ -76,6 +80,219 @@
     $$
     \left( A / \mathfrak{a} \right) \otimes M\cong M / \mathfrak{a}M
     $$
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    We follow from the hint:
+    For any finitely generated $A$-module $M_0$,
+    let $\mathfrak{m}$ be the maximal ideal of $A$ and $k=M_0 / \mathfrak{m}$ be the field derived from quotient.
+    Now by \emph{Ex-2.2}, $k\otimes _{A}M_0\cong M_0 / \mathfrak{m}M_0$.
+    So by \emph{Nakayama Lemma}, $k\otimes _{A}M_0=0$ will indicate $M_0=0$.
+
+    Back to the problem:
+    \begin{align*}
+        0&= k\otimes _{A}k\otimes _{A}\otimes _{A}M\otimes _{A}N \\
+        &\cong  k\otimes _{A}\left( k\otimes _{A}M \right) \otimes _{A}N \\
+        &\cong  k\otimes _{A}M_{k} \otimes _{A}N \\
+        &\cong  M_{k}\otimes _{A}\left( k\otimes _{A}N \right)  \\
+        &\cong  M_{k}\otimes _{A}N_{k} \\
+    \end{align*}
+\end{exercise}
+
+\begin{exercise}
+    For any $A$-module $N$, consider
+    $$
+    f:N\longrightarrow N'
+    $$
+    which is injective.
+    Now
+    $$
+    M\text{ is flat }
+    $$
+    $\Leftrightarrow$ 
+    $$
+    f\otimes 1:N\otimes M\longrightarrow N'\otimes M\text{ is injective }
+    $$
+    $\Leftrightarrow$ (Be considering their kernel)
+    $$
+    \forall i\in I,f\otimes 1:N\otimes M_{i}\longrightarrow N'\otimes M_{i}\text{ is injective }
+    $$
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    We can view $A,xA,x^2A,\ldots $ as a sequence of $A$-module,
+    and $A[x]$ is their direct sum where multiplication in the $A$-algebra structure defined in the trivial way.
+\end{exercise}
+
+\begin{exercise}
+    Define
+    $$
+    \varphi:A[x]\otimes _{A}M\longrightarrow M[x]
+    $$
+    by mapping
+    $$
+    p(x)\otimes m\longmapsto p(x)\cdot m
+    $$
+    Obviously $\ker{\varphi}=0,\im{\varphi}=M[x]$, so $\varphi$ is an isomorphism.
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            If $a(x),b(x)\in A[x],a(x)b(x)\in \mathfrak{p}[x]$.
+            Let $a(x)=a_{n}x^{n}+a_{n-1}x^{n-1}+\ldots +a_1x+a_0,b(x)=b_{n}x^{n}+b_{n-1}x^{n-1}+\ldots +b_1x+b_0$,
+            then
+            $$
+            (a_{n}x^{n}+\ldots +a_1x+a_0)(b_{n}x^{n}+\ldots +b_1x+b_0)\in \mathfrak{p}[x]
+            $$
+            $$
+            a_{n}b_{n}\in \mathfrak{p}\Rightarrow a_{n}\in \mathfrak{p}\text{ or  }b_{n}\in \mathfrak{p}
+            $$
+            Suppose $a_{n}\in \mathfrak{p}$, then let $a'(x)=a_{n-1}x^{n-1}+a_{n-2}x^{n-2}+\ldots +a_1x+a_0$ and we have
+            $$
+            a'(x)b(x)\in \mathfrak{p}[x]
+            $$
+            Repeat the process above and eventually
+            $$
+            a(x)\in \mathfrak{p}[x]\text{ or  }b(x)\in \mathfrak{p}[x]
+            $$
+           \qed 
+        \item Not necessarily.
+
+            Let $A=k$ be a field and $\mathfrak{m}=(0)$.
+            Obviously $\mathfrak{m}[x]=(0)$ is not a maximal ideal in $k[x]$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            Consider the injective $A$-module homomorphism
+            $$
+            \varphi:R\longrightarrow R'
+            $$
+            Since $M$ is flat,
+            $$
+            \varphi\otimes 1:R\otimes _{A}M\longrightarrow R'\otimes _{A}M
+            $$
+            is injective, therefore
+            $$
+            \varphi\otimes 1\otimes 1:R\otimes _{A}M\otimes _{A}N\longrightarrow R'\otimes _{A}M\otimes _{A}N
+            $$
+            is injective, i.e.
+            $$
+            \varphi\otimes 1:R\otimes _{A}(M\otimes _{A}N)\longrightarrow R'\otimes _{A}(M\otimes _{A}N)
+            $$
+            is injective.
+            So $M\otimes _{A}N$ is flat.
+        \item 
+            Consider a injective $B$-module homomorphism
+            $$
+            \varphi:M\longrightarrow M'
+            $$
+            Since $N$ is a flat $B$-module homomorphism,
+            $$
+            \varphi\otimes _{B}1:M\otimes _{B}N\longrightarrow M'\otimes _{B}N
+            $$
+            is injective.
+            To prove $N$ is a flat $A$-module, we need to show
+            $$
+            \varphi\otimes _{A}1:M\otimes _{A}N\longrightarrow M' \otimes _{A}N
+            $$
+            is injective, i.e. $\ker{\varphi\otimes _{A}1}=\left\{ 0 \right\} $.
+
+            Notice $\ker{\varphi\otimes _{A}1}\subseteq \ker{\varphi\otimes _{B}1}= \left\{ 0 \right\} $, we're done.
+            \qed
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Denote
+    $$
+    0\rightarrow M'\xrightarrow[]{f} M\xrightarrow[]{g} M''\longrightarrow 0
+    $$
+    We know
+    $$
+    M\cong \coim{g}\oplus\ker{g}\cong \im{g}\oplus\ker{g}
+    $$
+    Be the exactness, $\ker{g}=\im{f},\im{g}=M''$, which are both finitely generated.
+    So $M$ is finitely generated.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    Since $M / \mathfrak{a}M\longrightarrow N / \mathfrak{a}N$ is surjective,
+    $$
+    M\longrightarrow M / \mathfrak{a}M\longrightarrow N / \mathfrak{a}N
+    $$
+    is surjective.
+    Therefore $N=\mathfrak{a}N+u(M)$, and by \emph{Corollary 2.7}, $u(M)=N$.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \emph{(The ring multiplication here is Cartesian product!!!)}
+    \begin{enumerate}[label=({\roman*})]
+        \item When $A^{m}\cong A^{n}$ :
+            We use the method in the textbook.
+
+            Let $\mathfrak{m}$ be a maximal ideal of $A$, and denote the isomorphism by
+            $$
+            \phi:A^{m}\longrightarrow A^{n}
+            $$
+            By checking the kernel and image, we can easily see that
+            $$
+            1\otimes _{A}\phi:(A / \mathfrak{m})\otimes _{A}A^{m}\longrightarrow (A / \mathfrak{m})\otimes _{A}A^{n}
+            $$
+            is an isomorphism by \emph{Proposition 2.18}.
+            By \emph{Exercise 2.2} we know $\left( A / \mathfrak{m} \right) ^{m}\cong A^{m} / \mathfrak{m}\cong (A / \mathfrak{m})\otimes A^{m},\left( A / \mathfrak{m} \right) ^{n}\cong A^{n} / \mathfrak{m}\cong (A / \mathfrak{m})\otimes A^{n}$ are two isomorphic linear space over the field $k=A / \mathfrak{m}$.
+            Hence
+            $$
+            \dim{k^{m}}=\dim{k^{n}},m=n
+            $$
+        \item When $\phi:A^{m}\longrightarrow A^{n}$ is surjective:
+            Similar to \emph{(i)}, we obtain a surjective $k$-linear space homomorphism by using \emph{Proposition 2.18}
+            $$
+            k^{m}\longrightarrow k^{n}
+            $$
+            So $m>n$ is obtained by the property of linear space homomorphisms.
+        \item When $\phi:A^{m}\longrightarrow A^{n}$ is injective:
+            Yes.
+
+            Note that we're no longer able to use \emph{Proposition 2.18} to convert ring homomorphisms into linear space homomorphisms.
+
+            Suppose $m>n$, we can define $A^{n}$ to be the submodule of $A^{m}$ by taking the first $n$ terms and extend the range of $\phi$ to $A^{m}$.
+            Now
+            $$
+            \phi(A^{m})\subseteq A^{n}\subseteq A^{m}=\mathfrak{a} A^m
+            $$
+            where $\mathfrak{a}=A$ is viewed as an ideal.
+
+            Since $A^{m}$ is a finitely generated $A$-module, by \emph{Proposition 2.4}, $\exists a_1,a_2,\ldots ,a_{s}\in A,\text{s.t. }$
+            $$
+            \phi^{s}+a_{1}\phi^{s-1}+\ldots +a_{s}=0,a_{s}\neq 0
+            $$
+            Specifically,
+            $$
+            (\phi^{s}+a_1\phi^{s-1}+\ldots +a_{s-1}\phi+a_{s}\mathrm{Id})(0,\ldots ,0,1)=0
+            $$
+            
+            Notice $\forall a\in A^{m}$, because $m>n$, the last term of $\phi(a)$ must be 0.
+            So
+            $$
+            (\phi^{s}+\ldots +a_{s-1}\phi)(0,\ldots ,0,1)=(\ldots ,0)
+            $$
+            But
+            $$
+            a_{s}\mathrm{Id}(0,\ldots ,0,1)=(\ldots ,a_{s})
+            $$
+            Hence, it's impossible to have $(\phi^{s}+a_1\phi^{s-1}+\ldots +a_{s-1}\phi+a_{s}\mathrm{Id})(0,\ldots ,0,1)=0$
+            So $m\le n$.
+    \end{enumerate}
     \qed
 \end{exercise}
 
