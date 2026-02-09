@@ -296,4 +296,115 @@
     \qed
 \end{exercise}
 
+\begin{exercise}
+    Let $A^{n}=\left<e_1,e_2,\ldots ,e_{n} \right> $ where
+    $$
+    \begin{cases}
+        e_1=\left( 1,0,0,\ldots ,0 \right) \\
+        e_2=\left( 0,1,0,\ldots ,0\right)\\
+        \vdots
+        e_{n}=\left( 0,0,0,\ldots ,1 \right) 
+    \end{cases}
+    $$
+    and choose $u_{k}\in M,\text{s.t. }\phi(u_{k})=e_{k}$.
+    We can prove every element in $M$ can be expressed in the sum of element in $\left<u_1,u_2,\ldots ,u_{n} \right> ,\ker{\phi}$.
+    Also, $\ker{\phi}\cap \left<u_1,\ldots,u_{n} \right> =\left\{ 0 \right\} $,
+    so $M=\ker{\phi}\oplus \left<u_1,\ldots ,u_{n} \right>$.
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item $\ker{g}=0$, so $g$ is injective.
+        \item Define
+            $$
+            p:N_{B}\longrightarrow N
+            $$
+            by
+            $$
+            b\otimes y\longmapsto by
+            $$
+            and it's trivial that
+            $$
+            N_{B}=\im{g}\oplus \ker{p}
+            $$
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    To prove $\mu_{i}=\mu_{j}\circ \mu_{ij}$,
+    we only need to understand that in the structure of $M=C / D$,
+    elements are the equivalence classs in $C$ where equivalence relation defined by homomorphisms.
+    The action of $\mu_{ij}$ is simply sending one element to another in the same equivalence classs.
+
+    After one understand this, the problem becomes rather simple.
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item This is to say that $\mu:C\longrightarrow C / D$ is surjective, which is obviously correct.
+        \item This is automatically obtained by the definition of $D$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Because any such homomorphism that satisfy
+    $$
+    \forall i\in I,\alpha_{i}=\alpha\circ \mu_{i}
+    $$
+    is unique determined by the inner structure of $M_{i},N,M$.
+\end{exercise}
+
+\begin{exercise}
+    Because in the notation of \emph{Exercise 2.14},
+    $D=\left\{ 0 \right\} $ and therefore
+    $$
+    \lim_{\rightarrow }M_{i}=C / D=C=\sum_{i\in I}^{} M_{i} 
+    $$
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    $$
+        \begin{tikzcd}
+        M_i \arrow[r, "\phi_i"] \arrow[d, "\mu_i"] & N_i \arrow[d, "\nu_i"] \\
+        M \arrow[r, "\phi"]                        & N                     
+        \end{tikzcd}
+    $$
+    Because form those $\nu_{i}\circ \phi_{i}$ defining the direct limit homomorphism $M_{i}\longrightarrow N$,
+    the unique homomorphism $\phi$ is obtained by the univeral property of direct limit.
+\end{exercise}
+
+\begin{exercise}
+    $$
+        \begin{tikzcd}
+        M_i \arrow[r, "\phi_i"] \arrow[d, "\mu_i"] & N_i \arrow[d, "\nu_i"] \arrow[r, "\psi_i"] & P_i \arrow[d, "\xi_i"] \\
+        M \arrow[r, "\phi"]                        & N \arrow[r, "\psi"]                        & P                     
+        \end{tikzcd}
+    $$
+    By \emph{Exercise 2.15}, each elements in $M$ can be expressed in the form $\mu_{i}(x_{i})$,
+    and $\ker{\psi}=\left\{ \nu_{i} \ker{\psi_{i}}\right\}_{i\in I} $.
+    Therefore
+    \begin{align*}
+        \im{\phi}&= \left\{ \im{\phi\circ\mu_{i} } \right\}_{i\in I}  \\
+                 &= \left\{ \im{\nu_{i}\circ \phi_{i}} \right\}_{i\in I}  \\
+                 &= \left\{ \nu_{i}\im{\phi_{i}} \right\}_{i\in I}  \\
+                 &= \left\{ \nu_{i}\ker{\psi_{i}} \right\}_{i\in I}  \\
+                 &= \ker{\psi} \\
+    \end{align*}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    $$
+        \begin{tikzcd}
+        M_i\times N \arrow[r] \arrow[d]            & M_i\otimes N \arrow[d]            \\
+        (\lim_{\rightarrow} M_i)\times N \arrow[r] & \lim_{\rightarrow}(M_i \otimes N)
+        \end{tikzcd}
+    $$
+    
+\end{exercise}
+
 \end{document}
