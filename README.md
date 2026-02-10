@@ -4,9 +4,7 @@ This repository records my personal solutions to the exercises in *Introduction 
 
 ## Project Goal
 
-I plan to solve every exercise in the book to build a solid foundation for my study of Algebraic Geometry (specifically for reading Hartshorne).
-
-Please note:
+I plan to solve every exercise in the book to build a solid foundation for my study of Algebraic Geometry (specifically for reading Hartshorne).  Please note:
 - While I intend to cover all exercises, this is a work in progress.
 - Updates depend on my schedule as an undergraduate freshman.
 - There is no guarantee that I will complete the entire book.
@@ -31,7 +29,7 @@ I am a freshman undergraduate student currently taking a course in Algebraic Geo
 ## Progress
 
 - [X] Chapter 1: Rings and Ideals
-- [ ] Chapter 2: Modules
+- [X] Chapter 2: Modules
 - [ ] Chapter 3: Rings and Modules of Fractions
 - [ ] Chapter 4: Primary Decomposition
 - [ ] Chapter 5: Integral Dependence and Valuations
