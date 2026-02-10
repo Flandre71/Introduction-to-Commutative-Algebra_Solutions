@@ -25,6 +25,7 @@ I am a freshman undergraduate student currently taking a course in Algebraic Geo
 
 - **Correctness is not guaranteed.** These solutions have not been peer-reviewed.
 - There may be typos, logical gaps, or inefficient proofs.
+    - Numerous trivial steps were skipped!
 - Please use this repository for reference or educational use only.
 
 ## Progress
