@@ -28,10 +28,12 @@
 \DeclareMathOperator{\im}{Im}
 \let\dim\relax
 \DeclareMathOperator{\dim}{Dim}
+\let\hom\relax
+\DeclareMathOperator{\hom}{Hom}
 % \let\max\relax
 % \DeclareMathOperator{\max}{Max}
 % \DeclareMathOperator{\rad}{Rad}
-% \DeclareMathOperator{\nil}{Nil}
+\DeclareMathOperator{\nil}{Nil}
 % \DeclareMathOperator{\obj}{Obj}
 % \DeclareMathOperator{\spec}{Spec}
 \title{Chapter 2 - Modules}
@@ -398,13 +400,109 @@
 \end{exercise}
 
 \begin{exercise}
+    \textbf{}{(FAILED)}
     $$
         \begin{tikzcd}
-        M_i\times N \arrow[r] \arrow[d]            & M_i\otimes N \arrow[d]            \\
-        (\lim_{\rightarrow} M_i)\times N \arrow[r] & \lim_{\rightarrow}(M_i \otimes N)
+        M_i\times N \arrow[r] \arrow[d]                                & M_i\otimes N \arrow[d]                                            \\
+        (\lim_{\rightarrow} M_i)\times N \arrow[r, "g"] \arrow[rdd] & \lim_{\rightarrow}(M_i \otimes N) \arrow[dd, "\psi"', bend right] \\
+                                                                       &                                                                   \\
+                                                                       & (\lim_{\rightarrow}M_i)\otimes N \arrow[uu, "\phi"', bend right] 
         \end{tikzcd}
     $$
-    
+    We follow from the hint:
+    The proof of $g$ being $A$-bilinear is trivial.
+
+    \emph{(I don't understand exactly how to prove $\psi$ and $\phi$ is inverse to each other, more precisely to check how one element was sented to under this homomorphism.)}
 \end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item \emph{(Additive structure)}
+
+            $A=\lim_{\rightarrow }A_{i}$ naturally inherit the structure of $\mathbb{Z}$-module by the definition of direct limit.
+        \item \emph{(Close under multiplication)}
+
+            For $\forall \alpha,\beta\in A$, by \emph{Exercise 2.15} there exist $\mu_{i}\in \hom(A_{i},A),\mu_{j}\in \hom(A_{j},A),x_{i}\in A_{i},x_{j}\in A_{j}$ such that
+            $$
+            \alpha=\mu_{i}(x_{i}),\beta=\mu_{j}(x_{j})
+            $$
+            Since $I$ is a directed set, $\exists k\in I,\text{s.t. }i\le k,j\le k$.
+            Therefore we can have
+            \begin{align*}
+                \alpha\beta&= \mu_{i}(x_{i})\mu_{j}(x_{j}) \\
+                &= \mu(x_{i})\mu({x_{j}}) \\
+                &= \mu(\mu_{ik}(x_{i}))\mu(\mu_{jk}(x_{j})) \\
+                % &= \mu(\mu_{ik}(x_{i})\mu_{jk}(x_{j})) \\
+                % &= \mu_{k}(\mu_{ik}(x_{i})\mu_{jk}(x_{j})) \\
+                &= \mu_{k}(\mu_{ik}(x_{i}))\mu_{k}(\mu_{jk}(x_{j})) \\
+            \end{align*}
+            and define
+            $$
+            \alpha\beta = \mu_{k}(\mu_{ik}(x_{i})\mu_{jk}(x_{j}))
+            $$
+            
+            Such definition of multiplicative result is independent of the choice of $k$ as well as the representation of $x_{i},x_{j}$, by property of directed limit.
+            Therefore it's well-defined.
+        \item \emph{(Multiplicative identity)}
+
+            The identity fo $A$ is $\mu(1)$, where $1$ is the identity in an arbitary $A_{i}$ (since their images are equal).
+        \item \emph{(Homomorphism)}
+
+            The fact that $\mu:\bigotimes A_{i}\longrightarrow A$ being a ring homomorphism is naturally obtained from the definition in \emph{(ii)}.
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    $$
+\begin{tikzcd}
+A_i \arrow[rr] \arrow[dd]      &                                                                    & \mathrm{Nil}(A_i) \arrow[d]         \\
+                               &                                                                    & \lim_\rightarrow(\mathrm{Nil}(A_i)) \\
+\lim_\rightarrow A_i \arrow[r] & \mathrm{Nil}(\lim_\rightarrow A_i) \arrow[ru, Rightarrow, no head] &                                    
+\end{tikzcd}
+    $$
+    \begin{enumerate}[label=({\roman*})]
+        \item $\nil(\lim_{\rightarrow }A_{i})\subseteq \lim_{\rightarrow } (\nil(A_{i}))$:
+
+            $\forall x\in \lim_{\rightarrow }A_{i},\exists x_{i}\in A_{i},\mu_{i}\in \hom(A_{i},A),\text{s.t. }\mu_{i}(x_{i})=x$.
+            Now suppose $x\in \nil(\lim_{\rightarrow } A_{i})$, then $\exists k\in \mathbb{Z},\text{s.t. }x^{k}=0$.
+            By the homomorphism structure defined in \emph{Exercise 2.21}, that is to say
+            $$
+            x_{i}^{k}=0, x_{i}\in \nil(A_{i})
+            $$
+            Therefore $\nil(\lim_{\rightarrow }A_{i})\subseteq \lim_{\rightarrow } (\nil(A_{i}))$.
+        \item $\lim_{\rightarrow } (\nil(A_{i}))\subseteq \nil(\lim_{\rightarrow }A_{i})$:
+
+            The image of a nilpotent in the direct limit preserves to be nilpotent, that is to say
+            $$
+            \lim_{\rightarrow } (\nil(A_{i}))\subseteq \nil(\lim_{\rightarrow }A_{i})
+            $$
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    $$
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB120AnaAfWCcGdALYAjKHQAEnLGBnsAMqIl0AvgCE+QlZJBrS6TLnyEUAJnJVajFmwAK+wyAzY8BIgEZSn6-WasiCBSIQpiWADmEHgi8FICOuKSsvKcyknqWoLswhlqALxCWCIJ7HBMYnA4dADGANbZ3JEAFtXcvADuCpwAUikK6apqalJZPWr61jBQEfBEoABmvCJIZCA4EEieBovLq9QbSOY7IEsQK4iW65uI2xRqQA
+\begin{tikzcd}
+\prod_{\lambda \in \Lambda}B_\lambda \arrow[rr] \arrow[rd] &                                                                                                               & P \\
+                                                           &     \bigotimes _{\lambda\in \Lambda}B_{\lambda}=\lim_{\substack{\rightarrow \\J\subseteq \Lambda}} B_{J} \arrow[ru] &  
+\end{tikzcd}
+    $$
+    The map
+    $$
+    \prod_{\lambda\in \Lambda}^{} B_{\lambda}\longrightarrow \lim_{\substack{\rightarrow \\J\subseteq \Lambda}} B_{J} \longrightarrow P 
+    $$
+    gives a  $\left\{ B_{\lambda} \right\}_{\lambda\in \Lambda} $-multilinear map, therefore induce a surjective homomorphism
+    $$
+    \Phi:\bigotimes _{\lambda\in \Lambda}B_{\lambda}\longrightarrow \lim_{\substack{\rightarrow \\J\subseteq \Lambda}} B_{J}
+    $$
+    We can easily check that $\ker{\Phi}=0$, so $\Phi$ is injective.
+    So $\Phi$ is an isomorphism, and $\bigotimes _{\lambda\in \Lambda}B_{\lambda}\cong \lim_{\substack{\rightarrow \\J\subseteq \Lambda}} B_{J}$ is the same up to isomorphism.
+    \qed
+\end{exercise}
+
+\textbf{I'll skip the rest of this chapter since I haven't learnt anything about tor functor and homological algebra :(}
 
 \end{document}
