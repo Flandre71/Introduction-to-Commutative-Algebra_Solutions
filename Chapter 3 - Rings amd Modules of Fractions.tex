@@ -338,7 +338,42 @@
 \end{remark}
 
 \begin{exercise}
-    
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            We need to prove that for any $S^{-1}A$-module $S^{-1}M$ with short exact sequence of $S^{-1}A$-module
+            $$
+            N'\xrightarrow[]{f} N\xrightarrow[]{g} N''
+            $$
+            we have
+            $$
+            N'\otimes _{S^{-1}A}S^{-1}M\xrightarrow[]{f\otimes 1} N\otimes _{S^{-1}A}S^{-1}M\xrightarrow[]{g\otimes 1} N''\otimes _{S^{-1}A}S^{-1}M
+            $$
+
+            First, since the restriction below only affect the inner multiplicative strcture while preserving the image and kernel,
+            we have
+            $$
+            N'\mid _{A}\xrightarrow[]{f\mid _{A}} N\mid _{A}\xrightarrow[]{g\mid _{A}} N''\mid _{A}
+            $$
+            being a short exact sequence of $A$-module.
+            Also, since $A$ is absolutely flat,
+            $$
+            N'\mid _{A}\otimes _{A}M\xrightarrow[]{f_{A}\otimes 1_{A}} N\mid _{A}\otimes _{A}M\xrightarrow[]{g_{A}\otimes 1_{A}} N''\mid _{A}\otimes _{A}M
+            $$
+            is exact.
+
+            Hence by \emph{Proposition 3.3}, we only need to prove that for any $S^{-1}A$-module $N$ we have
+            $$
+            S^{-1}\left( N\mid _{A}\otimes _{A} M\right) \cong N\otimes _{S^{-1}A}S^{-1}M
+            $$
+            First, for any $S^{-1}A$-module $N$, $S^{-1}\left( N\mid _{A} \right)\cong N$ (we can prove by defining the cannonical mapping and state is's surjective and injective).
+            So
+            \begin{align*}
+                S^{-1}\left( N\mid _{A}\otimes _{A} M\right) &\cong S^{-1}(N\mid _{A})\otimes _{S^{-1}A}S^{-1}M\\
+                &\cong  N\otimes _{S^{-1}A}S^{-1}M\\
+            \end{align*}
+        \item 
+    \end{enumerate}
 \end{exercise}
 
 \end{document}
