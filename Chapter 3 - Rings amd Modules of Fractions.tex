@@ -175,13 +175,39 @@
 \end{exercise}
 
 \begin{exercise}
-    \textbf{(UNFINISHED)}
+    \leavevmode \vspace{-\baselineskip}
     \begin{enumerate}[label=({\roman*})]
         \item 
             $\Sigma$ is nonempty, therefore has maximal elements by \emph{Zorn's Lemma}.
         \item 
-            The prime property is trivial,
-            we only need to show $A\backslash S$ is an ideal, and the minimal property can be obtained directly.
+            \begin{enumerate}[label=({\Roman*})]
+                \item When $S\in \Sigma$ is maximal, we'll prove $A\backslash S$ is a minimal prime ideal.
+                    $\forall x,y\in A\backslash S_0$, let
+                    $$
+                    S_{x}=\left\{ sx^{n}\mid s \in S,n \in \mathbb{Z}^{+}\cup \left\{ 0 \right\}  \right\} ,S_{y}=\left\{ sy^{n}\mid s \in S,n \in \mathbb{Z}^{+}\cup \left\{ 0 \right\}  \right\} 
+                    $$
+                    Since $S\in \Sigma$ is maximal and $S_{x},S_{y}\supsetneq S$, we have $S_{x},S_{y}\not\in \Sigma,0\in S_{x},0\in S_{y}$
+                    Therefore $\exists s_1,s_2\in S,n_1,n_2\in \mathbb{Z}^{+}$, such that
+                    $$
+                    s_1x^{n_1}=s_2x^{n_2}=0
+                    $$
+                    And we can see
+                    $$
+                    s_1s_2(x+y)^{n_1+n_2-1}=0,s_1s_2(xy)^{n_1n_2}=0
+                    $$
+                    Which is to say $x+y,xy\in A\backslash S$, and we can easily obtian $A\backslash S$ is an ideal.
+                    The prime property is trivial, and the maximal property can be obtained directly from \emph{(II)} and the maximal property of $S$.
+                \item When $A\backslash S$ is a minimal prime ideal of $A$:
+                    Denote $I=A\backslash S$.
+                    For $\forall x,y\in S$, we have $x,y\not\in I$.
+                    If $xy\in I$, by the prime property of $I$ we will immediately obtian $x\in I$ or $y\in I$, which is a contradictory.
+                    So $xy\not\in I,xy\in S$, $S$ is a  multiplicatively closed subset.
+
+                    Also, if $S$ is not maximal in $\Sigma$,
+                    the one in $\Sigma$ strictly contains $S$ will correspond to a smaller prime ideal in $A\backslash S$,
+                    which contradicts with the minimal property of $I$.
+            \end{enumerate}
+            \qed
     \end{enumerate}
 \end{exercise}
 
@@ -251,7 +277,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+    \textbf{(UNFINISHED)}
     \begin{enumerate}[label=({\Roman*})]
         \item $(i)\Rightarrow(ii)$:
             $\forall t\in T,\phi(\frac{t}{1})=\frac{t}{1}$ is a unit in $T^{-1}A$.
@@ -265,14 +291,54 @@
             $$
             Thus we can let $x=s_0a$.
         \item $(iii)\Rightarrow(iv)$:
-            Suppose $\exists t\int T,\text{s.t. }t$ is contained in a prime ideal $\mathfrak{p}$ which is disjoint from $S$.
+            Suppose $\exists t\in T,\text{s.t. }t$ is contained in a prime ideal $\mathfrak{p}$ which is disjoint from $S$.
             By \emph{(iii)}, $\exists x\in A,\text{s.t. }xt\in S$.
             However, $t\in \mathfrak{p}\Rightarrow xt\in \mathfrak{p}\Rightarrow xt \in S\cap \mathfrak{p}$, contradictory.
         \item $(iv)\Rightarrow (v)$:
             Otherwise $T$ cannot be contianed in $\overline{S}$.
         \item $(v)\Rightarrow (i)$:
-            
     \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\Roman*})]
+        \item 
+            We follow from the hint:
+            Denote the family of all multiplicatively closed set which doesn't contains $0$ by $\Sigma$,
+            the problem is equivalent to prove that all the maximal elements in $\Sigma$ must contains $S$.
+
+            We prove by contradictory and suppose there exist a maximal element $S\in \Sigma$ such that $\exists a \in S_0\backslash S$.
+            Let $S_{a}=\left\{ sa^{n}\mid s \in S,n \in \mathbb{Z}^{+}\cup \left\{ 0 \right\}  \right\} $, which is a multiplicatively closed set strictly contains $S$.
+            Because $S$ is maximal in $\Sigma$, $S_{a}\not\in \Sigma,0\in S_{a}$.
+            Hence, $\exists n \in \mathbb{Z}^{+},\text{s.t. }$
+            $$
+            sa^{n}=0
+            $$
+            However, from $a\in S_0\backslash S$ we know $a^{n}$ is a non-zero-divisor, i.e. $s=0$, which is absurd.
+            Hence the proof was done.
+            \qed
+        \item 
+            \begin{enumerate}[label=({\roman*})]
+                \item 
+                    Homomorphism $A\longrightarrow S_0^{-1}A$ is injective iff $\forall s \in S_0,a\in A\backslash \left\{ 0 \right\} ,sa\neq 0$.
+                    This is to say $S_0$ consists of non-zero-divisors.
+                \item 
+                    Every element in $A\backslash S_0$ will be mapped to a zero-divisor while every element in $S_0$ will be mapped to a unit, obviously.
+                \item 
+                    Injectivity is obtained from \emph{(i)}, and the preimage of $\frac{a}{s}\in S^{-1}A$ is $as^{-1}\in A$, obviously.
+            \end{enumerate}
+            \qed
+    \end{enumerate}
+\end{exercise}
+
+\begin{remark}
+    From \textbf{Exercise 3.6, 3.9}, we can see saturated sets and sets made up of prime-ideals-union acts as complements to each other.
+    And if we let $S$ be maximal, the corresponding $A\backslash S$ will be left to be only one prime idea.
+\end{remark}
+
+\begin{exercise}
+    
 \end{exercise}
 
 \end{document}
