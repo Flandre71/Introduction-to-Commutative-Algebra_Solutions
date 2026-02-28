@@ -38,7 +38,7 @@
 \DeclareMathOperator{\nil}{Nil}
 % \DeclareMathOperator{\jab}{Jab}
 % \DeclareMathOperator{\obj}{Obj}
-% \DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\spec}{Spec}
 \title{Chapter 3 - Rings and Moduls of Fractions}
 \author{Flandre}
 \date{22 Feb 2026}
@@ -338,7 +338,7 @@
 \end{remark}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+    \textbf{(UNFINISHED)}
     \begin{enumerate}[label=({\roman*})]
         \item 
             We need to prove that for any $S^{-1}A$-module $S^{-1}M$ with short exact sequence of $S^{-1}A$-module
@@ -370,9 +370,33 @@
             So
             \begin{align*}
                 S^{-1}\left( N\mid _{A}\otimes _{A} M\right) &\cong S^{-1}(N\mid _{A})\otimes _{S^{-1}A}S^{-1}M\\
-                &\cong  N\otimes _{S^{-1}A}S^{-1}M\\
+                                                             &\text{(by defining a map and prove it's an isomorphism)}\\
+                                                             &\cong  N\otimes _{S^{-1}A}S^{-1}M\\
+                                                             &\text{(by the isomorphism property  above)}
             \end{align*}
         \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item When $A$ is absolutely flat:
+                    By \emph{Exercise 2.28}, we only need to prove there's no zero divisors other than $0$ in $A_{\mathfrak{m}}$,
+                    % which is equivalent to say all the zero divisors are in $S_{\mathfrak{m}}=A\backslash \mathfrak{m}$,
+                    % i.e. there's no zero divisors in $\mathfrak{m}$.
+            \end{enumerate}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\Roman*})]
+        \item 
+            \begin{enumerate}[label=({\alph*})]
+                \item $(i)\Rightarrow (ii)$:
+                \item $(ii)\Rightarrow (iii)$:
+                    When all prime ideals are maximal ideals,
+                    then every subsets, which consists of single point, are the final objects in the category of $\spec{A}$ (morphisms under inclusion),
+                    therefore closed.
+                \item $(iii)\Rightarrow (iv)$:
+                \item $(iv)\Rightarrow (i)$:
+            \end{enumerate}
     \end{enumerate}
 \end{exercise}
 
