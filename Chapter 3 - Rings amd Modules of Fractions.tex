@@ -23,11 +23,11 @@
     {}
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
-% \let\ker\relax
-% \DeclareMathOperator{\ker}{Ker}
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
 % \DeclareMathOperator{\coker}{Coker}
 % \DeclareMathOperator{\coim}{Coim}
-% \DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\im}{Im}
 % \let\dim\relax
 % \DeclareMathOperator{\dim}{Dim}
 % \let\hom\relax
@@ -39,6 +39,7 @@
 % \DeclareMathOperator{\jab}{Jab}
 % \DeclareMathOperator{\obj}{Obj}
 \DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\ann}{Ann}
 \title{Chapter 3 - Rings and Moduls of Fractions}
 \author{Flandre}
 \date{22 Feb 2026}
@@ -385,11 +386,33 @@
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+    \textbf{(UNFINISHED)}
     \begin{enumerate}[label=({\Roman*})]
         \item 
             \begin{enumerate}[label=({\alph*})]
-                \item $(i)\Rightarrow (ii)$:
+                \item $(i)\Leftrightarrow (ii)$:
+
+                    $(i)\Leftrightarrow $
+                    $$
+                    \left( A/\nil{A} \right) _{\mathfrak{m}} \text{ is a field for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
+                    $$
+                    $\Leftrightarrow $
+                    $$
+                    \left( A / \nil{A} \right) _{\mathfrak{m}}\text{only has ideals}(1),(0)\text{ is a field for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
+                    $$
+                    $\Leftrightarrow $
+                    $$
+                    \left( A / \nil{A} \right) _{\mathfrak{m}}\text{only has prime ideal }(0)\text{ for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
+                    $$
+                    $\Leftrightarrow $
+                    $$
+                    A / \nil{A}\text{ has an unique prime ideal contianed in }\mathfrak{m}\text{ for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
+                    $$
+                    $\Leftrightarrow $
+                    $$
+                    \text{Every prime ideals of }A / \nil{A}\text{ is maximal }
+                    $$
+                    $\Leftrightarrow (ii)$
                 \item $(ii)\Rightarrow (iii)$:
                     When all prime ideals are maximal ideals,
                     then every subsets, which consists of single point, are the final objects in the category of $\spec{A}$ (morphisms under inclusion),
@@ -397,7 +420,120 @@
                 \item $(iii)\Rightarrow (iv)$:
                 \item $(iv)\Rightarrow (i)$:
             \end{enumerate}
+        \item 
     \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    It's trivial that torsion elements of $M$ form a submodule of $M$.
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            Suppose $\exists x\not\in T(M),\text{s.t. }\exists a\in A,a\overline{x}=0,\text{i.e. }ax\in T(M)$.
+            Then $\exists b\in A,\text{s.t. }b(ax)=0$, therefore $abx=0,x\in T(M)$, contradictory.
+        \item 
+            $\forall m\in T(M),\exists a\in A,\text{s.t. }am=0\Rightarrow af(m)=0,f(m)\in T(N)$.
+        \item 
+            \emph{(My proof might be a bit ambiguous, but I think I did proved it out.)}
+
+            Denote 
+            $$
+            0\xrightarrow[]{f} M'\xrightarrow[]{g} M\xrightarrow[]{h} X''
+            $$
+            and we need to prove
+            $$
+            0\xrightarrow[]{\overline{f}} T(M')\xrightarrow[]{\overline{g}} T(M)\xrightarrow[]{\overline{h}} T(X'')
+            $$
+            is exact.
+
+            First, $\ker{\overline{h}}=\ker{h}\cap T(M'')=\im{g}\cap T(M'')$.
+            To prove $\ker{\overline{h}}=\im{\overline{g}}$, we need to show
+            $$
+            g(T(M'))=g(M')\cap T(M)
+            $$
+            i.e. $g(M'\backslash T(M'))\cap T(M)\subseteq \left\{ 0 \right\} $.
+
+            Suppose $\exists m'\in M'\backslash T(M'),g(m')\in T(M)$.
+            Then $\exists a\in A,ag(m')=0\Rightarrow g(am')=0\Rightarrow am'\in \ker{g}$
+            Which is to say
+            $$
+            am'\in \ker{g}=\im{f}=\left\{ 0 \right\} 
+            $$
+            Contradictory.
+            Hence we have $\ker{\overline{h}}=\im{\overline{g}}$.
+
+            Also, the case $\ker{\overline{g}}=\im{\overline{f}}$ is trivial.
+        \item 
+            \emph{(The hint seems to be complicated, I'll just follow my own thought.)}
+
+            Denote
+            $$
+            \varphi:M\longrightarrow K\otimes _{A}M
+            $$
+            $$
+            x\longmapsto 1\otimes x
+            $$
+            First, for all $m\in T(M)$, suppose $am=0$.
+            Then
+            $$
+            \varphi(m)=1\otimes m=\frac{1}{a}\otimes am=0
+            $$
+            So $T(M)\subseteq \ker{\varphi}$.
+
+            On the other hand, $\forall m\in \ker{\varphi},\varphi(m)=1\otimes m=0$
+            $A$ is an integral domain, so there're no zero divisors in $K$.
+            Thus $1\otimes m$ must be annihilated in the $m$ term, i.e. $\exists a\in A,am=0\Rightarrow m\in T(M)$.
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\Roman*})]
+        \item 
+            On one hand, $\forall \frac{m}{s}\in S^{-1}M,\exists a\in A,\text{s.t. }a\cdot \frac{m}{s}=0\Rightarrow \frac{am}{s}=0,m\in T(M),\frac{m}{s}\in S^{-1}(T(M))$.
+            So $S^{-1}M\subseteq S^{-1}(T(M))$.
+
+            On the other hand, for all $ \frac{m}{s}\in S^{-1}(T(M))$:
+            By $m\in T(M)$ we have $a\in A,\text{s.t. }ma=0$.
+            So $a\cdot \frac{m}{s}=0,\frac{m}{s}\in S^{-1}M$.
+        \item 
+            % \begin{enumerate}[label=({\alph*})]
+            %     \item $(i)\Rightarrow (ii)$:
+            %         For any prime ideal $\mathfrak{p}$,
+            %         \begin{align*}
+            %             T(M_{\mathfrak{p}}) &= T\left( (A\backslash \mathfrak{p})^{-1}M\right) \\
+            %             &= (A\backslash \mathfrak{p})^{-1}\left( T(M) \right)  \\
+            %             &= \left( A\backslash \mathfrak{p} \right) ^{-1}\left\{ 0 \right\}  \\
+            %             &= 0
+            %         \end{align*}
+            %         So $M_{\mathfrak{p}}$ is torsion-free.
+            %     \item $(ii)\Rightarrow (iii)$:
+            %         Because maximal ideals are prime.
+            %     \item $(iii)\Rightarrow (i)$:
+            %         Notice
+            % \end{enumerate}
+            By \emph{(I)},
+            $$
+            T(M_{\mathfrak{p}})=(A\backslash \mathfrak{p})^{-1}T(M)=\left( T(M) \right) _{\mathfrak{p}}
+            $$
+            $$
+            T(M_{\mathfrak{m}})=(A\backslash \mathfrak{m})^{-1}T(M)=\left( T(M) \right) _{\mathfrak{m}}
+            $$
+            Use \emph{Proposition 3.8} and we're done.
+    \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}
+    We follow the hint:
+    By \emph{Exercise 2.2}, $(A / \mathfrak{a})\otimes _{A}M\cong M / \mathfrak{a}M$.
+    So we have $M_{\mathfrak{\overline{m}}}=0$ for all maximal ideals $\overline{m}$ in $A / \mathfrak{a}$, which correspond to $\mathfrak{m}$ in $A$.
+    Therefore by \emph{Proposition 3.8}, we have $M / \mathfrak{a}M=0,\text{i.e. }M=\mathfrak{a}M$.
+    \qed
+\end{exercise}
+
+\begin{exercise}
+
 \end{exercise}
 
 \end{document}
