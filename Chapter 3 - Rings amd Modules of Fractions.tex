@@ -278,7 +278,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \textbf{(UNFINISHED)}
+    \leavevmode \vspace{-\baselineskip}
     \begin{enumerate}[label=({\Roman*})]
         \item $(i)\Rightarrow(ii)$:
             $\forall t\in T,\phi(\frac{t}{1})=\frac{t}{1}$ is a unit in $T^{-1}A$.
@@ -297,8 +297,26 @@
             However, $t\in \mathfrak{p}\Rightarrow xt\in \mathfrak{p}\Rightarrow xt \in S\cap \mathfrak{p}$, contradictory.
         \item $(iv)\Rightarrow (v)$:
             Otherwise $T$ cannot be contianed in $\overline{S}$.
-        \item $(v)\Rightarrow (i)$:
+        \item $(v)\Rightarrow (ii)$:
+            Suppose $\frac{t}{1}$ is not a unit in $S^{-1}A$.
+            Then there exist a maximal ideal $\mathfrak\subseteq S^{-1}A,\text{s.t. }\frac{t}{1}\in \mathfrak{m}$.
+
+            Consider the natural homomorphism $f:A\longrightarrow S^{-1}A$ and denote $f^{-1}(\mathfrak{m})=\mathfrak{p}$.
+            It immediately follows that $\mathfrak{p}\cap S=\emptyset$ (otherwise $f(\mathfrak{p}=S^{-1}A)$).
+            Also, from $\frac{t}{1}\in \mathfrak{m}$ we have $t\in \mathfrak{p}$, i.e. $\mathfrak{p}$ meets $T$, therefore $\mathfrak{p}$ meets $S$, contradictory.
+        \item $(ii)\Rightarrow (i)$:
+            Elements in $T^{-1}A$ generally has the form $\frac{a}{t}$.
+            Since $\frac{t}{1}$ is a unit in $S^{-1}A$, we have
+            $$
+            a\cdot \left( \frac{t}{1} \right) ^{-1}\in S^{-1}A,\phi\left( a\cdot \left( \frac{t}{1} \right) ^{-1} \right) =\frac{a}{t}
+            $$
+            hence $\phi$ is surjective.
+
+            On the other hand, suppose $\phi\left( \frac{a}{s} \right) =0$ where $\frac{a}{s}\neq 0$.
+            Then $\exists t\in T\backslash S,at=0$.
+            In this case $\frac{t}{1}$ cannot be unital in $S^{-1}A$.
     \end{enumerate}
+    \qed
 \end{exercise}
 
 \begin{exercise}
@@ -339,50 +357,57 @@
 \end{remark}
 
 \begin{exercise}
-    \textbf{(UNFINISHED)}
+    \textbf{\emph{(ii)} Hinited}
     \begin{enumerate}[label=({\roman*})]
         \item 
-            We need to prove that for any $S^{-1}A$-module $S^{-1}M$ with short exact sequence of $S^{-1}A$-module
+            By \emph{Proposition 2.19(iv)},
+            for any $S^{-1}A$-module $N$,
+            if we have $S^{-1}A$-module $M,M'$ and homomorphism $f:M\longrightarrow M'$ such that
             $$
-            N'\xrightarrow[]{f} N\xrightarrow[]{g} N''
+            0\rightarrow M\xrightarrow[]{f} M'
             $$
-            we have
+            exact as $S^{-1}A$-module sequence, we only need to prove
             $$
-            N'\otimes _{S^{-1}A}S^{-1}M\xrightarrow[]{f\otimes 1} N\otimes _{S^{-1}A}S^{-1}M\xrightarrow[]{g\otimes 1} N''\otimes _{S^{-1}A}S^{-1}M
-            $$
-
-            First, since the restriction below only affect the inner multiplicative strcture while preserving the image and kernel,
-            we have
-            $$
-            N'\mid _{A}\xrightarrow[]{f\mid _{A}} N\mid _{A}\xrightarrow[]{g\mid _{A}} N''\mid _{A}
-            $$
-            being a short exact sequence of $A$-module.
-            Also, since $A$ is absolutely flat,
-            $$
-            N'\mid _{A}\otimes _{A}M\xrightarrow[]{f_{A}\otimes 1_{A}} N\mid _{A}\otimes _{A}M\xrightarrow[]{g_{A}\otimes 1_{A}} N''\mid _{A}\otimes _{A}M
+            0\longrightarrow S^{-1}M\otimes _{S^{-1}A}S^{-1}N\xrightarrow[]{f\otimes 1} S^{-1}M'\otimes _{S^{-1}A}S^{-1}N
             $$
             is exact.
 
-            Hence by \emph{Proposition 3.3}, we only need to prove that for any $S^{-1}A$-module $N$ we have
+            Notice that restriction on the rings under which the modules are only affect the structure of scalar multiplication while holding the image and kernel,
+            we may view $N,M,M'$ as $A$-module and $f$ as $A$-module homomorphism while having
             $$
-            S^{-1}\left( N\mid _{A}\otimes _{A} M\right) \cong N\otimes _{S^{-1}A}S^{-1}M
+            0\rightarrow M'\xrightarrow[]{f\mid _{A}} M
             $$
-            First, for any $S^{-1}A$-module $N$, $S^{-1}\left( N\mid _{A} \right)\cong N$ (we can prove by defining the cannonical mapping and state is's surjective and injective).
-            So
-            \begin{align*}
-                S^{-1}\left( N\mid _{A}\otimes _{A} M\right) &\cong S^{-1}(N\mid _{A})\otimes _{S^{-1}A}S^{-1}M\\
-                                                             &\text{(by defining a map and prove it's an isomorphism)}\\
-                                                             &\cong  N\otimes _{S^{-1}A}S^{-1}M\\
-                                                             &\text{(by the isomorphism property  above)}
-            \end{align*}
+            exact as $A$-module sequence.
+
+            Therefore from the absolute flatness of $A$ we may have $N$ as a flat $A$-module, i.e.
+            $$
+            0\longrightarrow M'\otimes _{A}N\xrightarrow[]{f\mid _{A}\otimes 1} M\otimes _{A}N
+            $$
+            is exact as a $A$-module sequence.
+
+            Now by \emph{Proposition 3.3}, the $S^{-1}\_$ functor is exact, and
+            $$
+            0\longrightarrow S^{-1}\left( M'\otimes _{A}N \right) \xrightarrow[]{S^{-1}\left( f\mid _{A}\otimes 1 \right) } S^{-1}\left( M\otimes _{A}N \right) 
+            $$
+            is an exact $S^{-1}A$ sequence.
+            Moreover, by \emph{Proposition 3.7} such sequence is isomorphic to
+            $$
+            0\longrightarrow S^{-1}M\otimes _{S^{-1}A}S^{-1}N\xrightarrow[]{f\otimes 1} S^{-1}M\otimes _{S^{-1}A}S^{-1}N
+            $$
+            and we get its exactness.
         \item 
             \begin{enumerate}[label=({\alph*})]
                 \item When $A$ is absolutely flat:
-                    By \emph{Exercise 2.28}, we only need to prove there's no zero divisors other than $0$ in $A_{\mathfrak{m}}$,
-                    % which is equivalent to say all the zero divisors are in $S_{\mathfrak{m}}=A\backslash \mathfrak{m}$,
-                    % i.e. there's no zero divisors in $\mathfrak{m}$.
+                    From \emph{(i)} $A_{\mathfrak{m}}$ is flat for any maximal ideal $\mathfrak{m}\subseteq A$.
+                    And by \emph{Exercise 2.28}, a flat local ring must be a field, i.e. $A_{\mathfrak{m}}$ is a field.
+                \item When for any maximal ideal $\mathfrak{m}\subseteq A$, $A_{\mathfrak{m}}$ is a field:
+                    For any $A$-module $N$, consider $N_{\mathfrak{m}}$ as a $A_{\mathfrak{m}}$-module.
+                    Since $A_{\mathfrak{m}}$ is a field, $N_{\mathfrak{m}}$ is a vector space, therefore has a basis and is a free module over $A_{\mathfrak{m}}$.
+                    It's well-known that a free module must be flat, therefore $N_{\mathfrak{m}}$ is flat over $A_{\mathfrak{m}}$.
+                    Because $\mathfrak{m}$ is arbitarily chosen, by \emph{Proposition 3.10} we know $N$ is flat, and therefore $A$ is absolutely flat.
             \end{enumerate}
     \end{enumerate}
+    \qed
 \end{exercise}
 
 \begin{exercise}
