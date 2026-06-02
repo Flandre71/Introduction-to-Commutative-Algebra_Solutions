@@ -11,7 +11,6 @@
 \usepackage{tikz-cd}
 \usepackage{hyperref}
 
-\newtheorem{remark}{Remark}
 \newtheoremstyle{breakstyle}
     {5pt}
     {10pt}
@@ -23,6 +22,8 @@
     {}
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
 \let\ker\relax
 \DeclareMathOperator{\ker}{Ker}
 % \DeclareMathOperator{\coker}{Coker}
@@ -36,10 +37,11 @@
 % \DeclareMathOperator{\max}{Max}
 % \DeclareMathOperator{\rad}{Rad}
 \DeclareMathOperator{\nil}{Nil}
-% \DeclareMathOperator{\jab}{Jab}
+\DeclareMathOperator{\jab}{Jab}
 % \DeclareMathOperator{\obj}{Obj}
 \DeclareMathOperator{\spec}{Spec}
 \DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\tor}{Tor}
 \title{Chapter 3 - Rings and Moduls of Fractions}
 \author{Flandre}
 \date{22 Feb 2026}
@@ -399,7 +401,7 @@
             \begin{enumerate}[label=({\alph*})]
                 \item When $A$ is absolutely flat:
                     From \emph{(i)} $A_{\mathfrak{m}}$ is flat for any maximal ideal $\mathfrak{m}\subseteq A$.
-                    And by \emph{Exercise 2.28}, a flat local ring must be a field, i.e. $A_{\mathfrak{m}}$ is a field.
+                    And by \emph{Exercise 2.28}, an absolutely flat local ring must be a field, i.e. $A_{\mathfrak{m}}$ is a field.
                 \item When for any maximal ideal $\mathfrak{m}\subseteq A$, $A_{\mathfrak{m}}$ is a field:
                     For any $A$-module $N$, consider $N_{\mathfrak{m}}$ as a $A_{\mathfrak{m}}$-module.
                     Since $A_{\mathfrak{m}}$ is a field, $N_{\mathfrak{m}}$ is a vector space, therefore has a basis and is a free module over $A_{\mathfrak{m}}$.
@@ -411,7 +413,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \textbf{(UNFINISHED)}
+    \leavevmode \vspace{-\baselineskip}
     \begin{enumerate}[label=({\Roman*})]
         \item 
             \begin{enumerate}[label=({\alph*})]
@@ -423,7 +425,7 @@
                     $$
                     $\Leftrightarrow $
                     $$
-                    \left( A / \nil{A} \right) _{\mathfrak{m}}\text{only has ideals}(1),(0)\text{ is a field for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
+                    \left( A / \nil{A} \right) _{\mathfrak{m}}\text{ only has ideals}(1),(0)\text{ for all maximal ideals  }\mathfrak{m}\text{ of }A / \nil{A}
                     $$
                     $\Leftrightarrow $
                     $$
@@ -442,12 +444,121 @@
                     When all prime ideals are maximal ideals,
                     then every subsets, which consists of single point, are the final objects in the category of $\spec{A}$ (morphisms under inclusion),
                     therefore closed.
-                \item $(iii)\Rightarrow (iv)$:
-                \item $(iv)\Rightarrow (i)$:
+                \item $(iii)\Rightarrow (ii)$: 
+                    From definition,
+                    $T_{1}$ property implies every single point set is closed.
+                    And by the definition of \emph{Zarisky Topology}, every point is maximal
+                \item $(i)\Rightarrow (iv)$:
+                    Notice: the cannonical map $A\longrightarrow A / \nil{A}$ induced a homeomorphism $\spec{B}\longrightarrow \spec{A}$.
+                    And to prove $\spec{A}$ Hausdorff, we only need to prove $\spec{B}$ Hausdorff.
+
+                    First we'll find an idempotent element, which is the key to constrcut distinct open sets:
+                    Let $B=A / \nil{A}$.
+                    From the assumption of $(i)$ we know $B$ is absolutely flat.
+                    And we've proved $(i)\Leftrightarrow (ii)$ so for any $\mathfrak{p,q}\in \spec{B},\exists b\in \mathfrak{p}\backslash \mathfrak{q}$.
+                    By \textbf{Lemma 1}, $\exists x\in B,\text{s.t. }b=b^2x$.
+                    Now let $e=bx$ and we have
+                    $$
+                    e^2=b^2x^2=bx=e
+                    $$
+                    and $e$ is idempotent.
+                    Moreover, since $\mathfrak{p}$ is prime, we have $x\in \mathfrak{p}\Rightarrow e\in \mathfrak{p}\Rightarrow (b)=(e)$.
+
+                    The $\mathfrak{p,q}\in \spec{B}$ was arbitarily chosen,
+                    and we can always have an idempotent $e\in \mathfrak{p}$.
+                    Now consider the open sets
+                    $$
+                    \spec{B}\backslash V(e),\spec{B}\backslash V(1-e)
+                    $$
+                    Becuase $e\not\in \mathfrak{q},\mathfrak{q}\in \spec{B}\backslash V(e)$.
+                    Also, $1-e\not\in \mathfrak{p}$ (otherwise both $e,1-e\in \mathfrak{p}$ and $1=e+1-e\in \mathfrak{p},\mathfrak{p}=(1)$ which is a contradictory)
+                    so $\mathfrak{p}\in \spec{B}\backslash V(1-e)$.
+                    It's only left for us to prove
+                    $$
+                    \left( \spec{B}\backslash V(e) \right) \cap \left( \spec(B)\backslash V(1-e) \right) =\emptyset
+                    $$
+                    which is trivial since
+                    \begin{align*}
+                    \left( \spec{B}\backslash V(e) \right) \cap \left( \spec(B)\backslash V(1-e) \right) 
+                    &= \spec{B}\backslash \left( V(e)\cup V(1-e) \right) \\
+                    &= \spec{B}\backslash V(e(1-e)) \\
+                    &= \spec{B}\backslash V(e-e^2) \\
+                    &= \spec{B}\backslash V(0) \\
+                    &= \emptyset
+                    \end{align*}
+                \item $(iv)\Rightarrow (iii)$:
+                    Immediately obtained from the seperation theorem in topology ($T_2\Rightarrow T_1$).
             \end{enumerate}
         \item 
+            \begin{enumerate}[label=({\roman*})]
+                \item \emph{Compactness}:
+                    We'll use $B$ to prove since they're homeomorphic:
+                    For a family of groups of elements in $B$ $\left\{ E_{i} \right\} _{i\in \mathcal{I}}$,
+                    suppose we have such open cover
+                    $$
+                    \spec(B)=\bigcup _{i \in \mathcal{I}} \spec{B}\backslash V(E_{i})
+                    $$
+                    we'll prove there exist a finite subcover.
+                    Notice
+                    \begin{align*}
+                    \bigcup _{i \in \mathcal{I}} \spec{B}\backslash V(E_{i})
+                    &= \spec{B}\backslash \bigcap _{i \in \mathcal{I}} V(E_{i}) \\
+                    &= \spec(B)\backslash V\left( \bigcup _{i \in \mathcal{I}} E_{i} \right) \text{(by \emph{Exercise 1.15(iii)})}
+                    \end{align*}
+                    Therefore $\spec(B)=\bigcup _{i \in \mathcal{I}} \spec{B}\backslash V(E_{i})\Leftrightarrow V\left( \bigcup _{i \in \mathcal{I}} E_{i} \right) =\emptyset$.
+                    And to obtain a finite subcover, we only have to find out a finite subset $E_0\subseteq E,\text{s.t. }V\left( E_0 \right) =\emptyset$.
+                    It's very easy to achieve, since one can just pick out two element in $\mathfrak{p}\backslash \mathfrak{q},\mathfrak{q}\backslash \mathfrak{p}$ where $\mathfrak{p,q}\in \spec(B),\mathfrak{p}\neq \mathfrak{q}$.
+                \item \emph{Totally disconnected}:
+                    We follow from the proff of $(i)\Rightarrow (iv)$:
+                    We've proved $\spec{B}\backslash V(e)$ and $\spec{B}\backslash V(1-e)$ are disjoint.
+                    Also, from
+                    \begin{align*}
+                        \left( \spec{B}\backslash V(e) \right) \cup \left( \spec{B}\backslash V(1-e) \right) 
+                        &= \spec{B}\backslash \left( V(e)\cap V(1-e) \right)  \\
+                        &= \spec{B}\backslash V(\left\{ e,1-e \right\} ) \\
+                        &= \spec{B}\backslash V(1) \\
+                        &= \spec{B}
+                    \end{align*}
+                    we know $\spec{B}\backslash V(e)$ and $\spec{B}\backslash V(1-e)$ is a seperation of $\spec{B}$.
+                    Now for any subspace of $\spec{B}$ with more than $2$ elements,
+                    we can endow it with the corresponding subset topology and get a seperation of the subspace, i.e. any subspace with more than $2$ elements are disconnected.
+            \end{enumerate}
     \end{enumerate}
+    \qed
 \end{exercise}
+
+\begin{lemma}
+    For any absolutely flat ring $A$ and $\forall a\in A,\exists x\in A,\text{s.t. }a=a^2x$.
+\begin{proof}
+    Consider any ideal $I,J\subseteq A$.
+    Since $A$ is absolutely flat,
+    $A / I$, as an $A$-module, is flat.
+    Now we consider the exact sequence
+    $$
+    0\rightarrow J\xrightarrow[]{i} A
+    $$
+    where $i$ is the inclusion map.
+    We have
+    $$
+    0\longrightarrow A / I\otimes _{A}J\xrightarrow[]{i\otimes 1} A / I\otimes _{A}A
+    $$
+    exact, i.e.
+    $$
+    0\longrightarrow J / IJ\xrightarrow[]{i\otimes 1} j+I
+    $$
+    exact.
+    Consider the kernel of $i\otimes 1$ (which is $IJ$ be exactness):
+    Since
+    $$
+    i\otimes 1:j+IJ\longmapsto j+I
+    $$
+    we know $\ker{i\otimes 1}=I\cap J$.
+    Hence $IJ=I\cap J$, and this works for any ideals in $A$
+    Now let $I=J=(a)$.
+    We have $(a)=(a^2)$,
+    So $\exists e\in A,\text{s.t. }a=a^2e$.
+\end{proof}
+\end{lemma}
 
 \begin{exercise}
     It's trivial that torsion elements of $M$ form a submodule of $M$.
@@ -558,23 +669,27 @@
 \end{exercise}
 
 \begin{exercise}
-    \textbf{(UNFINISHED)}
-
     \emph{(Following the hint given,
     the idea is that we want to use the theories in vector spaces to solve this problem,
 so we would try to turn the original modules into vector spaces.)}
 
-    Following the notations in the given hint,
-    for exact sequence
+    We use the method in the hint directly:
+    Without loss of generality let $A$ be local and $\mathfrak{m}\subseteq A$ is the unique maximal ideal.
+    Let $\phi$ be the surjective homomorphism in the hint and define $N=\ker{\phi}$.
+    Now we have exact sequence
     $$
-    0\longrightarrow N\longrightarrow F\longrightarrow F\longrightarrow 0
+    0\longrightarrow N\longrightarrow F\xrightarrow[]{\phi} F\longrightarrow 0
     $$
-    we only need to prove
+    Since $\tor_{1}^{A}(k,F)=0$, we have
     $$
-    0\longrightarrow k\otimes _{A}N\longrightarrow k\otimes _{A}F\longrightarrow k\otimes_{A}F\longrightarrow 0
+    0\longrightarrow k\otimes _{A}N\longrightarrow k\otimes _{A}F\xrightarrow[]{1\otimes \phi} k\otimes _{A}F\longrightarrow 0
     $$
-    is exact, 
-    which we only have to prove $k=A / \mathfrak{m}$ is exact.
+    exact.
+
+    $k\otimes _{A}F\cong k^{n}$ is a $n$-dimensional vector space, $1\otimes \phi$ is surjective, hence bijective, i.e. $k\otimes _{A}N=0$.
+    Therefore $N / \mathfrak{m}N\cong \left( A / \mathfrak{m} \right) \otimes _{A}N=k\otimes _{A}N=0$,
+    so by \emph{Nakayama's Lemma}, $N=0$, $\phi$ is an isomorphism.
+    \qed
 \end{exercise}
 
 \begin{exercise}
@@ -589,6 +704,86 @@ so we would try to turn the original modules into vector spaces.)}
             So $\mathfrak{m}^{e}=B\varphi(\mathfrak{m})=\mathfrak{p}\subsetneq (1)$.
         \item $()$
     \end{enumerate}
+\end{exercise}
+
+\begin{lemma}
+    If the morphism $A\longrightarrow B$ is faithfully flat,
+    then any finitely generated $A$-module $M,M'$ with sequence
+    $$
+    0\longrightarrow M'\longrightarrow M
+    $$
+    is exact iff
+    $$
+    0\longrightarrow M'\otimes _{A}B\longrightarrow M\otimes _{A}B
+    $$
+    is exact.
+\begin{proof}
+    For any $A$-module homomorphism $f:M'\longrightarrow M$, we have
+    $$
+    0\longrightarrow \ker{f}\longrightarrow M'\xrightarrow[]{f} M
+    $$
+    exact.
+    By tensor product we have
+    $$
+    0\longrightarrow \ker{f}\otimes _{A}B\longrightarrow M'\otimes _{A}B\xrightarrow[]{f\otimes 1} M\otimes _{A}B
+    $$
+    exact.
+    \begin{enumerate}[label=({\roman*})]
+        \item When $0\longrightarrow \ker{f}\longrightarrow M'\xrightarrow[]{f} M$ is exact:
+
+            Now $\ker{f}=0$, therefore
+            $$
+            \ker{f\otimes 1}=\ker{f}\otimes _{A}B=0
+            .$$
+            Done.
+        \item When $0\longrightarrow \ker{f}\otimes _{A}B\longrightarrow M'\otimes _{A}B\xrightarrow[]{f\otimes 1} M\otimes _{A}B$ is exact:
+
+            Now $\ker{f}\otimes _{A}B=0$.
+            Denote the natural homomorphism $\phi:A\longrightarrow B$, and we have $B\cong A / \ker{\phi}$,
+            \begin{align*}
+                \ker{f}\otimes _{A}B
+                &\cong \ker{f}\otimes _{A}\left( A / \ker{\phi} \right)  \\
+                &= \ker{f} / \ker{\phi}\ker{f}
+            \end{align*}
+            i.e. $\ker{f} / \ker{f}\ker{\phi}=0$.
+            By \emph{Proposition 3.8} we may suppose $A$ is local, at which $\ker{\phi}\subseteq \jab{A}$.
+            Also, from $M,M'$ being finitely generated we know $\ker{f}$ is finitely generated.
+            Hence, by \emph{Nakayama's Lemma} $\ker{f}=0$, i.e.
+            $$
+            0\longrightarrow M'\xrightarrow[]{f} M
+            $$
+            exact.
+    \end{enumerate}
+\end{proof}
+\end{lemma}
+
+\begin{exercise}
+    Since $g\circ f$ is flat,
+    for any finitely generated $A$-module $M,M'$ and exact sequence
+    $$
+    0\longrightarrow M'\longrightarrow M
+    $$
+    we have
+    $$
+    0\longrightarrow M'\otimes _{A}C\longrightarrow M\otimes _{A}C
+    $$
+    exact.
+    From \emph{Exercise 2.15} we know
+    $$
+    M\otimes _{A}C=M\otimes_{A}\left( B\otimes _{B}C \right) \cong \left( M\otimes _{A}B \right) \otimes _{B}C
+    $$
+    and so does $M'$, therefore
+    $$
+    0\longrightarrow \left( M'\otimes _{A}B \right) \otimes _{B}C\longrightarrow \left( M\otimes _{A}B \right) \otimes _{B}C
+    $$
+    is exact.
+    Now from \textbf{Lemma 2} we have
+    $$
+    0\longrightarrow M'\otimes _{A}B \longrightarrow M\otimes _{A}B
+    $$
+    exact.
+    Now use \emph{Proposition 2.19} and we're done.
+    \qed
 \end{exercise}
 
 \end{document}
