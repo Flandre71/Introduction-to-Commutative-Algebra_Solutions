@@ -850,7 +850,37 @@ so we would try to turn the original modules into vector spaces.)}
             exact.
             And the proof becomes trivial after noticing those facts.
         \item Trivial.
+        \item Trivial.
+        \item Trivial.
         \item 
+            \begin{align*}
+                \supp{M / \mathfrak{a}M}
+                &= \supp\left( (A / \mathfrak{a})\otimes _{A}M \right)  \\
+                &= \supp(M)\cap \supp(A / \mathfrak{a}) \\
+                &= V(\ann{M})\cap V(\ann{A / \mathfrak{a}}) \\
+                &= V(\mathfrak{a}+\ann{M})
+            \end{align*}
+        \item 
+            \textbf{(SKIPPED TEMPORARILY)}
+            \begin{enumerate}[label=({\alph*})]
+                \item 
+                    $\forall \mathfrak{q}\in \supp{\left( B\otimes _{A}M \right) }$, we have $\left( B\otimes _{A}M \right) _{\mathfrak{q}}\neq 0$, i.e.
+                    $$
+                    \left( B\backslash \mathfrak{q} \right) ^{-1}\left( B\otimes _{A}M \right) \neq 0
+                    $$
+                    Therefore
+                    $$
+                    \left( A\backslash f^{-1}(\mathfrak{q}) \right) M\neq 0
+                    $$
+                    Which is to say $\mathfrak{q}\in f^{*-1}\left( \supp{M} \right) $.
+                    Hence $\supp{\left( B\otimes _{A}M \right) }\subseteq f^{*-1}(\supp{M})$.
+                \item 
+                    $\forall \mathfrak{p}\in \supp{M}$, we need to prove $\left( B\otimes _{A}M \right) _{\mathfrak{p}}\neq 0$, i.e.
+                    $$
+                    B_{\mathfrak{q}}\otimes _{A_{\mathfrak{p}}}M_{\mathfrak{p}}\neq 0
+                    $$
+                    
+            \end{enumerate}
     \end{enumerate}
 \end{exercise}
 
