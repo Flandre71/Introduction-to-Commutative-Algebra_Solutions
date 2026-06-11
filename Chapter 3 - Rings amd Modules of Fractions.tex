@@ -884,4 +884,36 @@ so we would try to turn the original modules into vector spaces.)}
     \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\alph*})]
+        \item 
+            Both \emph{(i),(ii)} is trivial using \emph{Proposition 1.17(ii)}.
+        \item 
+            \textbf{(ANY COUNTEREXAMPLE?)}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            By \emph{Proposition 3.11(iv)},
+            i.e. the correspondence relation between $\spec{A}$ and $\spec{S^{-1}A}$,
+            for any subset $E\subseteq A$, a prime ideal $\mathfrak{p}\supseteq E$ iff $\overline{\mathfrak{p}}\supseteq S^{-1}E$.
+            Therefore by the definition of Zarisky topology, $\phi^{*}$ is a homeomorphism.
+        \item 
+            $$
+\begin{tikzcd}
+S^{-1}X \arrow[rd, "\pi_X", hook] &                                                                     &                                                        &                                         &                                                                                              & S^{-1}Y \arrow[ld, "\pi_Y", hook] \arrow[lllll, "f^*\mid_{S^{-1}Y}"] \\
+                                  & X=\spec{A}                                                          &                                                        &                                         & Y=\spec{B} \arrow[lll, "f^*"]                                                                &                                                                      \\
+                                  &                                                                     & A \arrow[d] \arrow[r, "f"] \arrow[lu, no head, dotted] & B \arrow[d] \arrow[ru, no head, dotted] &                                                                                              &                                                                      \\
+                                  &                                                                     & S^{-1}A \arrow[ld, no head, dotted]                    & S^{-1}B \arrow[rd, no head, dotted]     &                                                                                              &                                                                      \\
+                                  & \Spec{S^{-1}A} \arrow[uuu, hook] \arrow[luuuu, no head, Rightarrow] &                                                        &                                         & \Spec{S^{-1}B} \arrow[lll, "S^{-1}f^*"] \arrow[ruuuu, no head, Rightarrow] \arrow[uuu, hook] &                                                                     
+\end{tikzcd}
+            $$
+            
+    \end{enumerate}
+\end{exercise}
+
 \end{document}
