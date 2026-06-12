@@ -897,23 +897,57 @@ so we would try to turn the original modules into vector spaces.)}
 \begin{exercise}
     \leavevmode \vspace{-\baselineskip}
     \begin{enumerate}[label=({\roman*})]
-        \item 
+        \item \emph{(Trivial)}
+
             By \emph{Proposition 3.11(iv)},
             i.e. the correspondence relation between $\spec{A}$ and $\spec{S^{-1}A}$,
             for any subset $E\subseteq A$, a prime ideal $\mathfrak{p}\supseteq E$ iff $\overline{\mathfrak{p}}\supseteq S^{-1}E$.
             Therefore by the definition of Zarisky topology, $\phi^{*}$ is a homeomorphism.
         \item 
             $$
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoBmAXVJADcBDAGwFcYkQBlAPWAFoBGAL4BBEINLpMufIRTkK1Ok1btufIQCExEkBmx4CRMsUUMWbRCFHjJ+mUXkmaZlZa03dUg7OT9S-U2ULEAANAF4AHQi4NBgAY2BhQW1baUMUABZ-QPN2AE1I6NiEjWSPPTSfPwyc1xAomPjgNQERMp0K7yIsmucg9gbi5p5W0pTPO3TkAFZSAAZa4JahPPHO+xQ5+cXVEaEQsUUYKABzeCJQADMAJwgAWyQyEBwIJDmPG-ukeWfXxCEdJ8Hogni9vn1cpZLuMgUgAOw0MGIABsELqy0Ely4ACoQDRGPQAEYwRgABS8GxAjBglxwMNuwNmvyQWSUkJAWNx+KJJPJk1kVJpdI+DPhiL+AA4aAALGD0KDsSBgNj4rDK9hQCDMQnUvHPehYRiKghsEVfRAI5mIJmy+VIMDMRiMREGo2WaUQCAAa3p5qlVqZLmCUTQWAA+qsXYb2B7vb7gairazbQrEA6nVG3SBYz6zQnxUgAJyZ43q1Xqyya7W6mVy1PgE16gnEskU9Iga5YE7Suk0ODSrC0t55osFxCsoMDCKhsMHEvuz25wGixD+pHFtl1TlRO5YKBh4bqQR5ZLl4JwCCMPfxx5j1lXisgTU4HDHPUp0um5fmn5Im11z8mzVYJn1fBUR0QLYrUTB8QIgF831rO1LCVL8rhXPwrUtD8UMbM8NXgsDDkEIA
 \begin{tikzcd}
 S^{-1}X \arrow[rd, "\pi_X", hook] &                                                                     &                                                        &                                         &                                                                                              & S^{-1}Y \arrow[ld, "\pi_Y", hook] \arrow[lllll, "f^*\mid_{S^{-1}Y}"] \\
                                   & X=\spec{A}                                                          &                                                        &                                         & Y=\spec{B} \arrow[lll, "f^*"]                                                                &                                                                      \\
                                   &                                                                     & A \arrow[d] \arrow[r, "f"] \arrow[lu, no head, dotted] & B \arrow[d] \arrow[ru, no head, dotted] &                                                                                              &                                                                      \\
                                   &                                                                     & S^{-1}A \arrow[ld, no head, dotted]                    & S^{-1}B \arrow[rd, no head, dotted]     &                                                                                              &                                                                      \\
-                                  & \Spec{S^{-1}A} \arrow[uuu, hook] \arrow[luuuu, no head, Rightarrow] &                                                        &                                         & \Spec{S^{-1}B} \arrow[lll, "S^{-1}f^*"] \arrow[ruuuu, no head, Rightarrow] \arrow[uuu, hook] &                                                                     
+                                  & \spec{S^{-1}A} \arrow[uuu, hook] \arrow[luuuu, no head, Leftrightarrow] &                                                        &                                         & \spec{S^{-1}B} \arrow[lll, "S^{-1}f^*"] \arrow[ruuuu, no head, Leftrightarrow] \arrow[uuu, hook] &                                                                     
 \end{tikzcd}
             $$
-            
+            Both can be obtained by definition. \emph{(I suppose?)}
+        \item 
+            $$
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoBmAXVJADcBDAGwFcYkQBBAAgHouAdfgFt6OABYAzAE70A1sHoBfEItLpMufIRTkK1Ok1bsAQrwHDRkmfIBGy1eux4CRMsX0MWbRJxVqQGE5aRLruNJ5GPsZ+jpouKACMpAkeht4gABoAvIJwaDAAxsAc9v6BcdrIACzJqV7sAJo5-HmFwMalsc6VSVV1kSC5+UXcfIIi4tJyCoqdARrdRDV94WnsQ22mYxaT1sB2c+WLKACspAAM-ekAagAU45ZTtooAlDHzQfHI5xdX7HcPXbTJRvRT6GBQADm8CIoGkECESDIIBwECQ5wcIHhiMQuhRaMQCUx2KRNFRSDxEXSEneJMQAHYyQSAGyreo+ADKAD1gABaIkSLkAKhANEY9BsMEYAAUFsEfIwYBIcLSpAikGd8UgagZ2VjhaKQOLJTK5fEjUqVcS1TjGVrEAAOGhiGD0KDsSBgNhirBe9hQCDMGyKw04ehYRgeghsa3qhlMjXO13uxBgZiMRhk8ORnxiCAQWSquNO+2aqnrfhoLAAfQaoez7DzBaLONZ9p1LrdSDTGazEcb+cLsdbCcQAE4+znwNHDYxfekA0GQ0muz5Pd6jRKpbLPtoQFIsJCxCqaHAxFhlejh0gJ+22QNBFXqxl6-3c4OW0gS+Tx-fqcLxiwKBq2AAEdisaY7BeZQfT9Hw4AgOd3WvRBkR-HU5zgkAAxwHAIUNTsU2nP0ULxH9NUIqM-VghcIFw-CUJ+e020w2j6PdFciPXT9CVHO1KLXGcaP9Oi8OQ-w6SYn8kl1B9+BsegpGACR7EoRQgA
+\begin{tikzcd}
+V(\mathfrak{a}) \arrow[rd, "\pi_X", hook] &                                                                              &                                                                   &                                              &                                                                                                       & V(\mathfrak{b}) \arrow[ld, "\pi_Y", hook] \arrow[lllll, "f^*\mid_{V(\mathfrak{b})}"] \\
+                                          & X=\spec{A}                                                                   &                                                                   &                                              & Y=\spec{B} \arrow[lll, "f^*"]                                                                         &                                                                                      \\
+                                          &                                                                              & A \arrow[d] \arrow[r, "f"] \arrow[lu, no head, dotted]            & B \arrow[d] \arrow[ru, no head, dotted]      &                                                                                                       &                                                                                      \\
+                                          &                                                                              & A / \mathfrak{a} \arrow[ld, no head, dotted] \arrow[r, "\bar{f}"] & B / \mathfrak{b} \arrow[rd, no head, dotted] &                                                                                                       &                                                                                      \\
+                                          & \spec{A / \mathfrak{a}} \arrow[uuu, hook] \arrow[luuuu, no head, Leftrightarrow] &                                                                   &                                              & \spec{B / \mathfrak{b}} \arrow[lll, "S^{-1}f^*"] \arrow[ruuuu, no head, Leftrightarrow] \arrow[uuu, hook] &                                                                                     
+\end{tikzcd}
+            $$
+            Again, by definition.
+        \item 
+            $$
+            % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBlAPWAFpyAvgA0QA0uky58hFAGYK1Ok1btufQQE1R4kBmx4CRMgCZFDFm0QghAXgA6duGhgBjYAEEB2ifulF5pjTmKlYa9o7ObgBCXmI+UoYo5KSBShbs7t66kgYyyMYpZsqWIFFZegl5ybJF6VbuAPrADgC29DgAFgBmAE70ANbAaAKxOhW5RAU1QcXsUU2t7d19g8Oj8RMoZNNpISAOTq4eC3Ztnb0DQyPr2b6JyPI7wSUHkcDzzadLF6vX5Tl+JKkAAstT2AApGp8zstLmsAJQAAgA9IjFucVld-nc8gVQTM6qUTjCflcBCi0V8MXCBB90bDfjdxoCHiCwS8Ikc6VSGWSKfTScNuSTMWsmQD7mR8bsOYc3JDid9RSN+TzBQJ4eKcUZSMR2ewHAAjeg9YAANQagnBAuV8OxlX8uv1ViNJvNDWMAmtauVwqVNI1okUMCgAHN4ERQL0IC0kGQQDgIEgCjKDXY0FgGiIaIx6IaYIwAAoSmQgRgwLo4EA0HD0LCMdgdCAQfpZaOxxDJBNJxDyVMu9OZrQ5vMF4vaqzlyvVhN1htWJstts9GNILuJuMEvZdLgAKlaWCgTTU-AEGi8I-zRZL7B6WFDHSrNHzYCgcbiIHbSD7G8QKee7A7ruM65le44OlYd4Pk+IAvm+iDAgAnB+X4ITWPYAGxbpYYDMIwjCXmON6ThWVYoSuHbAuhSAAKzYYBIGjteE5lqRy6rmh3bJvRiC4fhhHMRBrHTjQHQwPQ8HgAQbA5lgYAlFAEA4DgIbsR2dFcYgADsPF8QRZZMeBmzCWROioRpv59gBvF4fpoFESxU4wWJEnsJA8kgXJClKSpb7kRxWGaQAHLptkCUZgImTOLmSe5Mlll57CKcpqn+R2OmaYhoX8QZYHEVFonibF0meR5VjJb5alICFmn-rMNk5fZgnGU5M61vWjbNq2aXVdRiDxtZenhflrWFa5VhxaV3nMIa5ZtXObklc+MCvkgGHED1iBZcFw0sVBj4znBSBIZt22-l2g1hblDlCaNIAxYtHmyWVICKTNc01gtE1LbBK3wbw62nX1Vn1UN13NZFd3tfO91dVViCBed8YPVYOAAO4QDFCCbRl51dijCYY1j8PkPGeM8fsdjGqaXQ3Kh5ApudfZHQh21NRFiQgPtMHWZT1PALTPC7nTFFrj+PY1dDnVLptDN9WdX2wzLZmi524trvGjCJeVPmqWNxUebL649nL91FY98Vay9k2fR131PeDHOlnJ2CwCT6udlRZvjVJDtW9Ns3xVL9vxSzgMqxxpvnRp-tJRA73xQTNuznbvuh39SAAxtEcduQFkm7bMOLt1Odrl7v5k4rxck-nZfLat-W7UJ3Mzrz4I7sAwsHkewAnpoGrd58-MWsAnpejalwAI4jHaAiUAIQA
+            \begin{tikzcd}
+            \bar{V_1}(\mathfrak{p}) \arrow[d, hook]                                                                                             &                                                                  &                                                                    & \bar{V_2}(\mathfrak{p}B_{\mathfrak{p}}) \arrow[d, hook] \arrow[lll, "(f^{*}\mid_{S^{-1}Y})\mid{\bar{V_{2}}(\mathfrak{q}})"']                                      \\
+            S^{-1}X \arrow[d, "\pi_X", hook]                                                                                                    &                                                                  &                                                                    & S^{-1}Y \arrow[d, "\pi_Y", hook] \arrow[lll, "f^*\mid_{S^{-1}Y}"']                                                                                                \\
+            X=\spec{A}                                                                                                                          & A \arrow[d] \arrow[r, "f"] \arrow[l, no head, dotted]            & B \arrow[d] \arrow[r, no head, dotted]                             & Y=\spec{B} \arrow[lll, "f^*"', bend left=49]                                                                                                                      \\
+            \spec{A_{\mathfrak{p}}} \arrow[u, hook] \arrow[uu, no head, Leftrightarrow, bend left=60]                                               & A_{\mathfrak{p}} \arrow[l, no head, dotted] \arrow[d, two heads] & B_{\mathfrak{p}} \arrow[r, no head, dotted] \arrow[d, two heads]   & \spec{B_{\mathfrak{p}}} \arrow[lll, bend left=49] \arrow[uu, no head, Leftrightarrow, bend right=60] \arrow[u, hook]                                                  \\
+            \spec{(A_{\mathfrak{p}} / \mathfrak{p})} \arrow[u, hook] \arrow[r, no head, dotted] \arrow[uuuu, no head, Leftrightarrow, bend left=60] & (A_{\mathfrak{p}}) / \mathfrak{p} \arrow[r, "\bar{f}"]           & B_{\mathfrak{p}} / \mathfrak{p}B_{\mathfrak{p}} \arrow[r, phantom] & \spec{B_{\mathfrak{p}} / \mathfrak{p}B_{\mathfrak{p}}} \arrow[lll, "\bar{f}^{*}"', bend left=49] \arrow[u, hook] \arrow[uuuu, no head, Leftrightarrow, bend right=60]
+            \end{tikzcd}
+            $$
+            This can be immediately obtianed by using the remark following \emph{Corollary 3.13}.
     \end{enumerate}
+    \qed
+\end{exercise}
+
+\begin{exercise}[By definition, trivial.]
+\end{exercise}
+
+\begin{exercise}
+    
 \end{exercise}
 
 \end{document}
