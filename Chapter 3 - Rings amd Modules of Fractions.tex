@@ -29,6 +29,7 @@
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\nil}{Nil}
 \DeclareMathOperator{\jab}{Jab}
+\DeclareMathOperator{\rad}{Rad}
 \DeclareMathOperator{\spec}{Spec}
 \DeclareMathOperator{\ann}{Ann}
 \DeclareMathOperator{\tor}{Tor}
@@ -944,6 +945,59 @@ V(\mathfrak{a}) \arrow[rd, "\pi_X", hook] &                                     
 \end{exercise}
 
 \begin{exercise}[By definition, trivial.]
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item \emph{Not depending on $f$}:
+            $X_{f_1}=X_{f_2}\Leftrightarrow V(f_1)=V(f_2)\Leftrightarrow \rad{f_1}=\rad{f_2}\Rightarrow $
+            $$
+            \exists a_1,a_2\in A,n_1,n_2\in \mathbb{Z}^{+}\cup \left\{ 0 \right\} 
+            \text{s.t. }a_1f_2^{n_2}-a_2f_1^{n_1}=0
+            ,$$
+            i.e. $\frac{a_1}{f_1^{n_1}}=\frac{a_2}{f_2^{n_2}}$.
+            Therefore we can define an isomorphism mapping $A_{f_{1}}\longrightarrow A_{f_{2}}$ by transforming the denominators,
+            and obtian ring $A(U)=A_{f}$ not depending on $f$.
+
+            \emph{(I suppose we need to prove it depends on $U$ by showing an example of different $U$ leads to different $A(U)$, skipped.)}
+        \item 
+            $U'\subseteq U\Leftrightarrow V(g)\supseteq V(f)\Leftrightarrow \rad{g}\subseteq \rad{f}$.
+            Therefore $\exists n \in \mathbb{Z}^{+},\text{s.t. }g^{n}\in (f),\text{i.e. }g^{n}=uf$ for some $u\in A$.
+        \item 
+            Because the following diagram
+            $$
+            % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEB9AMxAF9S6TLnyEUARnJVajFmy4BzfoJAZseAkTLjp9Zq0QdOwbgHI+yoetFFJO6nrmGuwBef7SYUBfCKhuAE4QALZIZCA4EEjiAv5BoYjhkUgATLEggSGp1MmIAMzpmQmSEVH5fBR8QA
+            \begin{tikzcd}
+            A_f \arrow[r] \arrow[d] & A_g \arrow[d] \\
+            A_{f'} \arrow[r]        & A_{g'}       
+            \end{tikzcd}
+            $$
+            obviously commute.
+            One may check it out by defineing the arrows explicitly.
+        \item 
+            Just define the homomorphism explicitly using
+            $$
+            \frac{1}{f}=\frac{u}{g^{n}},\frac{1}{g}=\frac{v}{h^{m}},\frac{1}{f}=\frac{w}{h^{r}}
+            $$
+        \item 
+            $x\in X_{f}
+            \Leftrightarrow \mathfrak{p}\in X_{f}
+            \Leftrightarrow \mathfrak{p}\not\in V(f)
+            \Leftrightarrow f\not\in \mathfrak{p}
+            \Leftrightarrow \left\{ f^{n} \right\} _{n\ge 1}\subseteq A\backslash \mathfrak{p}
+            \Leftrightarrow \left\{ f^{n} \right\} _{n\ge 1}\cap \mathfrak{p}=\emptyset$.
+            Hence, as $f$ goes through $A\backslash \mathfrak{p}$,
+            those denominators will goes through $A\backslash \mathfrak{p}$.
+            And for each $f$, we may define an embedding
+            $$
+            A_{f}\hookrightarrow A_{\mathfrak{p}}
+            $$
+            Trivial.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[\textbf{FAILED}]
 \end{exercise}
 
 \begin{exercise}
