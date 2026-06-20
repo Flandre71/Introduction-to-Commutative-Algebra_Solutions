@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\newtheoremstyle{breakstyle}
+    {5pt}
+    {10pt}
+    {\normalfont}
+    {0pt}
+    {\bfseries}
+    {\newline\indent}
+    {0pt}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ \textbf{[#3]}}}
+\theoremstyle{breakstyle}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{remark}{Remark}[section]
+
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
+\DeclareMathOperator{\im}{Im}
+
+\title{Chapter 5 - Integral Dependence and Valuations}
+\author{Flandre}
+\date{20 Jun 2026}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{5}
+\begin{exercise}
+    Use \emph{Theorem 5.10}, trivial.
+\end{exercise}
+
+\begin{exercise}
+    Use \emph{Theorem 5.10}, trivial.
+\end{exercise}
+
+\begin{exercise}
+    Because
+    $$
+    \im\left( f\otimes 1 \right) =\left( \im{f} \right)\otimes _{A}C 
+    $$
+    Therefore $B'\otimes _{A}C$ is integral over $\im{f}\otimes _{A}f$, as $B'$ is integral over $\im{f}$.
+\end{exercise}
+
+\begin{remark}
+    Indeed, \emph{Exercise 5.3} includes \emph{Proposition 5.6(ii)} as special case, as $S^{-1}B\cong S^{-1}A\otimes _{A}B$.
+\end{remark}
+
+\begin{exercise}
+    Following from the hinted counterexample, the answer is no.
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            Since $x^{-1}\in B,\exists a_{n-1},\ldots ,a_0,\text{s.t. }$
+            $$
+            x^{-n}+a_{n-1}x^{-n+1}+\ldots +a_{1}x^{-1}+a_0=0
+            .$$
+            Hence
+            $$
+            x^{-1}=-a_{n-1}-a_{n-2}x-\ldots -a_1^{n-2}-a_0x^{n-1}\in A
+            $$
+        \item 
+            Use \emph{Corollary 5.8}, trivial.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Indeed.
+    Denote the integral ring homomorphism
+    $$
+    f_{k}:A\longrightarrow B_{k}
+    $$
+    and we have
+    $$
+    \prod_{k=1}^{n} f_{k}:A^{n}\longrightarrow \prod_{k=1}^{n} B_{k}
+    $$
+    as an integral ring homomorphism.
+
+    (Elimination of terms to make the elements integral is easy, as we can nest those polynomials by terms.)
+\end{exercise}
+
+\begin{exercise}
+    
+\end{exercise}
+
+\end{document}
