@@ -85,11 +85,38 @@
     $$
     as an integral ring homomorphism.
 
-    (Elimination of terms to make the elements integral is easy, as we can nest those polynomials by terms.)
+    (Elimination of terms to make the elements integral is easy, as we can nest
+    those polynomials by terms.)
 \end{exercise}
 
 \begin{exercise}
-    
+    Suppose $\exists x$ integral over $A$ in $B\backslash A$,
+    i.e.$\exists a_0,\ldots ,a_{n-1}\in A,\text{s.t. }$
+    $$
+    x^{n}+a_{n-1}x^{n-1}+\ldots a_1x+a_0=0
+    $$
+    Hence
+    $$
+    x(x^{n-1}+a_{n-1}x^{n-2}+\ldots +a_1)=-a_0\in A
+    $$
+    By the multiplicative closeness of $B\backslash A$,
+    $$
+    x^{n-1}+a_{n-1}x^{n-2}+\ldots +a_1\in A
+    $$
+    By repeating this process, we can have
+    $$
+    x+a_{n-1}\in A\Rightarrow x\in A
+    .$$
+    Contradictory.
+\end{exercise}
+
+\begin{exercise}
+    \leavevmode \vspace{-\baselineskip}
+    \begin{enumerate}[label=({\roman*})]
+        \item 
+            \emph{(The hint just proved everything, there's nothing else I could say.)}
+        \item 
+    \end{enumerate}
 \end{exercise}
 
 \end{document}
