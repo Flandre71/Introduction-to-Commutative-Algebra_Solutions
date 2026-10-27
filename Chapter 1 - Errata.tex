@@ -1,0 +1,1364 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Max}{Max}
+\DeclareMathOperator{\Rad}{Rad}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Frac}{Frac}
+\newcommand{\fp}{\mathfrak p}
+\newcommand{\fm}{\mathfrak m}
+\newcommand{\fa}{\mathfrak a}
+\newcommand{\fb}{\mathfrak b}
+\newcommand{\fq}{\mathfrak q}
+\newcommand{\fr}{\mathfrak r}
+\newcommand{\fN}{\mathfrak N}
+
+\title{Errata for \emph{Chapter 1 --- Rings and Ideals}}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent
+Exercise numbers below refer to the order of the \texttt{exercise} environments
+in the original file, which coincides with Atiyah--MacDonald, Chapter~1,
+Exercises~1--28.  For each item, \textbf{Issue} describes the problem and
+\textbf{Correction} gives a fix.  Exercises which are only sketches or are
+unfinished are collected in the last two sections.
+
+\section*{Summary of serious mathematical errors}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Ex.~2(iii)(a)}: the displayed system of equations is wrong, and
+        the conclusion \(f b_m^n=0\) does not produce a nonzero annihilator.
+  \item \textbf{Ex.~2(iv)}: the proof of ``\(f,g\) primitive
+        \(\Rightarrow fg\) primitive'' is not valid.
+  \item \textbf{Ex.~4}: \(A[x]\) need not have Krull dimension \(0\); the
+        asserted statement ``every prime ideal of \(A[x]\) is maximal'' is
+        false.
+  \item \textbf{Ex.~5(iii)(b)}: the claim that an arbitrary ideal equals the
+        full preimage of its constant-term ideal is false, so the
+        classification of maximal ideals is not proved.
+  \item \textbf{Ex.~6}: the logical reduction is incorrect and the proof is
+        unfinished.
+  \item \textbf{Ex.~8}: the nilradical is not a prime ideal in general, so it
+        cannot be used as a minimal prime.
+  \item \textbf{Ex.~13}: the minimal-degree argument is not written correctly.
+  \item \textbf{Ex.~14(ii)}: the proof that a maximal element of \(\Sigma\) is
+        prime is invalid.
+  \item \textbf{Ex.~16}: the zero ideal is missing from
+        \(\Spec\mathbb Z\), \(\Spec\mathbb C[x]\), and
+        \(\Spec\mathbb R[x]\).
+  \item \textbf{Ex.~17(vi),(vii)}: the radical is confused with the ideal
+        itself, and the quasi-compactness argument in (vii) is wrong.
+  \item \textbf{Ex.~18(iv)}: \(V(\fp_x)\) is closed but is not a neighbourhood
+        of \(x\) in general; the \(T_0\) proof is not valid as written.
+  \item \textbf{Ex.~19}: the category-theoretic argument does not prove
+        irreducibility of \(\Spec(A)\).
+  \item \textbf{Ex.~21(v)}: the chain of equivalences is not justified; the
+        correct criterion is \(\ker\phi\subseteq\Nil(A)\).
+  \item \textbf{Ex.~23(iii),(iv)}: the proof that clopen sets are basic is
+        wrong, and \(X\setminus\{q\}\) is not closed.
+  \item \textbf{Ex.~24}: the associativity computation for addition and the
+        absorption computation are incorrect.
+  \item \textbf{Ex.~26}: the implication ``\(f\in\fm_y\Rightarrow f(y)\neq0\)''
+        has the wrong sign.
+  \item \textbf{Ex.~27}: the argument uses the weak Nullstellensatz, which is
+        exactly what is not yet available at this point.
+  \item \textbf{Ex.~28}: the crucial verification that the constructed map
+        lands in \(Y\) is missing, and injectivity is not proved.
+\end{itemize}
+
+\section*{Exercise 1}
+
+\textbf{Issue.}  The identity
+\[
+(1+x)(1-x+x^2-\cdots+(-1)^{r-1}x^{r-1})=1-x^r
+\]
+is not correct in general.  The correct identity is
+\[
+(1+x)(1-x+x^2-\cdots+(-1)^{r-1}x^{r-1})=1-(-x)^r.
+\]
+Since \(x^r=0\), both \(1-x^r\) and \(1-(-x)^r\) equal \(1\), so the final
+conclusion is correct.  The exercise also asks to deduce that the sum of a unit
+and a nilpotent element is a unit; this deduction is not written.
+
+\textbf{Correction.}  Write
+\[
+(1+x)(1-x+\cdots+(-1)^{r-1}x^{r-1})=1-(-x)^r=1.
+\]
+For the deduction, if \(u\) is a unit and \(y^n=0\), then
+\[
+u+y=u(1+u^{-1}y),
+\]
+and \((u^{-1}y)^n=0\).  By the first part, \(1+u^{-1}y\) is a unit, hence
+\(u+y\) is a unit.
+
+\section*{Exercise 2}
+
+\subsection*{(i)(a)}
+Correct.  The displayed system
+\[
+a_nb_m=0,\quad a_n^2b_{m-1}=0,\quad\ldots,\quad a_n^{m+1}b_0=0
+\]
+is obtained by multiplying the coefficients of \(x^{n+m},x^{n+m-1},\ldots\)
+by suitable powers of \(a_n\).  Since \(a_0b_0=1\), we get
+\[
+a_n^{m+1}=a_n^{m+1}b_0a_0=0.
+\]
+Then \(f-a_nx^n\) is a unit by Exercise~1, and iteration gives the
+nilpotence of \(a_{n-1},\ldots,a_1\).
+
+\subsection*{(i)(b)}
+Correct, except for the typo \(a_ns^n\) in line~87 of the original; it should
+be \(a_nx^n\).
+
+\subsection*{(ii)(a)}
+The idea is correct, but one step needs justification: from the nilpotence of
+\[
+xh=a_1x+a_2x^2+\cdots+a_nx^n
+\]
+one cannot immediately conclude that \(h=a_1+a_2x+\cdots+a_nx^{n-1}\) is
+nilpotent without using that \(x\) is a non-zero-divisor in \(A[x]\).  Indeed,
+if \((xh)^k=0\), then \(x^kh^k=0\), hence \(h^k=0\).
+
+\subsection*{(ii)(b)}
+The word ``obviously'' hides a short argument.  If each \(a_i\) is nilpotent,
+then each \(a_ix^i\) is nilpotent, and a finite sum of nilpotent elements is
+nilpotent.  Hence \(f\) is nilpotent.
+
+\subsection*{(iii)(a): incorrect system of equations}
+
+\textbf{Issue.}  The displayed system
+\[
+a_nb_m=0,\quad a_{n-1}b_m=0,\quad a_{n-2}b_m^2=0,\quad\ldots,\quad
+a_1b_m^{n-1}=0,\quad a_0b_m^n=0
+\]
+is not correct.  For example, comparing the coefficient of \(x^{n+m-1}\) gives
+\[
+a_{n-1}b_m+a_nb_{m-1}=0.
+\]
+Multiplying by \(b_m\) and using \(a_nb_m=0\) gives
+\[
+a_{n-1}b_m^2=0,
+\]
+not \(a_{n-1}b_m=0\).  In general, without using minimality of \(m\), one only
+gets
+\[
+a_{n-r}b_m^{r+1}=0\qquad(0\le r\le n),
+\]
+hence \(fb_m^{n+1}=0\).  But \(b_m\neq0\) does not imply \(b_m^{n+1}\neq0\), so
+this does not give the required nonzero annihilator.
+
+A concrete counterexample to the displayed system is the following.  Let
+\[
+A=k[x,y]/(x^2,y^2),\qquad f=x+yX,\qquad g=-x+yX.
+\]
+Then
+\[
+fg=-x^2+xyX-xyX+y^2X^2=0,
+\]
+but with \(a_0=x,a_1=y,b_0=-x,b_1=y\) we have
+\[
+a_0b_1=xy\neq0.
+\]
+Thus the equation \(a_0b_m^n=0\) is false without further hypotheses.
+
+\textbf{Correction.}  Use the least-degree annihilator, as in the hint.  Let
+\[
+g=b_0+b_1x+\cdots+b_mx^m\neq0
+\]
+have minimal degree \(m\) among all nonzero polynomials with \(fg=0\).  Then
+\(b_m\neq0\).  If \(m=0\), then \(g=b_0\) is a nonzero constant and
+\(fb_0=0\), so we are done.  Assume \(m\ge1\).  Since the coefficient of
+\(x^{n+m}\) is \(a_nb_m\), we have
+\(a_nb_m=0\).  Hence \(a_ng\) has degree \(<m\) and still annihilates \(f\):
+\[
+f(a_ng)=a_n(fg)=0.
+\]
+By minimality of \(m\), \(a_ng=0\).  Comparing the coefficient of
+\(x^{n+m-1}\) now gives \(a_{n-1}b_m=0\), so \(a_{n-1}g\) has degree \(<m\)
+and annihilates \(f\); by minimality, \(a_{n-1}g=0\).  Continuing, we obtain
+\[
+a_{n-r}g=0\qquad(0\le r\le n).
+\]
+In particular \(a_ib_m=0\) for every \(i\), hence
+\[
+fb_m=0.
+\]
+Since \(b_m\neq0\), this is the desired nonzero element annihilating \(f\).
+
+\subsection*{(iii)(b)}
+Correct: if \(af=0\) with \(a\neq0\), then \(f\) is a zero-divisor by
+definition.
+
+\subsection*{(iv)(\(\Leftarrow\)): invalid proof of primitivity}
+
+\textbf{Issue.}  In the proof that \(f,g\) primitive implies \(fg\) primitive,
+the displayed formula beginning with ``\(fg=\)'' is not actually \(fg\).
+It is the weighted sum
+\[
+\sum_{i,j}\lambda_i\mu_jb_ia_jx^{i+j}.
+\]
+Expressing \(1\) as a linear combination of the individual products
+\(a_ib_j\) does not show that \(1\) lies in the ideal generated by the
+\emph{coefficients} of \(fg\), which are the anti-diagonal sums
+\[
+c_k=\sum_{i+j=k}a_jb_i.
+\]
+The coefficients \(\lambda_i\mu_j\) are not constant on an anti-diagonal, so
+the terms cannot be regrouped as an \(A\)-linear combination of the \(c_k\).
+
+\textbf{Correction.}  Reduce modulo a maximal ideal.  Let \(\fm\) be a maximal
+ideal of \(A\).  In the polynomial ring \((A/\fm)[x]\), which is a domain, the
+image of \(fg\) is \(\bar f\bar g\).
+
+If \(f,g\) are primitive and \(fg\) were not primitive, then there is a
+maximal ideal \(\fm\) containing all coefficients of \(fg\), so
+\(\bar f\bar g=0\).  Since \((A/\fm)[x]\) is a domain, \(\bar f=0\) or
+\(\bar g=0\), contradicting the primitivity of \(f\) or \(g\).
+
+Conversely, if \(fg\) is primitive and \(f\) were not primitive, then some
+maximal ideal \(\fm\) contains all coefficients of \(f\); then
+\(\bar f=0\), so \(\bar f\bar g=0\), contradicting the primitivity of \(fg\).
+The same argument applies to \(g\).  Hence \(f\) and \(g\) are primitive.
+
+The direction \(fg\) primitive \(\Rightarrow g\) primitive is also proved by
+the rearrangement in the original text, provided the last term is corrected
+from \(a_n+\xi_{m+n}\) to \(a_n\xi_{m+n}\).  The problematic direction is
+the one discussed above.
+
+\subsection*{Remark after Exercise 2}
+The remark says ``\(n+m-1\) anti-diagonals''.  The coefficients of \(fg\) run
+from \(x^0\) to \(x^{n+m}\), so there are \(n+m+1\) anti-diagonals, not
+\(n+m-1\).
+
+\section*{Exercise 3}
+
+No mathematical error, but the induction is only indicated.  For example, for
+(i) apply Exercise~2(i) with the coefficient ring
+\(R=A[x_1,\ldots,x_{n-1}]\): a polynomial in \(x_n\) is a unit in \(R[x_n]\)
+if and only if its constant term is a unit in \(R\) and all other coefficients
+are nilpotent in \(R\).  Then apply the induction hypothesis to \(R\).  The
+other parts are analogous.
+
+\section*{Exercise 4}
+
+\textbf{Issue.}  The proof is not merely incomplete; it proves a false
+statement.  In general, \(A[x]\) does \emph{not} have Krull dimension \(0\),
+and not every prime ideal of \(A[x]\) is maximal.  For example, if \(A=k\) is
+a field, then
+\[
+(0)\subsetneq (x)
+\]
+are prime ideals of \(k[x]\).  The phrase ``Krull dimension of \(\fp\)'' is
+also not standard; the relevant condition for \(\fp\) to be maximal would be
+\(\dim(A/\fp)=0\).  The citation to Hartshorne, Proposition~1.7, gives
+\(\dim\mathbb A^n=n\), not dimension \(0\).
+
+The correct statement is
+\[
+J(A[x])=\Nil(A[x]),
+\]
+where \(J\) denotes the Jacobson radical and \(\Nil\) the nilradical.
+
+\textbf{Correction.}  Let
+\[
+f=a_0+a_1x+\cdots+a_nx^n\in J(A[x]).
+\]
+For every \(g\in A[x]\), \(1-fg\) is a unit.  Taking \(g=x\), we see that
+\(1-xf\) is a unit.  By Exercise~2(i), all coefficients of \(xf\) are
+nilpotent; these coefficients are \(a_0,a_1,\ldots,a_n\).  Hence \(f\) is
+nilpotent.  Therefore \(J(A[x])\subseteq\Nil(A[x])\).
+
+Conversely, \(\Nil(R)\subseteq J(R)\) for every commutative ring \(R\): if
+\(y^n=0\), then for every \(r\in R\),
+\[
+(1-yr)(1+yr+\cdots+(yr)^{n-1})=1-(yr)^n=1,
+\]
+so \(1-yr\) is a unit, which means \(y\in J(R)\).  Hence
+\(\Nil(A[x])\subseteq J(A[x])\), and the two radicals are equal.
+
+The remark that the same holds in
+\(A[x_1,\ldots,x_n]\) is correct, by induction on \(n\).
+
+\section*{Exercise 5}
+
+\subsection*{(i)(b)}
+The displayed inverse is missing the factor \(x^2\) in the third term.  The
+beginning of the inverse series should read
+\[
+(a_0+a_1x+a_2x^2+\cdots)
+\left(a_0^{-1}-a_1a_0^{-2}x+
+(a_1^2a_0^{-3}-a_2a_0^{-2})x^2+\cdots\right)=1.
+\]
+More precisely, the coefficients \(b_n\) of the inverse are determined
+recursively by
+\[
+b_0=a_0^{-1},\qquad
+b_n=-a_0^{-1}\sum_{k=1}^{n}a_kb_{n-k}\quad(n\ge1).
+\]
+
+\subsection*{(ii)(b): the converse is false}
+``No'' is correct, but a counterexample should be supplied.  Let
+\[
+A=\prod_{n\ge1}k[\varepsilon_n]/(\varepsilon_n^{n+1}),
+\]
+and let \(a_n\in A\) be the element whose \(n\)-th component is
+\(\varepsilon_n\) and whose other components are \(0\).  Then
+\(a_n^{n+1}=0\), so every \(a_n\) is nilpotent.  Consider
+\[
+f=\sum_{n\ge1}a_nx^n\in A[[x]].
+\]
+If \(f^N=0\), then in the \(n\)-th component we get
+\(\varepsilon_n^N x^{nN}=0\).  Taking \(n>N\), this is impossible because
+\(\varepsilon_n^N\neq0\) in \(k[\varepsilon_n]/(\varepsilon_n^{n+1})\).
+Hence \(f\) is not nilpotent, although all of its coefficients are nilpotent.
+
+\subsection*{(iii)(b): the classification of maximal ideals}
+
+\textbf{Issue.}  The assertion
+\[
+\text{``the constant terms of an arbitrary ideal }\mathfrak I
+\text{ form an ideal }I\text{ and }\mathfrak I_I=\mathfrak I\text{''}
+\]
+is false.  For example, in \(A[[x]]\), the ideal \(\mathfrak I=(x^2)\) has
+constant-term ideal \(0\), but
+\[
+\mathfrak I_0=\{b_0+b_1x+\cdots\mid b_0=0\}=(x),
+\]
+which is strictly larger than \((x^2)\).
+
+\textbf{Correction.}  Let \(\fm\) be a maximal ideal of \(A[[x]]\), and let
+\[
+\pi:A[[x]]\longrightarrow A,\qquad \pi\Bigl(\sum a_nx^n\Bigr)=a_0
+\]
+be the constant-term map, with kernel \((x)\).  First we show that
+\(x\in\fm\).  If \(x\notin\fm\), then \(x\) is a unit modulo \(\fm\), so there
+exists \(g\in A[[x]]\) with \(1-xg\in\fm\).  But \(1-xg\) has constant term
+\(1\), hence is a unit in \(A[[x]]\), so \(\fm=A[[x]]\), contradiction.
+Thus \(x\in\fm\).
+
+Since \(x\in\fm\), we have
+\[
+\fm=\pi^{-1}(\pi(\fm)).
+\]
+Indeed, if \(\pi(f)\in\pi(\fm)\), then \(f-\pi(f)\in(x)\subseteq\fm\), so
+\(f\in\fm\).  Therefore
+\[
+A[[x]]/\fm\cong A/\pi(\fm).
+\]
+Since \(\fm\) is maximal, \(\pi(\fm)\) is a maximal ideal of \(A\).  Thus every
+maximal ideal of \(A[[x]]\) is of the form
+\[
+\fm=\pi^{-1}(I)=I+(x)
+=\{b_0+b_1x+\cdots\mid b_0\in I\}
+\]
+with \(I\) maximal in \(A\).  Conversely, if \(I\) is maximal in \(A\), then
+\(I+(x)\) is maximal because its quotient is \(A/I\).  This also proves
+part (iv): the contraction of \(\fm\) is \(\pi(\fm)=\fm\cap A\), and \(\fm\)
+is generated by \(\fm^c\) and \(x\).
+
+\subsection*{(iii)(a)}
+With the classification above, the equivalence is immediate.  If
+\(a_0\in J(A)\), then for every maximal ideal \(I\) of \(A\),
+\(a_0\in I\), hence \(f\in I+(x)\), which is an arbitrary maximal ideal of
+\(A[[x]]\).  Thus \(f\in J(A[[x]])\).  Conversely, if
+\(f\in J(A[[x]])\), then \(f\in I+(x)\) for every maximal \(I\subseteq A\),
+so \(a_0\in I\) for every maximal \(I\), i.e.\ \(a_0\in J(A)\).
+
+\subsection*{(iv)}
+This is proved in the correction to (iii)(b).
+
+\subsection*{(v)}
+The idea in the original text is correct but unfinished.  For a prime ideal
+\(\fp\subseteq A\), the ideal
+\[
+\fp A[[x]]=\fp[[x]]=\{a_0+a_1x+\cdots\mid a_i\in\fp\}
+\]
+is prime, because
+\[
+A[[x]]/\fp[[x]]\cong(A/\fp)[[x]],
+\]
+and \((A/\fp)[[x]]\) is a domain.  Its contraction to \(A\) is
+\(\fp[[x]]\cap A=\fp\).  Hence every prime ideal of \(A\) is the contraction
+of a prime ideal of \(A[[x]]\).  (Alternatively, \(\fp+(x)\) is prime with the
+same contraction.)
+
+\section*{Exercise 6}
+
+\textbf{Issue.}  The proof is unfinished and its logic is incorrect.  The
+statement ``if the nilradical equals the Jacobson radical, then every prime
+ideal contains some maximal ideal'' is false: a prime ideal can contain the
+intersection of all maximal ideals without containing any of them, e.g.\
+\((0)\) in \(k[x]\).  The claimed equivalence with ``every prime ideal is
+maximal'' is also false in general.
+
+\textbf{Correction.}  Let \(J\) be the Jacobson radical and \(N\) the
+nilradical.  Always \(N\subseteq J\).  Suppose \(J\not\subseteq N\), and choose
+\(x\in J\setminus N\).  Then the principal ideal \((x)\) is not contained in
+\(N\), so by hypothesis \((x)\) contains a nonzero idempotent \(e\).  Since
+\(x\in J\), we have \(e\in J\).  But \(e(1-e)=0\), and \(1-e\) is a unit
+because \(e\in J\); hence \(e=0\), contradiction.  Therefore
+\(J\subseteq N\), and so \(J=N\).
+
+\section*{Exercise 7}
+
+Correct.  Minor wording: ``\(A/\fp\) is a integral domain'' should be ``an
+integral domain''.  The hypothesis \(n>1\) is used only to ensure that
+\(n-1>0\); the argument works for every \(n\ge2\).
+
+\section*{Exercise 8}
+
+\textbf{Issue.}  The nilradical is the intersection of all prime ideals, but
+it need not itself be a prime ideal.  Hence it is not an element of the set
+of prime ideals and cannot be used as a minimal element without further
+argument.  For example, in \(A=k[x,y]/(xy)\),
+\[
+(x)\quad\text{and}\quad(y)
+\]
+are minimal prime ideals, while
+\[
+\Nil(A)=(x)\cap(y)=(xy)=(0)
+\]
+is not prime.
+
+\textbf{Correction.}  Use Zorn's lemma.  The set of prime ideals is nonempty
+because \(A\neq0\) has a maximal ideal, and maximal ideals are prime.  Let
+\(\{\fp_i\}_{i\in I}\) be a chain of prime ideals, and put
+\(\fp=\bigcap_i\fp_i\).  We show that \(\fp\) is prime.  Let \(xy\in\fp\) and
+\(x\notin\fp\).  Choose \(i_0\) with \(x\notin\fp_{i_0}\).  For any \(j\):
+if \(\fp_{i_0}\subseteq\fp_j\), then \(xy\in\fp_j\) and
+\(x\notin\fp_j\), so \(y\in\fp_j\); if \(\fp_j\subseteq\fp_{i_0}\), then
+\(y\notin\fp_j\) would imply \(x\in\fp_j\subseteq\fp_{i_0}\), contradiction,
+so again \(y\in\fp_j\).  Hence \(y\in\fp\), and \(\fp\) is prime.  Zorn's
+lemma now gives a minimal prime ideal.
+
+\section*{Exercise 9}
+
+The sketch is correct, but two details should be mentioned.  If
+\(\fa=\Rad(\fa)\), then Proposition~1.14 gives
+\[
+\fa=\bigcap_{\fp\supseteq\fa}\fp,
+\]
+an intersection of prime ideals.  Conversely, an intersection of prime ideals
+is radical, since each prime is radical and an intersection of radical ideals
+is radical.  For \(\fa=(1)\), the family of primes containing \(\fa\) is
+empty, and the intersection over the empty family is \(A\) by convention.
+
+\section*{Exercise 10}
+
+The proof is essentially correct, but several justifications are missing.
+
+\begin{enumerate}[label=(\roman*)]
+  \item \((i)\Rightarrow(ii)\): If \(A\) has exactly one prime ideal
+        \(\fp\), then \(\fp\) is the unique maximal ideal and
+        \(\Nil(A)=\fp\).  Every non-unit lies in a maximal ideal, hence in
+        \(\fp=\Nil(A)\), so it is nilpotent.  Every element outside \(\fp\)
+        is a unit.  The original text invokes Corollary~1.5 but omits the
+        crucial equality \(\Nil(A)=\fp\).
+
+  \item \((ii)\Rightarrow(iii)\): If \(\bar a\neq0\) in \(A/\Nil(A)\), then
+        \(a\notin\Nil(A)\), so \(a\) is not nilpotent.  By (ii), \(a\) is a
+        unit, hence \(\bar a\) is a unit.  The phrase
+        ``\(\exists a^{-1}\in A\setminus\mathfrak R\)'' should be replaced by
+        ``\(a\) is a unit''.
+
+  \item \((iii)\Rightarrow(i)\): If \(A/\Nil(A)\) is a field, then
+        \(\Nil(A)\) is a maximal ideal.  Every prime ideal contains
+        \(\Nil(A)\), and since \(\Nil(A)\) is maximal, the only prime ideal is
+        \(\Nil(A)\) itself.  The original conclusion is correct, but one
+        should identify the unique prime as \(\Nil(A)\).
+\end{enumerate}
+
+\section*{Exercise 11}
+
+\subsection*{(i)}
+The chain should start with the Boolean identity for \(2x\):
+\[
+(2x)^2=2x,
+\]
+while also
+\[
+(2x)^2=4x^2=4x.
+\]
+Hence \(2x=4x\), so \(2x=0\).  As written, ``\(2x=4x^2\)'' is not justified.
+
+\subsection*{(ii)}
+Correct.
+
+\subsection*{(iii)}
+The two-generator case is correct.  For the induction, let
+\(I=(x_1,\ldots,x_n)\) and set
+\[
+z=1-\prod_{i=1}^n(1+x_i).
+\]
+In a Boolean ring, \(1+x_i\) is idempotent because
+\((1+x_i)^2=1+2x_i+x_i^2=1+x_i\).  Hence
+\(e=\prod_{i=1}^n(1+x_i)\) is idempotent, and \(z=1-e\) is idempotent.
+Moreover, \(ex_i=0\), since the factor \(1+x_i\) times \(x_i\) is
+\(x_i+x_i^2=2x_i=0\).  Thus
+\[
+zx_i=(1-e)x_i=x_i,
+\]
+so \(x_i\in(z)\) for every \(i\).  Therefore \((z)=I\).
+
+\section*{Exercise 12}
+
+Correct.  A zero-divisor cannot be a unit, and in a local ring every non-unit
+lies in the unique maximal ideal.  If \(e\neq0,1\) is idempotent, then
+\(e(1-e)=0\), so both \(e\) and \(1-e\) are zero-divisors, hence non-units,
+hence both lie in the maximal ideal; then \(1=e+(1-e)\) lies in the maximal
+ideal, contradiction.  Only the grammar ``both \(e\) and \(1-e\) is'' should
+be corrected to ``are''.
+
+\section*{Exercise 13}
+
+\textbf{Issue.}  The proof is not valid as written.  The notation
+\(F\in A[f(x_f)]\) is unclear: \(F\) should be a polynomial in new variables
+\(y_f\), evaluated at \(y_f=f(x_{f})\).  The ``highest degree'' cancellation
+must be done with the coefficient of the highest power of \(f_0\); since
+\(f_0\) is monic, \(f_0(x_{f_0})^{\alpha_0}\) is not a zero-divisor in the
+polynomial ring over the other variables.  The equation
+\[
+f(x_f)^{\alpha_0}(\text{rest})=0
+\]
+is not the correct formulation of ``the highest-degree part vanishes''.
+Finally, the termination argument needs the fact that the original relation
+has no constant term in the \(y_f\) variables (or a minimality assumption);
+it is not spelled out.  The parenthetical remark about the characteristic of
+\(K\) is unnecessary and misleading: the argument works in every
+characteristic.
+
+\textbf{Correction.}  Suppose for contradiction that \(\fa=(1)\).  Then there
+are finitely many \(f_1,\ldots,f_r\in\Sigma\) and
+\(g_1,\ldots,g_r\in A\) such that
+\[
+\sum_{i=1}^r g_i f_i(x_{f_i})=1.
+\]
+Let \(L\) be a field extension of \(K\) containing a root \(\alpha_i\) of each
+\(f_i\); for instance, take a splitting field of the product
+\(f_1\cdots f_r\) over \(K\).  Evaluate the identity at
+\[
+x_{f_i}\longmapsto\alpha_i\quad(1\le i\le r),\qquad
+x_f\longmapsto0\quad(f\notin\{f_1,\ldots,f_r\}).
+\]
+Then every \(f_i(x_{f_i})\) becomes \(f_i(\alpha_i)=0\), so the left-hand
+side is \(0\), while the right-hand side is \(1\), contradiction.  Hence
+\(\fa\neq(1)\).
+
+\section*{Exercise 14}
+
+\subsection*{(i)}
+Zorn's lemma applies, but one should verify that the union of a chain of
+ideals in \(\Sigma\) again lies in \(\Sigma\).  This is immediate: if every
+element of every ideal in the chain is a zero-divisor, then every element of
+the union is a zero-divisor.
+
+\subsection*{(ii): invalid proof that a maximal element is prime}
+
+\textbf{Issue.}  From \(ab\in I\) and \(u\neq0\) with \((ab)u=0\), one gets
+\(a(bu)=0\).  This only shows that \(a\) is a zero-divisor if \(bu\neq0\);
+if \(bu=0\), it shows that \(b\) is a zero-divisor instead.  More
+importantly, even if \(a\) is a zero-divisor, maximality of \(I\) among ideals
+consisting of zero-divisors does \emph{not} imply \(a\in I\).  For example,
+in \(A=k[x,y]/(xy)\), the ideal \(I=(x)\) is maximal in \(\Sigma\), but \(y\)
+is a zero-divisor and \(y\notin I\).
+
+\textbf{Correction.}  Let \(I\) be maximal in \(\Sigma\), and suppose
+\(ab\in I\).  Assume \(a\notin I\) and \(b\notin I\).  By maximality,
+\(I+(a)\notin\Sigma\) and \(I+(b)\notin\Sigma\).  Hence there exist
+\(i+ra\in I+(a)\) and \(j+sb\in I+(b)\) which are not zero-divisors.  Their
+product
+\[
+(i+ra)(j+sb)=ij+isb+jra+rsab
+\]
+lies in \(I\), because \(i,j,ab\in I\).  Thus the product is a zero-divisor.
+But the product of two non-zero-divisors is a non-zero-divisor: if
+\((i+ra)(j+sb)z=0\), then \((j+sb)z=0\), and then \(z=0\).  Contradiction.
+Therefore \(a\in I\) or \(b\in I\), so \(I\) is prime.
+
+\subsection*{(iii)}
+Correct.  To justify that every zero-divisor lies in some maximal element of
+\(\Sigma\): if \(x\) is a zero-divisor with \(xu=0\) and \(u\neq0\), then every
+element \(rx\) of the principal ideal \((x)\) satisfies \((rx)u=0\), so
+\((x)\in\Sigma\).  By Zorn's lemma, \((x)\) is contained in a maximal element
+of \(\Sigma\).  Hence the union of all maximal elements of \(\Sigma\) is
+exactly the set of zero-divisors.
+
+\section*{Exercise 15}
+
+The answer ``Trivial'' with references is not a proof.  Here are the standard
+verifications.
+
+\begin{enumerate}[label=(\roman*)]
+  \item \(V(E)=V((E))\) by definition.  Also
+        \(V(\fa)=V(\Rad(\fa))\): a prime ideal contains \(\fa\) if and only if
+        it contains \(\Rad(\fa)\).
+
+  \item \(V(0)=X\), since every prime ideal contains \(0\); and
+        \(V(1)=\varnothing\), since no prime ideal contains \(1\).
+
+  \item For a family \((E_i)_{i\in I}\),
+        \[
+        \fp\in V\Bigl(\bigcup_iE_i\Bigr)
+        \iff E_i\subseteq\fp\ \text{for all }i
+        \iff \fp\in\bigcap_iV(E_i).
+        \]
+        Hence \(V(\bigcup_iE_i)=\bigcap_iV(E_i)\).
+
+  \item For ideals \(\fa,\fb\),
+        \[
+        \fa\fb\subseteq\fa\cap\fb\subseteq\fa,\fb,
+        \]
+        so
+        \[
+        V(\fa)\cup V(\fb)\subseteq V(\fa\cap\fb)\subseteq V(\fa\fb).
+        \]
+        Conversely, if \(\fp\supseteq\fa\fb\) is prime, then
+        \(\fa\subseteq\fp\) or \(\fb\subseteq\fp\), so
+        \(\fp\in V(\fa)\cup V(\fb)\).  Hence all three sets are equal.
+\end{enumerate}
+
+\section*{Exercise 16}
+
+\begin{enumerate}[label=(\roman*)]
+  \item
+        \[
+        \Spec\mathbb Z=\{(0)\}\cup\{(p)\mid p\text{ is prime}\}.
+        \]
+        The zero ideal is missing in the original.
+
+  \item \(\Spec\mathbb R=\{(0)\}\).  Correct.
+
+  \item
+        \[
+        \Spec\mathbb C[x]=\{(0)\}\cup\{(x-a)\mid a\in\mathbb C\}.
+        \]
+        The zero ideal is missing in the original.
+
+  \item
+        \[
+        \Spec\mathbb R[x]=\{(0)\}\cup\{(p)\mid p\in\mathbb R[x]
+        \text{ is monic irreducible of degree }\ge1\}.
+        \]
+        Over \(\mathbb R\), the nonconstant irreducibles are the linear
+        polynomials and the quadratics with negative discriminant.  The zero
+        ideal is missing in the original.
+
+  \item A complete description is
+        \[
+        \begin{aligned}
+        \Spec\mathbb Z[x]
+        &=\{(0)\}
+        \cup\{(p)\mid p\text{ prime}\}\\
+        &\quad\cup\{(p,f)\mid p\text{ prime},\ f\in\mathbb Z[x]\text{ monic and
+        irreducible mod }p\}\\
+        &\quad\cup\{(g)\mid g\in\mathbb Z[x]\text{ primitive and irreducible
+        over }\mathbb Q\}.
+        \end{aligned}
+        \]
+        Here \((p)\) is prime but not maximal; the maximal ideals are exactly
+        the ideals \((p,f)\).  The ideal \((0)\) is the generic point, the
+        ideals \((p)\) and \((g)\) are height-one primes, and the
+        ideals \((p,f)\) are the height-two (closed) points.
+\end{enumerate}
+
+\section*{Exercise 17}
+
+\subsection*{Basis}
+The sets \(X_f=X\setminus V(f)\) are open by definition.  If
+\(U=X\setminus V(E)\) is an arbitrary open set, then
+\[
+U=X\setminus V(E)=X\setminus\bigcap_{f\in E}V(f)
+=\bigcup_{f\in E}(X\setminus V(f))
+=\bigcup_{f\in E}X_f.
+\]
+Hence the \(X_f\) form a basis.
+
+\subsection*{(i)--(iv)}
+\begin{enumerate}[label=(\roman*)]
+  \item
+        \[
+        X_f\cap X_g
+        =X\setminus(V(f)\cup V(g))
+        =X\setminus V(fg)
+        =X_{fg}.
+        \]
+  \item \(X_f=\varnothing\iff V(f)=X\iff f\in\Nil(A)\).
+  \item \(X_f=X\iff V(f)=\varnothing\iff f\) is a unit.
+  \item
+        \[
+        X_f=X_g\iff V(f)=V(g)
+        \iff\Rad((f))=\Rad((g)).
+        \]
+\end{enumerate}
+
+\subsection*{(v)}
+The original argument is essentially correct, but its quantifier notation
+is unclear.  A clean version is: an open cover of \(X\) may be refined to a
+cover by basic open sets \(X_{f_i}\).  If \(\bigcup_iX_{f_i}=X\), then
+\(\bigcap_iV(f_i)=\varnothing\), so the ideal \(\fa=(f_i)\) is not contained
+in any prime ideal, hence \(\fa=(1)\).  Therefore there are finitely many
+indices \(i_1,\ldots,i_n\) and elements \(g_{i_j}\in A\) with
+\[
+1=\sum_{j=1}^ng_{i_j}f_{i_j}.
+\]
+Then \(\bigcup_{j=1}^nX_{f_{i_j}}=X\).  Thus \(X\) is quasi-compact.
+
+\subsection*{(vi): radical, not the ideal itself}
+
+\textbf{Issue.}  The condition for \(X_f\) to be covered by the \(X_{f_i}\) is
+\[
+f\in\Rad((f_i)_{i\in I}),
+\]
+not \(f\in(f_i)_{i\in I}\).  The latter is strictly stronger and is false in
+general.  For example, in \(A=k[x]\), take \(f=x\) and \(f_1=x^2\).  Then
+\(X_f=X_{x^2}\), so \(X_f\) is covered by the single set \(X_{x^2}\), but
+\(x\notin(x^2)\).
+
+\textbf{Correction.}  Suppose \(X_f\subseteq\bigcup_{i\in I}X_{f_i}\).  Then
+\[
+V(f)\supseteq\bigcap_{i\in I}V(f_i)=V(\fa),
+\]
+where \(\fa=(f_i)\).  Hence \(f\in\Rad(\fa)\), so \(f^n\in\fa\) for some
+\(n\).  Since \(\fa\) is generated by the \(f_i\), there is a finite subset
+\(J\subseteq I\) with \(f^n\in(f_i)_{i\in J}\).  Then
+\[
+V(f)=V(f^n)\supseteq V\bigl((f_i)_{i\in J}\bigr)
+=\bigcap_{i\in J}V(f_i),
+\]
+so the finitely many \(X_{f_i}\) with \(i\in J\) cover \(X_f\).  Thus \(X_f\)
+is quasi-compact.
+
+\subsection*{(vii): the compactness argument is wrong}
+
+\textbf{Issue.}  The negation of ``\(X_0\) is a finite union of basic open
+sets'' is not ``the index family \(\mathcal F\) is infinite''.  An infinite
+family can contain a finite subcover; for example, \(X\) itself is covered by
+all the \(X_f\), and it is quasi-compact.  The attempted contradiction
+therefore does not work.  In addition, the quantifiers in the original only
+range over countable sequences \(X_{f_1},X_{f_2},\ldots\), whereas an open
+cover can be an arbitrary family.
+
+\textbf{Correction.}  Let \(X_0\subseteq X\) be open and quasi-compact.  Since
+the \(X_f\) form a basis, write
+\[
+X_0=\bigcup_{f\in\mathcal F}X_f
+\]
+for some family \(\mathcal F\).  This is an open cover of \(X_0\).  By
+quasi-compactness, finitely many of these sets cover \(X_0\), so \(X_0\) is a
+finite union of basic open sets.  Conversely, a finite union of quasi-compact
+spaces is quasi-compact, and each \(X_f\) is quasi-compact by (vi).
+
+\section*{Exercise 18}
+
+\subsection*{(i)--(iii)}
+Correct.  In (i), \(\{x\}\) is closed if and only if
+\(V(\fp_x)=\{\fp_x\}\), which is equivalent to \(\fp_x\) being maximal.
+In (iii),
+\[
+y\in\overline{\{x\}}
+\iff \fp_y\in V(\fp_x)
+\iff \fp_x\subseteq\fp_y.
+\]
+
+\subsection*{(iv): \(V(\fp_x)\) is not a neighbourhood of \(x\)}
+
+\textbf{Issue.}  The set \(V(\fp_x)=\overline{\{x\}}\) is closed, but it is
+not necessarily a neighbourhood of \(x\): it need not contain an open set
+containing \(x\).  The notation ``\(V(x)\)'' is also undefined; the intended
+set is \(V(\fp_x)\).  The sentence ``I'll interpret neighborhood as closed
+neighborhood'' is not the standard definition and leads to an incorrect
+proof.
+
+\textbf{Correction.}  Let \(x\neq y\) and suppose both
+\(y\in\overline{\{x\}}\) and \(x\in\overline{\{y\}}\).  By (iii),
+\(\fp_x\subseteq\fp_y\) and \(\fp_y\subseteq\fp_x\), hence
+\(\fp_x=\fp_y\), so \(x=y\), contradiction.  Therefore at least one of
+\[
+y\notin\overline{\{x\}},\qquad x\notin\overline{\{y\}}
+\]
+holds.  If \(y\notin\overline{\{x\}}\), then
+\(X\setminus\overline{\{x\}}\) is an open neighbourhood of \(y\) which does
+not contain \(x\).  Otherwise, \(X\setminus\overline{\{y\}}\) is an open
+neighbourhood of \(x\) which does not contain \(y\).  This is precisely the
+\(T_0\) property.
+
+\section*{Exercise 19}
+
+\textbf{Issue.}  The proof is not a proof of irreducibility.  In the category
+of ideals under inclusion, the initial object is the zero ideal \((0)\), not
+the nilradical.  The nilradical is the intersection of all prime ideals; it
+need not be prime, and it is not an element of \(\Spec(A)\) unless it is
+prime.  The expression ``\(\Nil(A)\subseteq\Spec(A)\)'' is a type error; the
+correct condition is \(\Nil(A)\in\Spec(A)\), i.e.\ \(\Nil(A)\) is prime.
+The ``connected tree'' metaphor does not establish the topological
+irreducibility of \(\Spec(A)\).
+
+\textbf{Correction.}  A topological space \(X\) is irreducible if and only if
+every two nonempty open subsets intersect.  Since the \(X_f\) form a basis,
+it is enough to check basic open sets.  Recall that
+\[
+X_f\neq\varnothing\iff f\notin\Nil(A).
+\]
+Suppose \(\Nil(A)\) is prime.  If \(X_f\) and \(X_g\) are nonempty, then
+\(f,g\notin\Nil(A)\), so \(fg\notin\Nil(A)\) because \(\Nil(A)\) is prime.
+Hence
+\[
+X_f\cap X_g=X_{fg}\neq\varnothing.
+\]
+Thus every two nonempty basic open sets intersect, so \(\Spec(A)\) is
+irreducible.
+
+Conversely, suppose \(\Spec(A)\) is irreducible.  If \(fg\in\Nil(A)\), then
+\[
+X_f\cap X_g=X_{fg}=\varnothing.
+\]
+By irreducibility, one of \(X_f,X_g\) is empty, so \(f\in\Nil(A)\) or
+\(g\in\Nil(A)\).  Hence \(\Nil(A)\) is prime.
+
+\section*{Exercise 20}
+
+This exercise is skipped in the original.  It is not mathematically wrong, but
+it is incomplete.  A brief outline:
+
+\begin{enumerate}[label=(\roman*)]
+  \item If \(Y\subseteq X\) is irreducible, then \(\overline Y\) is
+        irreducible: if \(U,V\) are nonempty open subsets of \(\overline Y\),
+        then \(U\cap Y\) and \(V\cap Y\) are nonempty open subsets of \(Y\),
+        so they meet, and hence \(U\cap V\neq\varnothing\).
+
+  \item Apply Zorn's lemma to the set of irreducible subspaces of \(X\)
+        ordered by inclusion.  The union of a chain of irreducible subspaces
+        is irreducible, so maximal elements exist.
+
+  \item A maximal irreducible subspace is closed, because its closure is
+        irreducible and contains it.  The maximal irreducible subspaces cover
+        \(X\), since every singleton is irreducible and is contained in a
+        maximal one.  In a Hausdorff space, every irreducible subspace is a
+        singleton: two distinct points have disjoint open neighbourhoods.
+        Hence the irreducible components of a Hausdorff space are its
+        points.
+
+  \item For \(X=\Spec(A)\), the irreducible components are the closed sets
+        \(V(\fp)\) with \(\fp\) a minimal prime ideal.  Indeed,
+        \(V(\fp)\cong\Spec(A/\fp)\) is irreducible when \(\fp\) is prime, and
+        every irreducible closed subset is of the form \(V(\fp)\) with
+        \(\fp\) prime.  Minimality corresponds to minimality of \(\fp\).
+\end{enumerate}
+
+\section*{Exercise 21}
+
+\subsection*{(i)}
+Correct, apart from the typo \(Y_{\phi_{(f)}}\) in the last line, which should
+be \(Y_{\phi(f)}\).
+
+\subsection*{(ii)}
+The conclusion is correct, but the displayed equality
+\[
+\phi(\phi^*(\fq))=\fq
+\]
+is false in general.  What is true is
+\[
+\phi(\phi^{-1}(\fq))\subseteq\fq.
+\]
+The equivalence
+\[
+\fa\subseteq\phi^{-1}(\fq)\iff\phi(\fa)\subseteq\fq
+\]
+is correct.  For example, if \(\phi:k[x]\to k[x,y]\) is the inclusion and
+\(\fq=(x,y)\), then \(\phi^{-1}(\fq)=(x)\) and
+\(\phi((x))=(x)\neq(x,y)\).
+
+\subsection*{(iii)}
+Only the easy inclusion is proved in the original; the reverse inclusion is
+missing.  Here is the full proof.
+
+We first show \(\phi^*(V(\fb))\subseteq V(\fb^c)\).  If \(\fq\supseteq\fb\),
+then
+\[
+\phi^{-1}(\fb)\subseteq\phi^{-1}(\fq)=\phi^*(\fq),
+\]
+so \(\phi^*(\fq)\in V(\fb^c)\).  Since \(V(\fb^c)\) is closed,
+\[
+\overline{\phi^*(V(\fb))}\subseteq V(\fb^c).
+\]
+
+For the reverse inclusion, let \(\fp\in V(\fb^c)\).  Suppose
+\(\fp\notin\overline{\phi^*(V(\fb))}\).  Then there is a basic open
+neighbourhood \(X_f\) of \(\fp\) disjoint from \(\phi^*(V(\fb))\), with
+\(f\notin\fp\).  For every \(\fq\in V(\fb)\), this means
+\(\phi^*(\fq)\notin X_f\), i.e.\
+\[
+f\in\phi^{-1}(\fq),
+\]
+so \(\phi(f)\in\fq\).  Thus \(\phi(f)\) lies in every prime ideal containing
+\(\fb\), hence
+\[
+\phi(f)\in\Rad(\fb).
+\]
+Therefore
+\[
+f\in\phi^{-1}(\Rad(\fb))=\Rad(\phi^{-1}(\fb))=\Rad(\fb^c).
+\]
+Since \(\fb^c\subseteq\fp\) and \(\fp\) is prime, \(\Rad(\fb^c)\subseteq\fp\),
+so \(f\in\fp\), contradiction.  Hence
+\(\fp\in\overline{\phi^*(V(\fb))}\), and the reverse inclusion holds.
+
+\subsection*{(iv)}
+The original proof is too vague.  Here is a precise argument.
+
+If \(\phi\) is surjective, then \(\phi^*\) is injective: if
+\(\phi^*(\fq_1)=\phi^*(\fq_2)\), then
+\[
+\fq_1=\phi(\phi^{-1}(\fq_1))
+=\phi(\phi^*(\fq_1))
+=\phi(\phi^*(\fq_2))
+=\phi(\phi^{-1}(\fq_2))=\fq_2.
+\]
+Its image is \(V(\ker\phi)\): on one hand,
+\(\ker\phi\subseteq\phi^{-1}(\fq)\) for every \(\fq\); on the other hand,
+if \(\fp\supseteq\ker\phi\), then \(\fp=\phi^{-1}(\phi(\fp))\) and
+\(\phi(\fp)\) is prime in \(B\cong A/\ker\phi\), so
+\(\fp=\phi^*(\phi(\fp))\).
+
+Finally, \(\phi^*\) is a closed map onto \(V(\ker\phi)\): for a closed set
+\(V(\fb)\subseteq Y\), the argument in (iii) together with surjectivity gives
+\[
+\phi^*(V(\fb))=V(\fb^c).
+\]
+Hence \(\phi^*\) is a continuous bijection which is closed, so it is a
+homeomorphism onto \(V(\ker\phi)\).  In particular, taking
+\(B=A/\fN\) and \(\phi:A\to A/\fN\) the quotient map gives
+\(\Spec(A)\cong\Spec(A/\fN)\).
+
+\subsection*{(v)}
+The chain of equivalences in the original is confused.  The correct proof is
+short.  By (iii) with \(\fb=0\),
+\[
+\overline{\phi^*(Y)}
+=\overline{\phi^*(V(0))}
+=V(0^c)
+=V(\ker\phi).
+\]
+Therefore \(\phi^*(Y)\) is dense in \(X\) if and only if
+\[
+V(\ker\phi)=X
+\iff \ker\phi\subseteq\Nil(A).
+\]
+This is the ``more precisely'' statement.
+
+The condition
+\[
+\Rad(\phi^{-1}(\Nil(B)))=\Nil(A)
+\]
+is in fact equivalent to \(\ker\phi\subseteq\Nil(A)\), but this equivalence
+needs proof.  Since
+\(\ker\phi\subseteq\phi^{-1}(\Nil(B))\) always, and
+\(\Nil(A)\subseteq\phi^{-1}(\Nil(B))\) always, one has
+\[
+\Rad(\phi^{-1}(\Nil(B)))=\Nil(A)
+\iff \phi^{-1}(\Nil(B))\subseteq\Nil(A)
+\iff \ker\phi\subseteq\Nil(A).
+\]
+The original final step only proves the trivial inclusion
+\(\ker\phi\subseteq\phi^{-1}(\Nil(B))\), so it does not establish the
+desired equivalence.
+
+\subsection*{(vi)}
+Correct: for \(\fq\in\Spec(C)\),
+\[
+(\psi\circ\phi)^*(\fq)
+=(\psi\circ\phi)^{-1}(\fq)
+=\phi^{-1}(\psi^{-1}(\fq))
+=\phi^*(\psi^*(\fq)).
+\]
+
+\subsection*{(vii)}
+This part is left blank in the original.  Here is a solution outline.
+
+Let \(A\) be an integral domain with exactly one nonzero prime ideal \(\fp\),
+and let \(K=\Frac(A)\).  Put
+\[
+B=(A/\fp)\times K,\qquad \phi:A\longrightarrow B,\qquad
+\phi(x)=(\bar x,x).
+\]
+Since \(\fp\) is the only nonzero prime, \(\Spec(A)=\{(0),\fp\}\), and
+\(A/\fp\) is a field.  The spectrum of the product \(B\) is the disjoint union
+\[
+\Spec(B)=\{\fq_1,\fq_2\},
+\]
+where
+\[
+\fq_1=(0)\times K,\qquad \fq_2=(A/\fp)\times(0).
+\]
+Then
+\[
+\phi^*(\fq_1)=\phi^{-1}(\fq_1)=\fp,\qquad
+\phi^*(\fq_2)=\phi^{-1}(\fq_2)=(0).
+\]
+Thus \(\phi^*\) is bijective.
+
+However, \(\Spec(B)\) is discrete, while \(\Spec(A)\) is not: in
+\(\Spec(A)\), the set \(\{(0)\}\) is open, but \(\{\fp\}\) is not open.
+Indeed, \(X_f=\{(0)\}\) for \(f\in\fp\setminus\{0\}\), whereas \(f\notin\fp\)
+gives \(X_f=X\), and \(f=0\) gives \(X_f=\varnothing\).  Hence no basic open
+set equals \(\{\fp\}\).  Therefore \(\phi^*\) is a continuous bijection which
+is not open, so it is not a homeomorphism.
+
+\section*{Exercise 22}
+
+\subsection*{(a)}
+Correct.  The \(X_k\) are clopen, and the map
+\(\Spec(A_k)\to X_k\) is a homeomorphism; this should be stated explicitly.
+
+\subsection*{(b)(I) \((ii)\Rightarrow(i)\)}
+The idea is correct, but one should add that \(X_1\) and \(X_2\) are nonempty,
+disjoint, open and closed, and that \(X_1\cup X_2=X\).  Hence \(X\) is
+disconnected.
+
+\subsection*{(b)(II) \((iii)\Rightarrow(ii)\)}
+There is a typo: the hypothesis is \(e^2=e\), not \(e^2=2\).  If
+\(e\neq0,1\) is idempotent, then
+\[
+A\longrightarrow eA\times(1-e)A,\qquad a\longmapsto(ea,(1-e)a)
+\]
+is an isomorphism.  Both factors are nonzero because \(e\neq0\) and
+\(1-e\neq0\).
+
+\subsection*{(b)(III) \((i)\Rightarrow(iii)\)}
+The construction is essentially correct, but several details should be
+justified.  If \(V(I)\cap V(J)=\varnothing\), then \(I+J=(1)\), so there are
+\(a\in I\), \(b\in J\) with \(a+b=1\).  Since \(V(IJ)=X\), we have
+\(IJ\subseteq\Nil(A)\), so \((ab)^n=0\) for some \(n\).  Define
+\[
+s_1=\sum_{k=0}^{n-1}\binom{2n}{k}a^{2n-k}b^k,\qquad
+s_2=\sum_{k=n+1}^{2n}\binom{2n}{k}a^{2n-k}b^k.
+\]
+Then the missing middle term is
+\(\binom{2n}{n}(ab)^n=0\), so
+\[
+s_1+s_2=(a+b)^{2n}=1.
+\]
+Also \(s_1s_2=0\), because every term of the product is divisible by
+\((ab)^{n+1}=0\).  Hence \(s_1(1-s_1)=0\), so \(s_1\) is idempotent, and
+\(s_2=1-s_1\).  The idempotents are nontrivial: \(s_1\in I\) and \(I\) is
+proper, so \(s_1\neq1\); \(s_2\in J\) and \(J\) is proper, so \(s_2\neq1\);
+and \(s_1=0\) would give \(s_2=1\in J\), contradiction.  Thus \(s_1\neq0,1\).
+
+\section*{Exercise 23}
+
+\subsection*{(i)}
+Correct.  For every \(f\),
+\[
+V(f)\cap V(1-f)=V((f)+(1-f))=V(1)=\varnothing,
+\]
+and
+\[
+V(f)\cup V(1-f)=V((f)(1-f))=V(0)=X,
+\]
+since \(f(1-f)=0\).  Hence \(V(f)=X_{1-f}\) is open, so \(X_f\) is closed.
+The restriction to nonzero non-unital \(f\) is unnecessary.
+
+\subsection*{(ii)}
+Correct.  In a Boolean ring, every finitely generated ideal is principal by
+Exercise~11(iii), so
+\[
+\bigcap_{k=1}^nV(f_k)
+=V\Bigl(\sum_{k=1}^n(f_k)\Bigr)
+=V((f))
+\]
+for some \(f\), hence
+\[
+X_{f_1}\cup\cdots\cup X_{f_n}=X_f.
+\]
+
+\subsection*{(iii): the clopen-set argument is wrong}
+
+\textbf{Issue.}  The claim that one can choose \(f\in\fp\) which lies in no
+other prime of \(Y\) is not Proposition~1.11(i), and it is false in general
+when \(Y\) is infinite.  Moreover, even if such an \(f\) exists, the fact that
+\(V(f)\) is a clopen set containing \(\fp\) does not imply \(V(f)=Y\); there
+can be many clopen sets containing \(\fp\).  The sentence ``by
+\(f\in\fp,\fp\in Y\) we have \(V(f)=Y\)'' is unjustified.
+
+\textbf{Correction.}  Let \(Y\subseteq X\) be clopen.  Since \(X\) is
+quasi-compact by Exercise~17(v), and \(Y\) is closed, \(Y\) is
+quasi-compact.  Since \(Y\) is open, it is a union of basic open sets:
+\[
+Y=\bigcup_{f\in\mathcal F}X_f.
+\]
+By quasi-compactness, finitely many of these cover \(Y\), say
+\(X_{f_1},\ldots,X_{f_n}\).  By (ii), there is an \(f\in A\) with
+\[
+X_{f_1}\cup\cdots\cup X_{f_n}=X_f.
+\]
+Hence \(Y=X_f\).  Conversely, every \(X_f\) is clopen by (i).  Therefore the
+clopen subsets of \(X\) are exactly the sets \(X_f\).
+
+\subsection*{(iv): the Hausdorff proof is wrong}
+
+\textbf{Issue.}  The sets
+\[
+V_1=X\setminus\{\fq\},\qquad V_2=X\setminus\{\fp\}
+\]
+are \emph{open}, not closed, because \(\{\fp\}\) and \(\{\fq\}\) are closed
+(Exercise~18(i)).  The reference to Exercise~17(iv) should also be
+Exercise~17(v).
+
+\textbf{Correction.}  First, \(X\) is quasi-compact by Exercise~17(v).  To
+prove that \(X\) is Hausdorff, let \(\fp\neq\fq\) be distinct points.  Since
+they are maximal ideals (Exercise~11(ii)), \(\fp+\fq=A\), so there are
+\(a\in\fp\), \(b\in\fq\) with \(a+b=1\).  In a Boolean ring, \(a\) and \(b\)
+are idempotents, and \(b=1-a\).  Then
+\[
+X_a=\{ \fr\in X\mid a\notin\fr\},\qquad
+X_b=\{ \fr\in X\mid b\notin\fr\}
+\]
+are disjoint clopen sets, with \(\fq\in X_a\) (because \(a\notin\fq\)) and
+\(\fp\in X_b\) (because \(b\notin\fp\)).  Hence \(X\) is Hausdorff.
+
+\section*{Exercise 24}
+
+\subsection*{(a)(I)(iv): the associativity computation is wrong}
+
+\textbf{Issue.}  The displayed computation
+\[
+(a+b)+c=(ab'\vee a'b)c\vee(ab+a'b')c
+\]
+does not correctly expand \((a+b)+c\), and the final expression is not
+symmetric in \(a,b,c\).
+
+\textbf{Correction.}  Recall \(x+y=(xy')\vee(x'y)\).  Then
+\[
+\begin{aligned}
+(a+b)+c
+&=\bigl((ab'\vee a'b)c'\bigr)\vee\bigl((ab'\vee a'b)'c\bigr)\\
+&=(ab'c'\vee a'bc')\vee\bigl((a'\vee b)(a\vee b')c\bigr)\\
+&=ab'c'\vee a'bc'\vee a'b'c\vee abc.
+\end{aligned}
+\]
+This expression is symmetric in \(a,b,c\) (it is the set of terms with an
+odd number of unprimed variables), so addition is associative.
+
+\subsection*{(a)(II)(iii)}
+``Associativity of multiplication is given by the associativity of
+\(\vee\)'' should be ``of \(\wedge\)'', since multiplication is \(a\wedge b\).
+
+\subsection*{(b)(iii): the absorption computation is wrong}
+
+\textbf{Issue.}  The line
+\[
+a\vee(a\wedge b)=a+ab+aab=3a
+\]
+is incorrect; \(a+ab+aab=a+2ab\), not \(3a\).
+
+\textbf{Correction.}  Since \(a^2=a\) and \(2ab=0\),
+\[
+a\vee(a\wedge b)
+=a\vee(ab)
+=a+ab+a^2b
+=a+ab+ab
+=a+2ab
+=a.
+\]
+The other absorption law follows by duality.
+
+\subsection*{Missing details in (b)}
+To show that \(A\) is a Boolean lattice with respect to \(a\le b\iff a=ab\),
+one should also verify that \(\le\) is a partial order (reflexivity,
+antisymmetry, transitivity), that \(a\wedge a'=0\) (in addition to
+\(a\vee a'=1\)), and that complements are unique.  These are short
+verifications.  For example,
+\[
+a\wedge a'=a(1-a)=a-a^2=0,
+\]
+and if \(b\) is another complement of \(a\), then
+\[
+b=b\wedge1=b\wedge(a\vee a')=(b\wedge a)\vee(b\wedge a')
+=0\vee(b\wedge a')=b\wedge a',
+\]
+so \(b\le a'\); similarly \(a'\le b\), hence \(b=a'\).
+
+\section*{Exercise 25}
+
+The statement is the conclusion of Stone's theorem, not a proof.  The
+intended argument is:
+
+\begin{enumerate}[label=(\roman*)]
+  \item By Exercise~24, \(A(L)\) is a Boolean ring.
+  \item By Exercise~23, the clopen subsets of \(X=\Spec(A(L))\) are exactly
+        the sets \(X_f\) with \(f\in A(L)\).
+  \item The map
+        \[
+        L\longrightarrow\{\text{clopen subsets of }X\},\qquad
+        a\longmapsto X_a
+        \]
+        preserves the Boolean lattice structure (order, sup, inf,
+        complement).
+  \item This map is bijective by Exercise~23(iii).
+\end{enumerate}
+Hence \(L\) is isomorphic to the lattice of clopen subsets of the compact
+Hausdorff space \(X\).
+
+\section*{Exercise 26}
+
+\textbf{Issue.}  In the first inclusion, the implication
+\[
+\fm_y\in\widetilde U_f,\ f\in\fm_y\ \Longrightarrow\ f(y)\neq0
+\]
+has the wrong sign.  By definition,
+\[
+\widetilde U_f=\{\fm\in\Max(C(X))\mid f\notin\fm\}.
+\]
+Thus \(\fm_y\in\widetilde U_f\) means \(f\notin\fm_y\), i.e.\ \(f(y)\neq0\).
+Also, the second inclusion is written as \(U_f\subseteq\widetilde U_f\), but
+these are subsets of different spaces; it should be
+\(\mu(U_f)\subseteq\widetilde U_f\), or equivalently
+\(U_f\subseteq\mu^{-1}(\widetilde U_f)\).
+
+\textbf{Correction.}  Let \(\fm\in\widetilde U_f\).  By (i), \(\fm=\fm_y\) for
+some \(y\in X\).  Since \(\fm_y\in\widetilde U_f\), we have
+\(f\notin\fm_y\), hence \(f(y)\neq0\), so \(y\in U_f\) and
+\(\fm=\mu(y)\in\mu(U_f)\).  Thus
+\(\widetilde U_f\subseteq\mu(U_f)\).
+
+Conversely, if \(x\in U_f\), then \(f(x)\neq0\), so \(f\notin\fm_x\), hence
+\(\mu(x)=\fm_x\in\widetilde U_f\).  Thus
+\(\mu(U_f)\subseteq\widetilde U_f\).
+
+Therefore \(\mu(U_f)=\widetilde U_f\).  Since \(\mu\) is bijective by (i) and
+(ii), and the sets \(U_f\) (respectively \(\widetilde U_f\)) form a basis of
+the topology, \(\mu\) is a homeomorphism.
+
+\section*{Exercise 27}
+
+\textbf{Issue.}  The argument is circular.  The step
+\[
+\text{``}\exists x\in X\text{ such that }\varphi^{-1}(\fm)
+\text{ is the maximal vanishing ideal of }x\text{''}
+\]
+is precisely the weak Nullstellensatz (every maximal ideal of
+\(k[t_1,\ldots,t_n]\) is of the form
+\((t_1-x_1,\ldots,t_n-x_n)\)).  This is not available at this point in the
+book; the text itself says that surjectivity of \(\mu\) is one form of
+Hilbert's Nullstellensatz, proved in Chapter~7.  There is also a notation
+error: \(\varphi:X\to X/I(X)\) should be
+\(\varphi:k[t_1,\ldots,t_n]\to P(X)\).
+
+\textbf{Correction.}  The correct statement at this point is the equivalence:
+\(\mu\) is surjective if and only if every maximal ideal of \(P(X)\) is a
+vanishing ideal \(\fm_x\).  Under the quotient map
+\(\varphi:k[t_1,\ldots,t_n]\to P(X)\), maximal ideals of \(P(X)\) correspond
+to maximal ideals of \(k[t_1,\ldots,t_n]\) containing \(I(X)\).  Thus
+surjectivity of \(\mu\) is equivalent to the weak Nullstellensatz.  A proof
+should either cite Chapter~7 or prove the Nullstellensatz; the argument in
+the original file assumes it.
+
+\section*{Exercise 28}
+
+\textbf{Issue.}  The proof omits the crucial verification that the map
+\[
+\varphi=(F_1,\ldots,F_m):X\longrightarrow k^m
+\]
+actually lands in \(Y\).  It is not enough to say that
+\((F_1,\ldots,F_m)\) ``defines a regular mapping \(X\to Y\)''; one must show
+that for every \(x\in X\), the point \((F_1(x),\ldots,F_m(x))\) satisfies all
+the equations defining \(Y\).  The proof also does not prove injectivity of
+the correspondence.
+
+\textbf{Correction.}  Let \(\Phi:P(Y)\to P(X)\) be a \(k\)-algebra
+homomorphism, and let \(\xi_i\) be the coordinate functions on \(Y\).  Put
+\[
+F_i=\Phi(\xi_i)\in P(X)\qquad(1\le i\le m).
+\]
+For \(g\in I(Y)\), we have \(g(\xi_1,\ldots,\xi_m)=0\) in \(P(Y)\), hence
+\[
+0=\Phi(g(\xi_1,\ldots,\xi_m))=g(F_1,\ldots,F_m)
+\]
+in \(P(X)\).  Therefore, for every \(x\in X\),
+\[
+g(F_1(x),\ldots,F_m(x))=0.
+\]
+This shows that \((F_1(x),\ldots,F_m(x))\in Y\), so
+\(\varphi=(F_1,\ldots,F_m)\) is a regular map \(X\to Y\).
+
+Let \(\varphi^*:P(Y)\to P(X)\) be the induced homomorphism
+\(\eta\mapsto\eta\circ\varphi\).  On the generators \(\xi_i\),
+\[
+\varphi^*(\xi_i)=\xi_i\circ\varphi=F_i=\Phi(\xi_i).
+\]
+Since \(P(Y)\) is generated as a \(k\)-algebra by
+\(\xi_1,\ldots,\xi_m\), it follows that \(\varphi^*=\Phi\).  Hence the
+correspondence is surjective.
+
+For injectivity, suppose \(\varphi,\psi:X\to Y\) induce the same
+\(k\)-algebra homomorphism.  Then for every \(i\),
+\[
+\xi_i\circ\varphi=\xi_i\circ\psi,
+\]
+so the \(i\)-th coordinates of \(\varphi(x)\) and \(\psi(x)\) agree for every
+\(x\in X\).  Hence \(\varphi=\psi\).  Therefore the correspondence is
+bijective.
+
+\section*{Unfinished or sketchy exercises}
+
+The following exercises are not necessarily wrong, but they are incomplete:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Ex.~3}: the induction is only indicated.
+  \item \textbf{Ex.~5(v)}: the idea is correct; see the correction above.
+  \item \textbf{Ex.~9}: the proof is only a reference to Proposition~1.14.
+  \item \textbf{Ex.~15}: ``Trivial'' with references is not a proof.
+  \item \textbf{Ex.~16(v)}: \(\Spec\mathbb Z[x]\) is left unfinished.
+  \item \textbf{Ex.~17}: the basis and parts (i)--(iv) are asserted without
+        proof; (vi) and (vii) contain errors.
+  \item \textbf{Ex.~20}: skipped.
+  \item \textbf{Ex.~21(iii),(v),(vii)}: (iii) and (v) are incomplete;
+        (vii) is blank.
+  \item \textbf{Ex.~25}: only the statement of Stone's theorem is given.
+  \item \textbf{Ex.~27}: the argument is conditional on the
+        Nullstellensatz.
+  \item \textbf{Ex.~28}: the key verification and injectivity are missing.
+\end{itemize}
+
+\section*{Minor typographical corrections}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Ex.~1: replace \(1-x^r\) by \(1-(-x)^r\) in the intermediate identity.
+  \item Ex.~2(i)(b): \(a_ns^n\) should be \(a_nx^n\).
+  \item Ex.~2, remark: ``\(n+m-1\) anti-diagonals'' should be
+        ``\(n+m+1\) anti-diagonals''.
+  \item Ex.~5(i)(b): the third term of the inverse series should contain
+        \(x^2\).
+  \item Ex.~10: the nilradical is usually denoted \(\mathfrak N\), not
+        \(\mathfrak R\); ``a integral domain'' should be ``an integral
+        domain''.
+  \item Ex.~11(i): the equality \(2x=4x^2\) needs the justification
+        \((2x)^2=2x\).
+  \item Ex.~21(i): \(Y_{\phi_{(f)}}\) should be \(Y_{\phi(f)}\).
+  \item Ex.~21(ii): \(\phi(\phi^{-1}(\fq))=\fq\) should be
+        \(\phi(\phi^{-1}(\fq))\subseteq\fq\).
+  \item Ex.~22(b)(II): \(e^2=2\) should be \(e^2=e\).
+  \item Ex.~23(iv): ``Ex-17(iv)'' should be ``Ex-17(v)''.
+  \item Ex.~24(a)(II)(iii): ``associativity of \(\vee\)'' should be
+        ``associativity of \(\wedge\)''.
+  \item Ex.~24(b)(iii): ``\(=3a\)'' should be ``\(=a+2ab=a\)''.
+  \item Ex.~26: \(f\in\fm_y\) should be \(f\notin\fm_y\); and
+        \(U_f\subseteq\widetilde U_f\) should be
+        \(\mu(U_f)\subseteq\widetilde U_f\).
+  \item Ex.~27: \(\varphi:X\to X/I(X)\) should be
+        \(\varphi:k[t_1,\ldots,t_n]\to P(X)\).
+  \item Ex.~28: the diagram should have
+        \(P(Y)=k[t_1,\ldots,t_m]/I(Y)\); ``For any \(k\)-algebra
+        homomorphism \(\phi\)'' should be ``\(\Phi\)''; and ``regualr''
+        should be ``regular''.
+\end{itemize}
+
+\end{document}

@@ -9,18 +9,22 @@
 \usepackage{enumitem}
 \usepackage{blkarray}
 \usepackage{tikz-cd}
-\newtheorem{remark}{Remark}
 \newtheoremstyle{breakstyle}
     {5pt}
     {10pt}
-    {\normalfont}
+    {\itshape}
     {0pt}
     {\bfseries}
     {\newline\indent}
     {0pt}
-    {}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ \textbf{[#3]}}}
 \theoremstyle{breakstyle}
 \newtheorem{exercise}{Exercise}
+\newtheorem{remark}{Remark}
+
+\newenvironment{solution}
+  {\begin{proof}[Solution.]\renewcommand{\qedsymbol}{}}
+  {\end{proof}}
 \let\ker\relax
 \DeclareMathOperator{\ker}{Ker}
 \let\max\relax
@@ -37,145 +41,157 @@
 \maketitle
 
 \begin{exercise}
+Let \(x\) be a nilpotent element of a ring \(A\). Show that \(1+x\) is a unit of \(A\). Deduce that the sum of a nilpotent element and a unit is a unit.
+
+\begin{solution}
     Suppose $x^{r}=0$.
-    Notice
-    \begin{align*}
-        (1+x)\left( 1-x+x^2-x^3+\ldots +(-1)^{r-1}x^{r-1} \right) 
-        &= 1-x^{r} \\
-        &= 1 \\
-    \end{align*}
-    So $1+x$ is a unit in $A$.
-    \qed
+        Notice
+        \begin{align*}
+            (1+x)\left( 1-x+x^2-x^3+\ldots +(-1)^{r-1}x^{r-1} \right) 
+            &= 1-x^{r} \\
+            &= 1 \\
+        \end{align*}
+        So $1+x$ is a unit in $A$.
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(A\) be a ring and let \(A[x]\) be the ring of polynomials in an indeterminate \(x\), with coefficients in \(A\). Let \(f=a_0+a_1x+\cdots+a_nx^n\in A[x]\). Prove that
+\begin{enumerate}[label=(\roman*)]
+    \item \(f\) is a unit in \(A[x]\Leftrightarrow a_0\) is a unit in \(A\) and \(a_1,\ldots,a_n\) are nilpotent. [If \(b_0+b_1x+\cdots+b_mx^m\) is the inverse of \(f\), prove by induction on \(r\) that \(a_n^{r+1}b_{m-r}=0\). Hence show that \(a_n\) is nilpotent, and then use Ex.~1.]
+    \item \(f\) is nilpotent \(\Leftrightarrow a_0,a_1,\ldots,a_n\) are nilpotent.
+    \item \(f\) is a zero-divisor \(\Leftrightarrow\) there exists \(a\neq0\) in \(A\) such that \(af=0\). [Choose a polynomial \(g=b_0+b_1x+\cdots+b_mx^m\) of least degree \(m\) such that \(fg=0\). Then \(a_nb_m=0\), hence \(a_ng=0\) (because \(a_ng\) annihilates \(f\) and has degree \(<m\)). Now show by induction that \(a_{n-r}g=0\) (\(0\le r\le n\)).]
+    \item \(f\) is said to be primitive if \((a_0,a_1,\ldots,a_n)=(1)\). Prove that if \(f,g\in A[x]\), then \(fg\) is primitive \(\Leftrightarrow f\) and \(g\) are primitive.
+\end{enumerate}
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Rightarrow)$:
-                    Let $g=b_0+b_1x+\ldots +b_{m}x^{m}$ be the inverse of $f$.
-                    Now
-                    $$
-                    (a_0+a_1x+\ldots +a_{n}x^{n})(b_0+b_1x+\ldots +b_{m}x^{m})=1
-                    $$
-                    By checking the coefficients of $x^{n+m},x^{n+m-1},x^{n+m-2}\ldots $, we get
-                    $$
-                    \begin{cases}
-                        a_{n}b_{m}=0\\
-                        a_{n}^2b_{m-1}=0\\
-                        a_{n}^3b_{m-2}=0\\
-                        \vdots\\
-                        a_{n}^{m}b_1=0\\
-                        a_{n}^{m+1}b_0=0
-                    \end{cases}
-                    $$
-                    On the other hand, by checking the constant term directly,
-                     $$
-                    a_0b_0=1
-                    $$
-                    Therefore $a_0$ is unit, and $a_{n}^{m+1}=a_{n}^{m+1}b_0a_0=0$.
-                    So $a_{n}$ is nilpotent.
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Rightarrow)$:
+                        Let $g=b_0+b_1x+\ldots +b_{m}x^{m}$ be the inverse of $f$.
+                        Now
+                        $$
+                        (a_0+a_1x+\ldots +a_{n}x^{n})(b_0+b_1x+\ldots +b_{m}x^{m})=1
+                        $$
+                        By checking the coefficients of $x^{n+m},x^{n+m-1},x^{n+m-2}\ldots $, we get
+                        $$
+                        \begin{cases}
+                            a_{n}b_{m}=0\\
+                            a_{n}^2b_{m-1}=0\\
+                            a_{n}^3b_{m-2}=0\\
+                            \vdots\\
+                            a_{n}^{m}b_1=0\\
+                            a_{n}^{m+1}b_0=0
+                        \end{cases}
+                        $$
+                        On the other hand, by checking the constant term directly,
+                         $$
+                        a_0b_0=1
+                        $$
+                        Therefore $a_0$ is unit, and $a_{n}^{m+1}=a_{n}^{m+1}b_0a_0=0$.
+                        So $a_{n}$ is nilpotent.
 
-                    Moreover, $-a_{n}x^{n}$ is a nilpotent element in $A[x]$.
-                    By \emph{Ex.1},
-                    $$
-                    f-a_{n}x^{n}=a_0+a_1x+\ldots +a_{n-1}x^{n-1}
-                    $$
-                    is a unit in $A[x]$, so by iterating the process above we'll see $a_{n-1},\ldots ,a_1$ are nilpotent.
-                \item $(\Leftarrow)$: By \emph{Ex.1}, the sum of a unit and a nilpotent element is a unit.
-                    Notice $a_1x,a_2x^2,\ldots ,a_{n}s^{n}$ are nilpotent in $A[x]$ while $a_0$ is a unit in $A[x]$,
-                    so their sum $f$ is a unit in $A[x]$.
-            \end{enumerate}
-            \qed
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Rightarrow):$
-                    Consider the constant term of power of $f$, from which we know $a_0$ is nilpotnet.
-                    Nilpotent elements are closed under addition, so
-                    $$
-                    a_1x+a_2x^2+\ldots +a_{n}x^{n}=f-a_0
-                    $$
-                    is nilpotent, i.e.
-                    $$
-                    a_1+a_2x+\ldots +a_{n}x^{n-1}
-                    $$
-                    is nilpotent.
-                    By induction we can have $a_0,a_1,\ldots ,a_{n}$ being nilpotent.
-                \item $(\Leftarrow):$
-                    When $a_0,a_1,\ldots ,a_{n}$ are all nilpotent, let $k\in \mathbb{Z}^{+}$ be sufficiently large,
-                    and obviously we can finally reach $f^{k}=0$.
-            \end{enumerate}
-            \qed
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Rightarrow):$ 
-                    Suppose we have $g=b_0+b_1x+\ldots +b_{m}x^{m}$ such that $fg=0$.
+                        Moreover, $-a_{n}x^{n}$ is a nilpotent element in $A[x]$.
+                        By \emph{Ex.1},
+                        $$
+                        f-a_{n}x^{n}=a_0+a_1x+\ldots +a_{n-1}x^{n-1}
+                        $$
+                        is a unit in $A[x]$, so by iterating the process above we'll see $a_{n-1},\ldots ,a_1$ are nilpotent.
+                    \item $(\Leftarrow)$: By \emph{Ex.1}, the sum of a unit and a nilpotent element is a unit.
+                        Notice $a_1x,a_2x^2,\ldots ,a_{n}s^{n}$ are nilpotent in $A[x]$ while $a_0$ is a unit in $A[x]$,
+                        so their sum $f$ is a unit in $A[x]$.
+                \end{enumerate}
 
-                    If $b_{m}=0$, we're done.
-                    Otherwise, similar to \emph{(i)}, by checking the coefficients of $x^{m+n},x^{m+n-1},\ldots $ respectively,
-                    we'll obtain
-                    $$
-                    \begin{cases}
-                        a_{n}b_{m}=0\\
-                        a_{n-1}b_{m}=0\\
-                        a_{n-2}b_{m}^2=0\\
-                        \vdots\\
-                        a_{1}b_{m}^{n-1}=0\\
-                        a_0b_{m}^{n}=0
-                    \end{cases}
-                    $$
-                    So $f\cdot b_{m}^{n}=0$.
-                \item $(\Leftarrow):$
-                    Trivial.
-            \end{enumerate}
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Leftarrow):$
-                    Let $g=b_0+b_1x+..+b_{m}x^{m}$.
-                    Since $g$ is primitive, $\exists \lambda_0,\lambda_1,\ldots ,\lambda_{m}\in A,s.t.$ 
-                    $$
-                    \lambda_0b_0+\lambda_1b_1+\ldots +\lambda_{m}b_{m}=1
-                    $$
-                    Therefore
-                    $$
-                    \lambda_0b_0f+\lambda_1b_1f+\ldots +\lambda_{m}b_{m}f=f
-                    $$
-                    Also, suppose
-                    $$
-                    \mu_0a_0+\mu_1a_1+\ldots +\mu_{n}a_{n}=1
-                    $$
-                    Since
-                    $$
-                    \begin{array}{r@{\:}l@{\:}l@{\:}l@{\:}l}
-                    fg = \lambda_0 \mu_0 b_0 a_0 & + \lambda_1 \mu_0 b_1 a_0 x & + \lambda_2 \mu_0 b_2 a_0 x^2 & + \dots & + \lambda_m \mu_n b_m a_n x^{m+n} \\
-                                                 & + \lambda_0 \mu_1 b_0 a_1 x & + \lambda_1 \mu_1 b_1 a_1 x^2 & + \dots \\
-                                                 &                             & + \lambda_0 \mu_2 b_0 a_2 x^2 & + \dots \\
-                                                 &                             & \vdots
-                    \end{array}
-                    $$
-                    So
-                    $$
-                    (\lambda_0\mu_0b_0a_0)+(\lambda_0\mu_1b_0a_1+\lambda_1\mu_0b_1a_0)+(\lambda_0\mu_2b_0a_2+\lambda_1\mu_1b_1a_1+\lambda_2\mu_0b_2a_0)+\ldots +(\lambda_{m}\mu_{n}b_{m}a_{n})=1
-                    $$
-                \item $(\Rightarrow):$ When $fg$ is primitive.
-                    We prove by contradiction and suppose $g$ is not primitive.
-                    Since $fg$ is primitive, we may assume
-                    $$
-                    b_0a_0\xi_0+(b_1a_0+b_0a_1)\xi_1+(b_2a_0+b_1a_1+b_0a_2)\xi_2+\ldots +b_{m}a_{n}\xi_{m+n}=1
-                    $$
-                    Therefore
-                    \begin{align*}
-                        &(a_0\xi_0+a_1\xi_1+\ldots +a_{n}\xi_{n})b_0\\
-                        +&(a_0\xi_1+a_1\xi_2+\ldots +a_{n}\xi_{n+1})b_{1}\\
-                        +&(a_0\xi_2+a_1\xi_3+\ldots +a_{n}\xi_{n+2})b_{2}\\
-                        &\vdots\\
-                        +&(a_0\xi_{m}+a_1\xi_{m+1}+\ldots +a_{n}+\xi_{m+n})b_{m}=1
-                    \end{align*}
-                    Contradictory.
-            \end{enumerate}
-        \qed
-    \end{enumerate}
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Rightarrow):$
+                        Consider the constant term of power of $f$, from which we know $a_0$ is nilpotnet.
+                        Nilpotent elements are closed under addition, so
+                        $$
+                        a_1x+a_2x^2+\ldots +a_{n}x^{n}=f-a_0
+                        $$
+                        is nilpotent, i.e.
+                        $$
+                        a_1+a_2x+\ldots +a_{n}x^{n-1}
+                        $$
+                        is nilpotent.
+                        By induction we can have $a_0,a_1,\ldots ,a_{n}$ being nilpotent.
+                    \item $(\Leftarrow):$
+                        When $a_0,a_1,\ldots ,a_{n}$ are all nilpotent, let $k\in \mathbb{Z}^{+}$ be sufficiently large,
+                        and obviously we can finally reach $f^{k}=0$.
+                \end{enumerate}
+
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Rightarrow):$ 
+                        Suppose we have $g=b_0+b_1x+\ldots +b_{m}x^{m}$ such that $fg=0$.
+
+                        If $b_{m}=0$, we're done.
+                        Otherwise, similar to \emph{(i)}, by checking the coefficients of $x^{m+n},x^{m+n-1},\ldots $ respectively,
+                        we'll obtain
+                        $$
+                        \begin{cases}
+                            a_{n}b_{m}=0\\
+                            a_{n-1}b_{m}=0\\
+                            a_{n-2}b_{m}^2=0\\
+                            \vdots\\
+                            a_{1}b_{m}^{n-1}=0\\
+                            a_0b_{m}^{n}=0
+                        \end{cases}
+                        $$
+                        So $f\cdot b_{m}^{n}=0$.
+                    \item $(\Leftarrow):$
+                        Trivial.
+                \end{enumerate}
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Leftarrow):$
+                        Let $g=b_0+b_1x+..+b_{m}x^{m}$.
+                        Since $g$ is primitive, $\exists \lambda_0,\lambda_1,\ldots ,\lambda_{m}\in A,s.t.$ 
+                        $$
+                        \lambda_0b_0+\lambda_1b_1+\ldots +\lambda_{m}b_{m}=1
+                        $$
+                        Therefore
+                        $$
+                        \lambda_0b_0f+\lambda_1b_1f+\ldots +\lambda_{m}b_{m}f=f
+                        $$
+                        Also, suppose
+                        $$
+                        \mu_0a_0+\mu_1a_1+\ldots +\mu_{n}a_{n}=1
+                        $$
+                        Since
+                        $$
+                        \begin{array}{r@{\:}l@{\:}l@{\:}l@{\:}l}
+                        fg = \lambda_0 \mu_0 b_0 a_0 & + \lambda_1 \mu_0 b_1 a_0 x & + \lambda_2 \mu_0 b_2 a_0 x^2 & + \dots & + \lambda_m \mu_n b_m a_n x^{m+n} \\
+                                                     & + \lambda_0 \mu_1 b_0 a_1 x & + \lambda_1 \mu_1 b_1 a_1 x^2 & + \dots \\
+                                                     &                             & + \lambda_0 \mu_2 b_0 a_2 x^2 & + \dots \\
+                                                     &                             & \vdots
+                        \end{array}
+                        $$
+                        So
+                        $$
+                        (\lambda_0\mu_0b_0a_0)+(\lambda_0\mu_1b_0a_1+\lambda_1\mu_0b_1a_0)+(\lambda_0\mu_2b_0a_2+\lambda_1\mu_1b_1a_1+\lambda_2\mu_0b_2a_0)+\ldots +(\lambda_{m}\mu_{n}b_{m}a_{n})=1
+                        $$
+                    \item $(\Rightarrow):$ When $fg$ is primitive.
+                        We prove by contradiction and suppose $g$ is not primitive.
+                        Since $fg$ is primitive, we may assume
+                        $$
+                        b_0a_0\xi_0+(b_1a_0+b_0a_1)\xi_1+(b_2a_0+b_1a_1+b_0a_2)\xi_2+\ldots +b_{m}a_{n}\xi_{m+n}=1
+                        $$
+                        Therefore
+                        \begin{align*}
+                            &(a_0\xi_0+a_1\xi_1+\ldots +a_{n}\xi_{n})b_0\\
+                            +&(a_0\xi_1+a_1\xi_2+\ldots +a_{n}\xi_{n+1})b_{1}\\
+                            +&(a_0\xi_2+a_1\xi_3+\ldots +a_{n}\xi_{n+2})b_{2}\\
+                            &\vdots\\
+                            +&(a_0\xi_{m}+a_1\xi_{m+1}+\ldots +a_{n}+\xi_{m+n})b_{m}=1
+                        \end{align*}
+                        Contradictory.
+                \end{enumerate}
+
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{remark}
@@ -195,30 +211,37 @@ $$
 \end{remark}
 
 \begin{exercise}
+Generalize the results of Exercise~2 to a polynomial ring \(A[x_1,\ldots,x_r]\) in several indeterminates.
+
+\begin{solution}
     We can prove it by induction. View $A[x_1,\ldots ,x_{n}]$ as a ring over $A[x_1,\ldots ,x_{n-1}]$ in an indeterminate $x_{n}$.
-    \qed
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    Recall that the Jacobson radical is the intersection of all maximal ideals, while the nilradical is the intersection of all prime ideals.
-    We'll prove that every prime ideal $p\subseteq A[x]$ is maximal:
+In the ring \(A[x]\), the Jacobson radical is equal to the nilradical.
 
-    $$
-    \forall \text{prime ideal }p,\text{ it's maximal }
-    $$
-    $\Leftrightarrow$ 
-    $$
-    \forall\text{ prime ideal }p,\text{ Krull dimension of }p\text{ is }0
-    $$
-    $\Leftrightarrow$
-    $$
-    \dim{A[x]}=0
-    $$
-    $\Leftrightarrow$(By \emph{[Algebraic Geometry - Hartshorne]Proposition 1.7}) 
-    $$
-    \dim{\left\{ \emptyset \right\} }=0\text{, }\left\{ \emptyset \right\} \text{in affine }1\text{-space }A
-    $$
-    Which is trivial.
+\begin{solution}
+    Recall that the Jacobson radical is the intersection of all maximal ideals, while the nilradical is the intersection of all prime ideals.
+        We'll prove that every prime ideal $p\subseteq A[x]$ is maximal:
+
+        $$
+        \forall \text{prime ideal }p,\text{ it's maximal }
+        $$
+        $\Leftrightarrow$ 
+        $$
+        \forall\text{ prime ideal }p,\text{ Krull dimension of }p\text{ is }0
+        $$
+        $\Leftrightarrow$
+        $$
+        \dim{A[x]}=0
+        $$
+        $\Leftrightarrow$(By \emph{[Algebraic Geometry - Hartshorne]Proposition 1.7}) 
+        $$
+        \dim{\left\{ \emptyset \right\} }=0\text{, }\left\{ \emptyset \right\} \text{in affine }1\text{-space }A
+        $$
+        Which is trivial.
+\end{solution}
 \end{exercise}
 
 \begin{remark}
@@ -226,76 +249,86 @@ $$
 \end{remark}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(A\) be a ring and let \(A[[x]]\) be the ring of formal power series \(f=\sum_{n=0}^{\infty}a_nx^n\) with coefficients in \(A\). Show that
+\begin{enumerate}[label=(\roman*)]
+    \item \(f\) is a unit in \(A[[x]]\Leftrightarrow a_0\) is a unit in \(A\).
+    \item If \(f\) is nilpotent, then \(a_n\) is nilpotent for all \(n\ge0\). Is the converse true? (See Chapter~7, Exercise~2.)
+    \item \(f\) belongs to the Jacobson radical of \(A[[x]]\Leftrightarrow a_0\) belongs to the Jacobson radical of \(A\).
+    \item The contraction of a maximal ideal \(\mathfrak m\) of \(A[[x]]\) is a maximal ideal of \(A\), and \(\mathfrak m\) is generated by \(\mathfrak m^c\) and \(x\).
+    \item Every prime ideal of \(A\) is the contraction of a prime ideal of \(A[[x]]\).
+\end{enumerate}
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Rightarrow):$ Suppose $fg=1$, where
-                    $$
-                    g=\sum_{n=0}^{\infty} b_{n}x^{n} 
-                    $$
-                    By checking the constant term of $fg$, we get
-                    $$
-                    a_0b_0=1
-                    $$
-                    Thus $a_0$ is a unit in $A$.
-                \item $(\Leftarrow):$ Notice
-                    $$
-                    (a_0+a_1x+\ldots )(a_0^{-1}-a_1a_0^{-2}x+(a_1^2a_0^{-3}-a_2a_0^{-2})+\ldots )=1
-                    $$
-                    Such construction of $f^{-1}$ can goes forever, so $f$ is a unit in $A[[x]]$.
-            \end{enumerate}
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item When $f$ is nilpotent, obviously $a_0$ is nilpotent.
-                    Nilpotent elements closed under addition, so $f-a_0$ is nilpotnet, indicating $a_1$ being nilpotent.
-                    Iterate the process above and we get $a_0,a_1,a_2,\ldots $ being nilpotent.
-                \item No. Counterexample can be reached on \emph{MathStackExchange}.
-            \end{enumerate}
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item $(\Leftarrow):$
-                    For $a_0$ in maximal ideal $I$, we can easily check that
-                    $$
-                    \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
-                    $$
-                    Is a maximal ideal in $A[[x]]$.
-                    Therefore $f=\sum_{n=0}^{\infty} a_{n}x^{n}\in \mathfrak{I}_{I} $.
-                    
-                    So when $a_0$ is in the Jacobson Radical of $A$, $f$ must be in the Jacobson Radical of $A[[x]]$.
-                 \item $(\Rightarrow):$
-                     We only need to prove the maximal ideals of $A[[x]]$ are all in the form
-                     $$
-                    \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
-                     $$
-                     where $I$ is a maximal ideal of $A$.
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Rightarrow):$ Suppose $fg=1$, where
+                        $$
+                        g=\sum_{n=0}^{\infty} b_{n}x^{n} 
+                        $$
+                        By checking the constant term of $fg$, we get
+                        $$
+                        a_0b_0=1
+                        $$
+                        Thus $a_0$ is a unit in $A$.
+                    \item $(\Leftarrow):$ Notice
+                        $$
+                        (a_0+a_1x+\ldots )(a_0^{-1}-a_1a_0^{-2}x+(a_1^2a_0^{-3}-a_2a_0^{-2})+\ldots )=1
+                        $$
+                        Such construction of $f^{-1}$ can goes forever, so $f$ is a unit in $A[[x]]$.
+                \end{enumerate}
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item When $f$ is nilpotent, obviously $a_0$ is nilpotent.
+                        Nilpotent elements closed under addition, so $f-a_0$ is nilpotnet, indicating $a_1$ being nilpotent.
+                        Iterate the process above and we get $a_0,a_1,a_2,\ldots $ being nilpotent.
+                    \item No. Counterexample can be reached on \emph{MathStackExchange}.
+                \end{enumerate}
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item $(\Leftarrow):$
+                        For $a_0$ in maximal ideal $I$, we can easily check that
+                        $$
+                        \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
+                        $$
+                        Is a maximal ideal in $A[[x]]$.
+                        Therefore $f=\sum_{n=0}^{\infty} a_{n}x^{n}\in \mathfrak{I}_{I} $.
 
-                     Indeed, it's easy to see that the constant terms of all the elements in a arbitary ideal $\mathfrak{I}$ of $A[[x]]$ forms an ideal in $A$,
-                     we denote then by $I$ and let $\mathfrak{I}_{I}=\mathfrak{I}$.
-                     When $\mathfrak{I}_{I}$ is maximal, $I$ must be maximal in $A$, otherwise $\mathfrak{I}_{I}$ can expand to a larger ideal $\mathfrak{I}_{\overline{I}}$ where $\overline{I}$ is a maximal ideal containing $I$.
+                        So when $a_0$ is in the Jacobson Radical of $A$, $f$ must be in the Jacobson Radical of $A[[x]]$.
+                     \item $(\Rightarrow):$
+                         We only need to prove the maximal ideals of $A[[x]]$ are all in the form
+                         $$
+                        \mathfrak{I}_{I}=\left\{ b_0+b_1x+b_2x^2+\ldots \mid b_0\in I,b_1,b_2,\ldots \in A \right\} 
+                         $$
+                         where $I$ is a maximal ideal of $A$.
 
-                     Hence the ideal of $A[[x]]$ is maximal if and only if the constant term ideal is maximal in $A$.
-                     And $f$ is in a arbitary maximal ideal will indicate $a_0$ belongs to the correspond maximal ideal.
-                     Deduction of Jacobson Radical follows immediately.
-            \end{enumerate}
-        \item Proved in $(iii)$ above.
-        \item 
-            \textbf{(UNFINISHED)}
-            \emph{(I'm not sure whether I understood this problem correctly.)}
+                         Indeed, it's easy to see that the constant terms of all the elements in a arbitary ideal $\mathfrak{I}$ of $A[[x]]$ forms an ideal in $A$,
+                         we denote then by $I$ and let $\mathfrak{I}_{I}=\mathfrak{I}$.
+                         When $\mathfrak{I}_{I}$ is maximal, $I$ must be maximal in $A$, otherwise $\mathfrak{I}_{I}$ can expand to a larger ideal $\mathfrak{I}_{\overline{I}}$ where $\overline{I}$ is a maximal ideal containing $I$.
 
-            Consider
-            \begin{align*}
-                \varphi:A&\longrightarrow A[[x]]\\
-                a&\longrightarrow a+0x+0x^2+\ldots 
-            \end{align*}
-            And define $\varphi^{-1}$ by taking the constant term in the formal power series.
-            For prime ideal $\mathfrak{p}\subseteq A$,
-            $$
-            \mathfrak{p}A[[x]]=\left\{ a_0+a_1x+a_2x^2+\ldots \mid a_0,a_1,\ldots \in \mathfrak{p} \right\} 
-            $$
-            We can prove it's a 
-            % So its preimage is 
-    \end{enumerate}
+                         Hence the ideal of $A[[x]]$ is maximal if and only if the constant term ideal is maximal in $A$.
+                         And $f$ is in a arbitary maximal ideal will indicate $a_0$ belongs to the correspond maximal ideal.
+                         Deduction of Jacobson Radical follows immediately.
+                \end{enumerate}
+            \item Proved in $(iii)$ above.
+            \item 
+                \textbf{(UNFINISHED)}
+                \emph{(I'm not sure whether I understood this problem correctly.)}
+
+                Consider
+                \begin{align*}
+                    \varphi:A&\longrightarrow A[[x]]\\
+                    a&\longrightarrow a+0x+0x^2+\ldots 
+                \end{align*}
+                And define $\varphi^{-1}$ by taking the constant term in the formal power series.
+                For prime ideal $\mathfrak{p}\subseteq A$,
+                $$
+                \mathfrak{p}A[[x]]=\left\{ a_0+a_1x+a_2x^2+\ldots \mid a_0,a_1,\ldots \in \mathfrak{p} \right\} 
+                $$
+                We can prove it's a 
+                % So its preimage is 
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{remark}
@@ -303,779 +336,991 @@ $$
 \end{remark}
 
 \begin{exercise}
+A ring \(A\) is such that every ideal not contained in the nilradical contains a nonzero idempotent (that is, an element \(e\) such that \(e^2=e\neq0\)). Prove that the nilradical and Jacobson radical of \(A\) are equal.
+
+\begin{solution}
     \textbf{(UNFINISHED)}
 
-    By \emph{Proposition 1.11}, if the nilradical is equal to the Jacobson radical,
-    since any prime ideal would contain the Jacobson radical, i.e. intersection of all maximal ideals,
-    it would contain some of those maximal ideals.
+        By \emph{Proposition 1.11}, if the nilradical is equal to the Jacobson radical,
+        since any prime ideal would contain the Jacobson radical, i.e. intersection of all maximal ideals,
+        it would contain some of those maximal ideals.
 
-    Therefore the problem is equivalent to prove that every prime ideals in $A$ is maximal,
-    % which is to say the Krull dimension of $A$ is $0$.
+        Therefore the problem is equivalent to prove that every prime ideals in $A$ is maximal,
+        % which is to say the Krull dimension of $A$ is $0$.
 
-    % By \emph{Algebraic Geometry - Hartshorne[Proposition 1.7]}
+        % By \emph{Algebraic Geometry - Hartshorne[Proposition 1.7]}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(A\) be a ring in which every element \(x\) satisfies \(x^n=x\) for some \(n>1\) (depending on \(x\)). Show that every prime ideal in \(A\) is maximal.
+
+\begin{solution}
     For any prime ideal $\mathfrak{p}\subseteq A$, consider the map
-    $$
-    A\longrightarrow A / \mathfrak{p}
-    $$
+        $$
+        A\longrightarrow A / \mathfrak{p}
+        $$
 
-    From the problem we know $\forall x\in A,\exists n>0,\mathrm{s.t.}\ x^{n}=x$.
-    So $x(x^{n-1}-1)=0$, and we obtain
-    $$
-    \overline{x}(\overline{x}^{n-1}-\overline{1})=0
-    $$
+        From the problem we know $\forall x\in A,\exists n>0,\mathrm{s.t.}\ x^{n}=x$.
+        So $x(x^{n-1}-1)=0$, and we obtain
+        $$
+        \overline{x}(\overline{x}^{n-1}-\overline{1})=0
+        $$
 
-    We may assume $x\not\in \mathfrak{p}$, i.e. $\overline{x}\neq 0$.
-    Since $\mathfrak{p}$ is prime, $A / \mathfrak{p}$ is a integral domain.
-    So $\overline{x}^{n-1}=\overline{1}$, $\overline{x}$ has its inverse in $A / \mathfrak{p}$.
-    Because $x$ was an arbitary element in $A \backslash \mathfrak{p}$, $A / \mathfrak{p}$ is a field.
-    Hence $\mathfrak{p}$ is maximal.
-    \qed
+        We may assume $x\not\in \mathfrak{p}$, i.e. $\overline{x}\neq 0$.
+        Since $\mathfrak{p}$ is prime, $A / \mathfrak{p}$ is a integral domain.
+        So $\overline{x}^{n-1}=\overline{1}$, $\overline{x}$ has its inverse in $A / \mathfrak{p}$.
+        Because $x$ was an arbitary element in $A \backslash \mathfrak{p}$, $A / \mathfrak{p}$ is a field.
+        Hence $\mathfrak{p}$ is maximal.
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(A\) be a ring \(\neq0\). Show that the set of prime ideals of \(A\) has minimal elements with respect to inclusion.
+
+\begin{solution}
     Consider the intersection of all prime ideals of $A$, which is the nilradical and obviously minimal with respect to inclusion.
-    \qed
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(\mathfrak a\) be an ideal \(\neq(1)\) in a ring \(A\). Show that \(\mathfrak a=\rad(\mathfrak a)\Leftrightarrow\mathfrak a\) is an intersection of prime ideals.
+
+\begin{solution}
     Recall that $\rad(\mathfrak{a})$ is the intersection of all prime ideals containing $\mathfrak{a}$.
-    The proof can be obtained directly from it.
-    \qed
+        The proof can be obtained directly from it.
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(A\) be a ring, \(\mathfrak N\) its nilradical. Show that the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+    \item \(A\) has exactly one prime ideal;
+    \item every element of \(A\) is either a unit or nilpotent;
+    \item \(A/\mathfrak N\) is a field.
+\end{enumerate}
+
+\begin{solution}
     \begin{enumerate}[label=({\alph*})]
-        \item  $(i)\Rightarrow(ii):$
-            If $A$ has exactly one prime ideal $\mathfrak{p}$, such ideal will be the unique maximal ideal of $A$.
+            \item  $(i)\Rightarrow(ii):$
+                If $A$ has exactly one prime ideal $\mathfrak{p}$, such ideal will be the unique maximal ideal of $A$.
 
-            Recall that, by \emph{Corollary 1.5}, every non-unit of $A$ lies in $\mathfrak{p}$, therefore nilpotent.
-            On the other hand, others will be the uni of $A$.
-        \item $(ii)\Rightarrow(iii):$ 
-            $\forall \text{non-zero }\overline{a}\in \overline{A},\exists a^{-1}\in A\backslash \mathfrak{R},\mathrm{s.t.}\ aa^{-1}=1$.
-            And we have $\overline{a}\overline{a^{-1}}=\overline{1}$.
-        \item $(iii)\Rightarrow(i):$
-            $A / \mathfrak{R}$ is a field if and only if $\mathfrak{R}$ is a maximal ideal.
-            Because a nilradical is the intersection of all prime ideals, we can see $\mathfrak{p}$ is unique and maximal in $A$.
-    \end{enumerate}
-    \qed
+                Recall that, by \emph{Corollary 1.5}, every non-unit of $A$ lies in $\mathfrak{p}$, therefore nilpotent.
+                On the other hand, others will be the uni of $A$.
+            \item $(ii)\Rightarrow(iii):$ 
+                $\forall \text{non-zero }\overline{a}\in \overline{A},\exists a^{-1}\in A\backslash \mathfrak{R},\mathrm{s.t.}\ aa^{-1}=1$.
+                And we have $\overline{a}\overline{a^{-1}}=\overline{1}$.
+            \item $(iii)\Rightarrow(i):$
+                $A / \mathfrak{R}$ is a field if and only if $\mathfrak{R}$ is a maximal ideal.
+                Because a nilradical is the intersection of all prime ideals, we can see $\mathfrak{p}$ is unique and maximal in $A$.
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+A ring \(A\) is Boolean if \(x^2=x\) for all \(x\in A\). In a Boolean ring \(A\), show that
+\begin{enumerate}[label=(\roman*)]
+    \item \(2x=0\) for all \(x\in A\);
+    \item every prime ideal \(\mathfrak p\) is maximal, and \(A/\mathfrak p\) is a field with two elements;
+    \item every finitely generated ideal in \(A\) is principal.
+\end{enumerate}
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item $2x=4x^2=4x$, so $2x=0$.
-        \item For any prime ideal $\mathfrak{p}$, consider the map
-            $$
-            \varphi:A\longrightarrow A / \mathfrak{p}
-            $$
-            $$
-            x\longrightarrow \overline{x}
-            $$
-            Since $x^2=x$, $\overline{x}^2=\overline{x},\overline{x}(\overline{x}-1)=0$.
-            $A / \mathfrak{p}$ is a integral domain, so $\overline{x}=0$ or $\overline{x}=1$.
-            Hence $A / \mathfrak{p}$ only contains two elements, i.e. $\overline{1}$ and $\overline{0}$, and it's a field for sure.
-        \item For $I=(x,y)$, consider $z=x+y+xy$, we'll prove $(z)=(x,y)$.
+            \item $2x=4x^2=4x$, so $2x=0$.
+            \item For any prime ideal $\mathfrak{p}$, consider the map
+                $$
+                \varphi:A\longrightarrow A / \mathfrak{p}
+                $$
+                $$
+                x\longrightarrow \overline{x}
+                $$
+                Since $x^2=x$, $\overline{x}^2=\overline{x},\overline{x}(\overline{x}-1)=0$.
+                $A / \mathfrak{p}$ is a integral domain, so $\overline{x}=0$ or $\overline{x}=1$.
+                Hence $A / \mathfrak{p}$ only contains two elements, i.e. $\overline{1}$ and $\overline{0}$, and it's a field for sure.
+            \item For $I=(x,y)$, consider $z=x+y+xy$, we'll prove $(z)=(x,y)$.
 
-            By definition, $(z)\subseteq (x,y)$.
-            Also, notice
-            $$
-            zx=(x+y+xy)x=x+xy+xy=x
-            $$
-            So $x\in (z)$.
-            In the same way we have $y\in (z)$,
-            thus $(z)=(x,y)$.
-            Rest of the proof can be done by induction.
-    \end{enumerate}
-    \qed
+                By definition, $(z)\subseteq (x,y)$.
+                Also, notice
+                $$
+                zx=(x+y+xy)x=x+xy+xy=x
+                $$
+                So $x\in (z)$.
+                In the same way we have $y\in (z)$,
+                thus $(z)=(x,y)$.
+                Rest of the proof can be done by induction.
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+A local ring contains no idempotent \(\neq0,1\).
+
+\begin{solution}
     Suppse we have a nontrivial idempotent $e$.
-    By $e^2=e$ we have
-    $$
-    e(1-e)=0
-    $$
+        By $e^2=e$ we have
+        $$
+        e(1-e)=0
+        $$
 
-    So both $e$ and $1-e$ is a zero-divisor, hence they're not unit and lies in the unique maximal ideal.
-    Therefore $1=e+(1-e)$ is in the maximal ideal, contradictory.
-    % Denote the local ring by $R$, which has a unique maximal ideal $I$.
-    % Consider
-    % $$
-    % R\longrightarrow R / I
-    % $$
-    % For idempotent element $e^2=e$, it'll be mapped into $\overline{e}^2=\overline{e}$, i.e.
-    % $$
-    % \overline{e}(\overline{e}-\overline{1})=\overline{0}
-    % $$
+        So both $e$ and $1-e$ is a zero-divisor, hence they're not unit and lies in the unique maximal ideal.
+        Therefore $1=e+(1-e)$ is in the maximal ideal, contradictory.
+        % Denote the local ring by $R$, which has a unique maximal ideal $I$.
+        % Consider
+        % $$
+        % R\longrightarrow R / I
+        % $$
+        % For idempotent element $e^2=e$, it'll be mapped into $\overline{e}^2=\overline{e}$, i.e.
+        % $$
+        % \overline{e}(\overline{e}-\overline{1})=\overline{0}
+        % $$
 
-    % Since $R / I$ is a field, we have $\overline{e}=0$ or $\overline{e}=1$, which is to say $e\in I$ or $e\in 1+I$
-    % (Notice $I\cap (1+I)=\emptyset$).
-    % \begin{itemize}
-    %     \item If $e\in 1+I$, $e\not\in I$.
-    %         So $e$ is a unit.
-    %         Now by $e^2=e$ we have
-    %         $$
-    %         e=1
-    %         $$
-    %     \item If $e\in I$, then $e$ is non-unit.
-    % \end{itemize}
+        % Since $R / I$ is a field, we have $\overline{e}=0$ or $\overline{e}=1$, which is to say $e\in I$ or $e\in 1+I$
+        % (Notice $I\cap (1+I)=\emptyset$).
+        % \begin{itemize}
+        %     \item If $e\in 1+I$, $e\not\in I$.
+        %         So $e$ is a unit.
+        %         Now by $e^2=e$ we have
+        %         $$
+        %         e=1
+        %         $$
+        %     \item If $e\in I$, then $e$ is non-unit.
+        % \end{itemize}
+\end{solution}
 \end{exercise}
 
+\section*{Construction of an algebraic closure of a field (E.~Artin)}
+
 \begin{exercise}
+Let \(K\) be a field and let \(\Sigma\) be the set of all irreducible monic polynomials \(f\) in one indeterminate with coefficients in \(K\). Let \(A\) be the polynomial ring over \(K\) generated by indeterminates \(x_f\), one for each \(f\in\Sigma\). Let \(\mathfrak a\) be the ideal of \(A\) generated by the polynomials \(f(x_f)\) for all \(f\in\Sigma\). Show that \(\mathfrak a\neq(1)\).
+
+Let \(\mathfrak m\) be a maximal ideal of \(A\) containing \(\mathfrak a\), and let \(K_1=A/\mathfrak m\). Then \(K_1\) is an extension field of \(K\) in which each \(f\in\Sigma\) has a root. Repeat the construction with \(K_1\) in place of \(K\), obtaining a field \(K_2\), and so on. Let \(L=\bigcup_{n=1}^{\infty}K_n\). Then \(L\) is a field in which each \(f\in\Sigma\) splits completely into linear factors. Let \(\bar K\) be the set of all elements of \(L\) which are algebraic over \(K\). Then \(\bar K\) is an algebraic closure of \(K\).
+
+\begin{solution}
     \textbf{(POOR-WRITTEN UNCLEAR PROOF)}
 
-    We prove by contradiction: Suppose $\mathfrak{a}=(1)$, then $\exists \text{polynomial }F\in A[f(x_{f})]$,
-    for all $f$ and $x_{f}$,
-    such that
-    $$
-    F(f(x_{f}),\ldots )=1,\text{ finitely many }f\in \Sigma
-    $$
-    For those $F$, we pick out one with the least number of $f\in \Sigma$ being involved.
+        We prove by contradiction: Suppose $\mathfrak{a}=(1)$, then $\exists \text{polynomial }F\in A[f(x_{f})]$,
+        for all $f$ and $x_{f}$,
+        such that
+        $$
+        F(f(x_{f}),\ldots )=1,\text{ finitely many }f\in \Sigma
+        $$
+        For those $F$, we pick out one with the least number of $f\in \Sigma$ being involved.
 
-    For a specific $f_0\in \Sigma$ which was involved in the polynomial $F$ above,
-    consider the terms of $f_0$ with its highest degree $\alpha_0$ in $F(f(x_{f}),\ldots )$.
-    Because $F(f(x_{f}),\ldots )=1$, those terms with degree $\alpha_0$ sums up to $0$, i.e.
-    $$
-    f(x_{f})^{\alpha_0}(\text{rest of the terms})=0
-    $$
-    Apparently $f(x_{f})^{\alpha_0}\neq 0$, so the rest of the terms sums up to $0$.
-    Then for the rest of the terms, we can again similarly pick out a $f_1,\alpha_1$ and sort out "rest of the terms" to be $0$.
-    We iterate the process above.
-    Since there're only finitely many terms, the process must stop, making a contradiction.
+        For a specific $f_0\in \Sigma$ which was involved in the polynomial $F$ above,
+        consider the terms of $f_0$ with its highest degree $\alpha_0$ in $F(f(x_{f}),\ldots )$.
+        Because $F(f(x_{f}),\ldots )=1$, those terms with degree $\alpha_0$ sums up to $0$, i.e.
+        $$
+        f(x_{f})^{\alpha_0}(\text{rest of the terms})=0
+        $$
+        Apparently $f(x_{f})^{\alpha_0}\neq 0$, so the rest of the terms sums up to $0$.
+        Then for the rest of the terms, we can again similarly pick out a $f_1,\alpha_1$ and sort out "rest of the terms" to be $0$.
+        We iterate the process above.
+        Since there're only finitely many terms, the process must stop, making a contradiction.
 
-    \emph{(We don't need to worry about characteristic of $K$ is finite or not, since w.l.o.g. we can let those terms in $F$ which adds up over the characteristic vanish in the first place.)}
+        \emph{(We don't need to worry about characteristic of $K$ is finite or not, since w.l.o.g. we can let those terms in $F$ which adds up over the characteristic vanish in the first place.)}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+In a ring \(A\), let \(\Sigma\) be the set of all ideals in which every element is a zero-divisor. Show that the set \(\Sigma\) has maximal elements and that every maximal element of \(\Sigma\) is a prime ideal. Hence the set of zero-divisors in \(A\) is a union of prime ideals.
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item By Zorn's lemma, $\Sigma$ has maximal elements.
-        \item $\forall\text{maximal } I\subseteq \Sigma$, suppose $a,b\in A,\mathrm{s.t.}\ ab\in I$.
-            $I$ consists of zero-divisors, so $\exists u\in I,\mathrm{s.t.}\ (ab)u=0$.
-            Then
-            $$
-            a(bu)=0
-            $$
-            indicating $a$ being a zero-divisor, so does $b$.
-            Since $I$ is maximal, $a\in I$ (or $b\in I$) 
-        \item This can be obtained immediately by taking the union of every maximal element in $\Sigma$
-    \end{enumerate}
+            \item By Zorn's lemma, $\Sigma$ has maximal elements.
+            \item $\forall\text{maximal } I\subseteq \Sigma$, suppose $a,b\in A,\mathrm{s.t.}\ ab\in I$.
+                $I$ consists of zero-divisors, so $\exists u\in I,\mathrm{s.t.}\ (ab)u=0$.
+                Then
+                $$
+                a(bu)=0
+                $$
+                indicating $a$ being a zero-divisor, so does $b$.
+                Since $I$ is maximal, $a\in I$ (or $b\in I$) 
+            \item This can be obtained immediately by taking the union of every maximal element in $\Sigma$
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
+\section*{The prime spectrum of a ring}
+
 \begin{exercise}
+Let \(A\) be a ring and let \(X\) be the set of all prime ideals of \(A\). For each subset \(E\) of \(A\), let \(V(E)\) denote the set of all prime ideals of \(A\) which contain \(E\). Prove that
+\begin{enumerate}[label=(\roman*)]
+    \item if \(\mathfrak a\) is the ideal generated by \(E\), then \(V(E)=V(\mathfrak a)=V(\rad(\mathfrak a))\).
+    \item \(V(0)=X\), \(V(1)=\varnothing\).
+    \item if \((E_i)_{i\in I}\) is any family of subsets of \(A\), then
+    \[
+    V\Bigl(\bigcup_{i\in I}E_i\Bigr)=\bigcap_{i\in I}V(E_i).
+    \]
+    \item \(V(\mathfrak a\cap\mathfrak b)=V(\mathfrak{ab})=V(\mathfrak a)\cup V(\mathfrak b)\) for any ideals \(\mathfrak a,\mathfrak b\) of \(A\).
+\end{enumerate}
+These results show that the sets \(V(E)\) satisfy the axioms for closed sets in a topological space. The resulting topology is called the Zariski topology. The topological space \(X\) is called the prime spectrum of \(A\), and is written \(\spec(A)\).
+
+\begin{solution}
     Trivial. \emph{(See [Abstract Algebra - D\&F(3rd Edition)]Chap 12, [Algebraic Geometry - Hartshorne]Sect 1)}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Draw pictures of \(\spec(\mathbb Z)\), \(\spec(\mathbb R)\), \(\spec(\mathbb C[x])\), \(\spec(\mathbb R[x])\), \(\spec(\mathbb Z[x])\).
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item $\spec(\mathbb{Z})=\left\{ (p)\mid p\in \mathbb{Z}\text{ is prime } \right\} $
-        \item $\spec(\mathbb{R})=\left\{ (0) \right\} $
-        \item $\spec(\mathbb{C}[x])=\left\{\left( p(x) \right) \mid p(x)\in \mathbb{C}[x],\deg p=1 \right\} $
-        \item $\spec(\mathbb{R}[x])=\left\{ \left( p(x) \right) \mid p(x)\in \mathbb{R}[x]\text{ prime (or we can say irreducible) } \right\} $
-        \item \textbf{(UNFINISHED)}
+            \item $\spec(\mathbb{Z})=\left\{ (p)\mid p\in \mathbb{Z}\text{ is prime } \right\} $
+            \item $\spec(\mathbb{R})=\left\{ (0) \right\} $
+            \item $\spec(\mathbb{C}[x])=\left\{\left( p(x) \right) \mid p(x)\in \mathbb{C}[x],\deg p=1 \right\} $
+            \item $\spec(\mathbb{R}[x])=\left\{ \left( p(x) \right) \mid p(x)\in \mathbb{R}[x]\text{ prime (or we can say irreducible) } \right\} $
+            \item \textbf{(UNFINISHED)}
 
-            $\spec(\mathbb{Z}[x])=\left\{  \right\} $
-    \end{enumerate}
+                $\spec(\mathbb{Z}[x])=\left\{  \right\} $
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+For each \(f\in A\), let \(X_f\) denote the complement of \(V(f)\) in \(X=\spec(A)\). The sets \(X_f\) are open. Show that they form a basis of open sets for the Zariski topology, and that
+\begin{enumerate}[label=(\roman*)]
+    \item \(X_f\cap X_g=X_{fg}\);
+    \item \(X_f=\varnothing\Leftrightarrow f\) is nilpotent;
+    \item \(X_f=X\Leftrightarrow f\) is a unit;
+    \item \(X_f=X_g\Leftrightarrow \rad((f))=\rad((g))\);
+    \item \(X\) is quasi-compact (that is, every open covering of \(X\) has a finite sub-covering).
+    \item More generally, each \(X_f\) is quasi-compact.
+    \item An open subset of \(X\) is quasi-compact if and only if it is a finite union of sets \(X_f\).
+\end{enumerate}
+The sets \(X_f\) are called basic open sets of \(X=\spec(A)\).
+
+[To prove (v), remark that it is enough to consider a covering of \(X\) by basic open sets \(X_{f_i}\) (\(i\in I\)). Show that the \(f_i\) generate the unit ideal and hence that there is an equation of the form
+\[
+1=\sum_{i\in J}g_if_i\qquad(g_i\in A)
+\]
+where \(J\) is some finite subset of \(I\). Then the \(X_{f_i}\) (\(i\in J\)) cover \(X\).]
+
+\begin{solution}
     \textbf{(UNFINISHED)}
-    Obviously they form a basis of open sets for Zariski topology.
-    \begin{enumerate}[label=({\roman*})]
-        \item Trivial.
-        \item Trivial.
-        \item Trivial.
-        \item Trivial.
-        \item Without loss of generation ww may only conside $X$ convered by basic open sets $X_{f_{i}}$,
-            since every general open sets can be in the form of union of basis.
+        Obviously they form a basis of open sets for Zariski topology.
+        \begin{enumerate}[label=({\roman*})]
+            \item Trivial.
+            \item Trivial.
+            \item Trivial.
+            \item Trivial.
+            \item Without loss of generation ww may only conside $X$ convered by basic open sets $X_{f_{i}}$,
+                since every general open sets can be in the form of union of basis.
 
-            Now
-            $$
-            \forall \bigcup_{k \in I} X_{f_{k}}\supseteq X=\spec(A)
-            \implies\exists f_{k_{1}},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i =1} ^{n}X_{f_{k_{i}}}\supseteq X
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall \bigcap_{k \in I} V(f_{k})\subseteq \emptyset
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq \emptyset
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall \bigcap_{k \in I} V(f_{k})=\emptyset
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})=\emptyset
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall (f_1,f_2,\ldots )=(1)
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ (f_{k_1},\ldots ,f_{k_{n}})=(1)
-            $$
+                Now
+                $$
+                \forall \bigcup_{k \in I} X_{f_{k}}\supseteq X=\spec(A)
+                \implies\exists f_{k_{1}},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i =1} ^{n}X_{f_{k_{i}}}\supseteq X
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall \bigcap_{k \in I} V(f_{k})\subseteq \emptyset
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq \emptyset
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall \bigcap_{k \in I} V(f_{k})=\emptyset
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})=\emptyset
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall (f_1,f_2,\ldots )=(1)
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ (f_{k_1},\ldots ,f_{k_{n}})=(1)
+                $$
 
-            When $\forall (f_1,f_2,\ldots )=(1)$, $\exists g_{k_1},\ldots ,g_{k_{n}}\in A,
-            \mathrm{s.t.}\ 1=\sum_{}^{} a_{k_{i}}f_{k_{i}},a\in A$,
-            which implies $(1)=(f_{k_1},\ldots ,f_{k_{n}})$.
-        \item Similarly,
-            $$
-            \forall \bigcup_{k \in I} X_{f_{k}}\supseteq  X_{f}
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i=1 }^{n}X_{f_{k_{i}}}\supseteq X_{f}
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall \bigcap_{k\in I} V(f_{k})\subseteq V(f)
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq V(f)
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall f_1,f_2,\ldots \mathrm{s.t.}\ f\in (f_1,f_2,\ldots )
-            \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ f=a_1f_1+\ldots +a_{n}f_{n},(a_{k}\in A)
-            $$
-            Which is trivial.
-            % To prove $X_{f}$ is quasi-compact, we only need to consider the proof in \emph{(v)} where $X,X_{f_{k}}$ is repalced by $X_{f},X_{f_{k}}\cap X_{f}$.
-        \item Since $\left\{ X_{f} \right\} $ forms a basis for $\spec(A)$,
-            $\exists \text{famliy}\mathcal{F},\mathrm{s.t.}\ X_0=\bigcup_{f \in \mathcal{F}} X_{f}$.
-            Now
-            $$
-            X_0\text{ quasi compact}
-            $$
-            $\Leftrightarrow$
-            $$
-            \forall X_{f_1},X_{f_2},\ldots \in A,
-            \mathrm{s.t.}\ \bigcup_{k =1} ^{\infty}X_{f_{k}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f},
-            \exists f_{k_1},\ldots ,f_{k_{n}},
-            \mathrm{s.t.}\ \bigcup_{i=1} ^{n}X_{f_{k_{i}}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f}
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall f_1,f_2,\ldots ,
-            \mathrm{s.t.}\ \bigcap_{k =1} ^{\infty}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f),
-            \exists f_{k_1},\ldots ,f_{k_{n}},
-            \mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f)
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \forall f_1,f_2,\ldots \in A,
-            \mathrm{s.t.}\ \mathcal{F}\subseteq (f_1,f_2,\ldots ),
-            \exists f_{k_1},\ldots ,f_{k_{n}},
-            \mathrm{s.t.}\ \mathcal{F}\subseteq (f_{k_1},\ldots ,f_{k_{n}})
-            $$
-            \begin{enumerate}[label=({\roman*})]
-                \item $(\Rightarrow):$
-                    We prove by contradiction and suppose $\mathcal{F}$ can only be infinite,
-                    then let $f_1,f_2\ldots $ be the elements in $\mathcal{F}$, and such $f_{k_1},\ldots ,f_{k_{n}}$ cannot exist.
-                \item $(\Leftarrow):$ 
-                    When $\mathcal{F}$ is finite, it is a direct proposition from  \emph{(vi)}.
-            \end{enumerate}
-    \end{enumerate}
-    \qed
+                When $\forall (f_1,f_2,\ldots )=(1)$, $\exists g_{k_1},\ldots ,g_{k_{n}}\in A,
+                \mathrm{s.t.}\ 1=\sum_{}^{} a_{k_{i}}f_{k_{i}},a\in A$,
+                which implies $(1)=(f_{k_1},\ldots ,f_{k_{n}})$.
+            \item Similarly,
+                $$
+                \forall \bigcup_{k \in I} X_{f_{k}}\supseteq  X_{f}
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcup_{i=1 }^{n}X_{f_{k_{i}}}\supseteq X_{f}
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall \bigcap_{k\in I} V(f_{k})\subseteq V(f)
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k_{i}})\subseteq V(f)
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall f_1,f_2,\ldots \mathrm{s.t.}\ f\in (f_1,f_2,\ldots )
+                \implies\exists f_{k_1},\ldots ,f_{k_{n}},\mathrm{s.t.}\ f=a_1f_1+\ldots +a_{n}f_{n},(a_{k}\in A)
+                $$
+                Which is trivial.
+                % To prove $X_{f}$ is quasi-compact, we only need to consider the proof in \emph{(v)} where $X,X_{f_{k}}$ is repalced by $X_{f},X_{f_{k}}\cap X_{f}$.
+            \item Since $\left\{ X_{f} \right\} $ forms a basis for $\spec(A)$,
+                $\exists \text{famliy}\mathcal{F},\mathrm{s.t.}\ X_0=\bigcup_{f \in \mathcal{F}} X_{f}$.
+                Now
+                $$
+                X_0\text{ quasi compact}
+                $$
+                $\Leftrightarrow$
+                $$
+                \forall X_{f_1},X_{f_2},\ldots \in A,
+                \mathrm{s.t.}\ \bigcup_{k =1} ^{\infty}X_{f_{k}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f},
+                \exists f_{k_1},\ldots ,f_{k_{n}},
+                \mathrm{s.t.}\ \bigcup_{i=1} ^{n}X_{f_{k_{i}}}\supseteq \bigcup_{f \in \mathcal{F}} X_{f}
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall f_1,f_2,\ldots ,
+                \mathrm{s.t.}\ \bigcap_{k =1} ^{\infty}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f),
+                \exists f_{k_1},\ldots ,f_{k_{n}},
+                \mathrm{s.t.}\ \bigcap_{i =1} ^{n}V(f_{k})\subseteq \bigcap_{f \in \mathcal{F}} V(f)
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \forall f_1,f_2,\ldots \in A,
+                \mathrm{s.t.}\ \mathcal{F}\subseteq (f_1,f_2,\ldots ),
+                \exists f_{k_1},\ldots ,f_{k_{n}},
+                \mathrm{s.t.}\ \mathcal{F}\subseteq (f_{k_1},\ldots ,f_{k_{n}})
+                $$
+                \begin{enumerate}[label=({\roman*})]
+                    \item $(\Rightarrow):$
+                        We prove by contradiction and suppose $\mathcal{F}$ can only be infinite,
+                        then let $f_1,f_2\ldots $ be the elements in $\mathcal{F}$, and such $f_{k_1},\ldots ,f_{k_{n}}$ cannot exist.
+                    \item $(\Leftarrow):$ 
+                        When $\mathcal{F}$ is finite, it is a direct proposition from  \emph{(vi)}.
+                \end{enumerate}
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
-    \begin{enumerate}[label=({\roman*})]
-        \item $\left\{ x \right\} $ is closed if and only if the only prime ideal containing $\mathfrak{p}_{x}$ is $\mathfrak{p}_{x}$ itself, which is equivalent to $\mathfrak{p}_{x}$ being maximal.
-        \item Trivial.
-        \item $y\in \left\{ \overline{x} \right\} \Leftrightarrow \mathfrak{p}_{y}\in V(\mathfrak{p}_{x})\Leftrightarrow\mathfrak{p}_{x}\subseteq \mathfrak{p}_{y}$.
-        \item \emph{(What's the definition of "neighborhood" here? I'll interpret it as "closed neighborhood" anyway.)}
+For psychological reasons it is sometimes convenient to denote a prime ideal of \(A\) by a letter such as \(x\) or \(y\) when thinking of it as a point of \(X=\spec(A)\). When thinking of \(x\) as a prime ideal of \(A\), we denote it by \(\mathfrak p_x\) (logically, of course, it is the same thing). Show that
+\begin{enumerate}[label=(\roman*)]
+    \item the set \(\{x\}\) is closed (we say that \(x\) is a ``closed point'') in \(\spec(A)\Leftrightarrow\mathfrak p_x\) is maximal;
+    \item \(\overline{\{x\}}=V(\mathfrak p_x)\);
+    \item \(y\in\overline{\{x\}}\Leftrightarrow\mathfrak p_x\subseteq\mathfrak p_y\);
+    \item \(X\) is a \(T_0\)-space (this means that if \(x,y\) are distinct points of \(X\), then either there is a neighborhood of \(x\) which does not contain \(y\), or else there is a neighborhood of \(y\) which does not contain \(x\)).
+\end{enumerate}
 
-            Consider $V(x),V(y)$, which is a neighborhood of $x,y$ respectively.
-            Soppose $x\in V(\mathfrak{p}_{y}),y\in V(\mathfrak{p}_{x})$,
-            then by \emph{(iii)} we get $\mathfrak{p}_{x}=\mathfrak{p}_{y}$, contradictory.
-    \end{enumerate}
-    \qed
+\begin{solution}
+    \begin{enumerate}[label=({\roman*})]
+            \item $\left\{ x \right\} $ is closed if and only if the only prime ideal containing $\mathfrak{p}_{x}$ is $\mathfrak{p}_{x}$ itself, which is equivalent to $\mathfrak{p}_{x}$ being maximal.
+            \item Trivial.
+            \item $y\in \left\{ \overline{x} \right\} \Leftrightarrow \mathfrak{p}_{y}\in V(\mathfrak{p}_{x})\Leftrightarrow\mathfrak{p}_{x}\subseteq \mathfrak{p}_{y}$.
+            \item \emph{(What's the definition of "neighborhood" here? I'll interpret it as "closed neighborhood" anyway.)}
+
+                Consider $V(x),V(y)$, which is a neighborhood of $x,y$ respectively.
+                Soppose $x\in V(\mathfrak{p}_{y}),y\in V(\mathfrak{p}_{x})$,
+                then by \emph{(iii)} we get $\mathfrak{p}_{x}=\mathfrak{p}_{y}$, contradictory.
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+A topological space \(X\) is said to be irreducible if \(X\neq\varnothing\) and if every pair of non-empty open sets in \(X\) intersect, or equivalently if every non-empty open set is dense in \(X\). Show that \(\spec(A)\) is irreducible if and only if the nilradical of \(A\) is a prime ideal.
+
+\begin{solution}
     \emph{(Beautiful!)}
 
-    In ring $A$, we consider the category $\mathscr{C}$ of ideals, morphisms umder inclusions.
-    We take its subcategory $\mathscr{C}_{0}$ of prime ideals, i.e.$\obj(\mathscr{C}_0)=\spec(A)$.
+        In ring $A$, we consider the category $\mathscr{C}$ of ideals, morphisms umder inclusions.
+        We take its subcategory $\mathscr{C}_{0}$ of prime ideals, i.e.$\obj(\mathscr{C}_0)=\spec(A)$.
 
-    In this case, the initial object of $\mathscr{C}$ is the nilradial of $A$,
-    and it lies in $\mathscr{C}_{0}$ if and only if the nilradical is prime.
-    Therefore, $\mathscr{C}_{0}$ has a initial object,
-    i.e. the partially ordered set of $\spec(A)$ consists of a connected tree instead of a union of disjoint trees,
-    if and only if $\nil(A)$ is prime.
+        In this case, the initial object of $\mathscr{C}$ is the nilradial of $A$,
+        and it lies in $\mathscr{C}_{0}$ if and only if the nilradical is prime.
+        Therefore, $\mathscr{C}_{0}$ has a initial object,
+        i.e. the partially ordered set of $\spec(A)$ consists of a connected tree instead of a union of disjoint trees,
+        if and only if $\nil(A)$ is prime.
 
-    On the other hand, for any two subsets of $A$, denoted by $E,F$,
-    we denote the complement of $V(E),V(F)$ by $X_{E},X_{F}$ respectively.
-    We can have
-    $$
-    X_{E}\cap X_{F}\neq \emptyset
-    $$
-    $\Leftrightarrow$ 
-    $$
-    V(E)\cup V(F)\neq \spec(A)
-    $$
-    $\Leftrightarrow$ 
-    $$
-    \nil(A)\subseteq \spec(A)
-    $$
-    (Becuase $V(\nil(A))=\spec(A)=X$.
-    Otherwise when nilradical is not prime,
-    $\mathscr{C}_{0}$ consists of distinct trees with each root $r_1,r_2,\ldots $,
-    from which we can let $E=\left\{ r_1 \right\} ,F=\left\{ r_2,\ldots  \right\} $ and have $V(E)\cup V(F)=X$.)
+        On the other hand, for any two subsets of $A$, denoted by $E,F$,
+        we denote the complement of $V(E),V(F)$ by $X_{E},X_{F}$ respectively.
+        We can have
+        $$
+        X_{E}\cap X_{F}\neq \emptyset
+        $$
+        $\Leftrightarrow$ 
+        $$
+        V(E)\cup V(F)\neq \spec(A)
+        $$
+        $\Leftrightarrow$ 
+        $$
+        \nil(A)\subseteq \spec(A)
+        $$
+        (Becuase $V(\nil(A))=\spec(A)=X$.
+        Otherwise when nilradical is not prime,
+        $\mathscr{C}_{0}$ consists of distinct trees with each root $r_1,r_2,\ldots $,
+        from which we can let $E=\left\{ r_1 \right\} ,F=\left\{ r_2,\ldots  \right\} $ and have $V(E)\cup V(F)=X$.)
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(X\) be a topological space.
+\begin{enumerate}[label=(\roman*)]
+    \item If \(Y\) is an irreducible (Exercise~19) subspace of \(X\), then the closure \(\bar Y\) of \(Y\) in \(X\) is irreducible.
+    \item Every irreducible subspace of \(X\) is contained in a maximal irreducible subspace.
+    \item The maximal irreducible subspaces of \(X\) are closed and cover \(X\). They are called the irreducible components of \(X\). What are the irreducible components of a Hausdorff space?
+    \item If \(A\) is a ring and \(X=\spec(A)\), then the irreducible components of \(X\) are the closed sets \(V(\mathfrak p)\), where \(\mathfrak p\) is a minimal prime ideal of \(A\) (Exercise~8).
+\end{enumerate}
+
+\begin{solution}
     \textbf{(SKIPPED)}
-    \emph{(I haven't learnt topology yet.)}
+        \emph{(I haven't learnt topology yet.)}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(\phi:A\to B\) be a ring homomorphism. Let \(X=\spec(A)\) and \(Y=\spec(B)\). If \(\mathfrak q\in Y\), then \(\phi^{-1}(\mathfrak q)\) is a prime ideal of \(A\), i.e., a point of \(X\). Hence \(\phi\) induces a mapping \(\phi^*:Y\to X\). Show that
+\begin{enumerate}[label=(\roman*)]
+    \item If \(f\in A\) then \(\phi^{*-1}(X_f)=Y_{\phi(f)}\), and hence that \(\phi^*\) is continuous.
+    \item If \(\mathfrak a\) is an ideal of \(A\), then \(\phi^{*-1}(V(\mathfrak a))=V(\mathfrak a^e)\).
+    \item If \(\mathfrak b\) is an ideal of \(B\), then \(\overline{\phi^*(V(\mathfrak b))}=V(\mathfrak b^c)\).
+    \item If \(\phi\) is surjective, then \(\phi^*\) is a homeomorphism of \(Y\) onto the closed subset \(V(\ker(\phi))\) of \(X\). (In particular, \(\spec(A)\) and \(\spec(A/\mathfrak N)\) (where \(\mathfrak N\) is the nilradical of \(A\)) are naturally homeomorphic.)
+    \item If \(\phi\) is injective, then \(\phi^*(Y)\) is dense in \(X\). More precisely, \(\phi^*(Y)\) is dense in \(X\Leftrightarrow\ker(\phi)\subseteq\mathfrak N\).
+    \item Let \(\psi:B\to C\) be another ring homomorphism. Then \((\psi\circ\phi)^*=\phi^*\circ\psi^*\).
+    \item Let \(A\) be an integral domain with just one non-zero prime ideal \(\mathfrak p\), and let \(K\) be the field of fractions of \(A\). Let \(B=(A/\mathfrak p)\times K\). Define \(\phi:A\to B\) by \(\phi(x)=(\bar x,x)\), where \(\bar x\) is the image of \(x\) in \(A/\mathfrak p\). Show that \(\phi^*\) is bijective but not a homeomorphism.
+\end{enumerate}
+
+\begin{solution}
     \textbf{(UNFINISHED)}
-    $$
-    \begin{tikzcd}
-    A \arrow[r, "\phi"] \arrow[d, "V()"] & B \arrow[d, "V()"]                     \\
-    X=\mathrm{Spec}(A)                   & Y=\mathrm{Spec}(B) \arrow[l, "\phi^*"]
-    \end{tikzcd}
-    $$
-    \begin{enumerate}[label=({\roman*})]
-        \item For $\mathfrak{q}\in Y_{\phi(f)}$,
-            $$
-            \mathfrak{q}\in \phi^{*-1}(X_{f})
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \phi^{*}(\mathfrak{q})\in X_{f}
-            $$
-            $\Leftrightarrow$
-            $$
-            \phi^{*}\mathfrak{q}\not\in V(f)
-            $$
-            $\Leftrightarrow$ 
-            $$
-            f\not\in \phi^{*}(\mathfrak{q})=\phi^{-1}(\mathfrak{q})
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \phi(f)\not\in \mathfrak{q}
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \mathfrak{q}\in Y_{\phi_{(f)}}
-            $$
-            So $\phi^{*-1}(X_{f})=Y_{\phi(f)}$.
-        \item 
-            For any prime ideal $\mathfrak{q}\in Y$,
-            $$
-            \mathfrak{q}\in \phi^{*-1}(V(\mathfrak{a}))
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \phi^{*}(\mathfrak{q})\in V(\mathfrak{a})
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \mathfrak{a}\subseteq \phi^{*}(\mathfrak{q})
-            $$
-            $\Leftrightarrow$ 
-            $$
-             \phi(\mathfrak{a})\subseteq \phi(\phi^{*}(\mathfrak{q}))=\mathfrak{q}
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \mathfrak{q}\in V(\phi(\mathfrak{a}))=V(\mathfrak{a}^{e})
-            $$
-            So $\phi^{*-1}(V(\mathfrak{a}))=V(\mathfrak{a}^{e})$.
-        \item $\forall \mathfrak{q}\in V(\mathfrak{b})$ 
-            $$
-            \phi^{-1}(\mathfrak{b})\subseteq \phi^{*}(\mathfrak{q})
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \mathfrak{b}\subseteq \mathfrak{q}
-            $$
-            Which is true by definition,
-            so $\overline{\phi^{*}(V(\mathfrak{b}))}\subseteq V(\phi^{-1}(\mathfrak{b}))$.
-            \textbf{(UNFINISHED)}
-            % $$
-            % \mathfrak{b}\in V(\mathfrak{b})
-            % $$
-            % $\Rightarrow$ 
-            % $$
-            % \phi^{*}(\mathfrak{b})\in \phi^{*}(V(\mathfrak{b}))
-            % $$
-            % $\Rightarrow$ 
-            % $$
-            % V(\phi^{*}(\mathfrak{b}))\supseteq \overline{\phi^{*}(V(\mathfrak{b}))}
-            % $$
-            % We prove by contradiction and suppose
-            % $$
-            % \overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})\subsetneq V(\phi^{*}(\mathfrak{b}))
-            % $$
-            % Therefore $\mathfrak{a'}\supsetneq\phi^{*}(\mathfrak{b})$.
-            % However, $\overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})$ indicate that $\forall I\in \phi^{*}(V(\mathfrak{b})),\mathfrak{a'}\subseteq I$.
-            % Let $I=\phi^{*}(b)$, we obtain
-            % $$
-            % \mathfrak{a'}\subseteq \phi^{*}(b)
-            % $$
-            % Contradictory!
-        \item 
-            \begin{enumerate}[label=({\alph*})]
-                \item From \emph{(i)} we already know $\phi^{*}$ is continuous.
-                    Since we now have $\phi$ being surjection,
-                    $\phi^{*}$ is obviously a bijection.
-                    Also, the continuity of derives directly from \emph{(iii)}.
-                \item In particular, let $Y=A / \mathfrak{R}$ and $\phi$ be the canonical homomorphism.
-            \end{enumerate}
-        \item We directly prove the "More precisely" part:
-            $$
-            \phi^{*}(Y)\text{ dense in  }X
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \overline{\phi^{*}(Y)}=X
-            \eqno{(1)}
-            $$
-            $\Leftrightarrow$
-            $$
-            \overline{\phi^{*}(V(\nil(B)))}=X
-            $$
-            $\Leftrightarrow$
-            $$
-            \overline{\phi^{*}(V(\nil(B)))}=V(\nil(A))
-            $$
-            $\Leftrightarrow$ (by \emph{(iii)})
-            $$
-            V(\nil(B)^{c})=V(\nil(A))
-            $$
-            $\Leftrightarrow$ 
-            $$
-            V(\phi^{-1}(\nil(B)))=V(\nil(A))
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \rad(\phi^{-1}(\nil(B)))=\nil(A)
-            \eqno{(2)}
-            $$
-            To prove $((1)\Leftrightarrow(2))$, we only need
-            $$
-            \ker(\phi)\subseteq \rad(\phi^{-1}(\nil(B)))
-            $$
-            $\Leftarrow$ 
-            $$
-            \ker(\phi)\subseteq \phi^{-1}(\nil(B))
-            $$
-            $\Leftrightarrow$ 
-            $$
-            0_{B}\subseteq \nil(B)
-            $$
-            Which is trivial.
-        \item Trivial.
-        \item 
-    \end{enumerate}
+        $$
+        \begin{tikzcd}
+        A \arrow[r, "\phi"] \arrow[d, "V()"] & B \arrow[d, "V()"]                     \\
+        X=\mathrm{Spec}(A)                   & Y=\mathrm{Spec}(B) \arrow[l, "\phi^*"]
+        \end{tikzcd}
+        $$
+        \begin{enumerate}[label=({\roman*})]
+            \item For $\mathfrak{q}\in Y_{\phi(f)}$,
+                $$
+                \mathfrak{q}\in \phi^{*-1}(X_{f})
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \phi^{*}(\mathfrak{q})\in X_{f}
+                $$
+                $\Leftrightarrow$
+                $$
+                \phi^{*}\mathfrak{q}\not\in V(f)
+                $$
+                $\Leftrightarrow$ 
+                $$
+                f\not\in \phi^{*}(\mathfrak{q})=\phi^{-1}(\mathfrak{q})
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \phi(f)\not\in \mathfrak{q}
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \mathfrak{q}\in Y_{\phi_{(f)}}
+                $$
+                So $\phi^{*-1}(X_{f})=Y_{\phi(f)}$.
+            \item 
+                For any prime ideal $\mathfrak{q}\in Y$,
+                $$
+                \mathfrak{q}\in \phi^{*-1}(V(\mathfrak{a}))
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \phi^{*}(\mathfrak{q})\in V(\mathfrak{a})
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \mathfrak{a}\subseteq \phi^{*}(\mathfrak{q})
+                $$
+                $\Leftrightarrow$ 
+                $$
+                 \phi(\mathfrak{a})\subseteq \phi(\phi^{*}(\mathfrak{q}))=\mathfrak{q}
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \mathfrak{q}\in V(\phi(\mathfrak{a}))=V(\mathfrak{a}^{e})
+                $$
+                So $\phi^{*-1}(V(\mathfrak{a}))=V(\mathfrak{a}^{e})$.
+            \item $\forall \mathfrak{q}\in V(\mathfrak{b})$ 
+                $$
+                \phi^{-1}(\mathfrak{b})\subseteq \phi^{*}(\mathfrak{q})
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \mathfrak{b}\subseteq \mathfrak{q}
+                $$
+                Which is true by definition,
+                so $\overline{\phi^{*}(V(\mathfrak{b}))}\subseteq V(\phi^{-1}(\mathfrak{b}))$.
+                \textbf{(UNFINISHED)}
+                % $$
+                % \mathfrak{b}\in V(\mathfrak{b})
+                % $$
+                % $\Rightarrow$ 
+                % $$
+                % \phi^{*}(\mathfrak{b})\in \phi^{*}(V(\mathfrak{b}))
+                % $$
+                % $\Rightarrow$ 
+                % $$
+                % V(\phi^{*}(\mathfrak{b}))\supseteq \overline{\phi^{*}(V(\mathfrak{b}))}
+                % $$
+                % We prove by contradiction and suppose
+                % $$
+                % \overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})\subsetneq V(\phi^{*}(\mathfrak{b}))
+                % $$
+                % Therefore $\mathfrak{a'}\supsetneq\phi^{*}(\mathfrak{b})$.
+                % However, $\overline{\phi^{*}(V(\mathfrak{b}))}=V(\mathfrak{a'})$ indicate that $\forall I\in \phi^{*}(V(\mathfrak{b})),\mathfrak{a'}\subseteq I$.
+                % Let $I=\phi^{*}(b)$, we obtain
+                % $$
+                % \mathfrak{a'}\subseteq \phi^{*}(b)
+                % $$
+                % Contradictory!
+            \item 
+                \begin{enumerate}[label=({\alph*})]
+                    \item From \emph{(i)} we already know $\phi^{*}$ is continuous.
+                        Since we now have $\phi$ being surjection,
+                        $\phi^{*}$ is obviously a bijection.
+                        Also, the continuity of derives directly from \emph{(iii)}.
+                    \item In particular, let $Y=A / \mathfrak{R}$ and $\phi$ be the canonical homomorphism.
+                \end{enumerate}
+            \item We directly prove the "More precisely" part:
+                $$
+                \phi^{*}(Y)\text{ dense in  }X
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \overline{\phi^{*}(Y)}=X
+                \eqno{(1)}
+                $$
+                $\Leftrightarrow$
+                $$
+                \overline{\phi^{*}(V(\nil(B)))}=X
+                $$
+                $\Leftrightarrow$
+                $$
+                \overline{\phi^{*}(V(\nil(B)))}=V(\nil(A))
+                $$
+                $\Leftrightarrow$ (by \emph{(iii)})
+                $$
+                V(\nil(B)^{c})=V(\nil(A))
+                $$
+                $\Leftrightarrow$ 
+                $$
+                V(\phi^{-1}(\nil(B)))=V(\nil(A))
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \rad(\phi^{-1}(\nil(B)))=\nil(A)
+                \eqno{(2)}
+                $$
+                To prove $((1)\Leftrightarrow(2))$, we only need
+                $$
+                \ker(\phi)\subseteq \rad(\phi^{-1}(\nil(B)))
+                $$
+                $\Leftarrow$ 
+                $$
+                \ker(\phi)\subseteq \phi^{-1}(\nil(B))
+                $$
+                $\Leftrightarrow$ 
+                $$
+                0_{B}\subseteq \nil(B)
+                $$
+                Which is trivial.
+            \item Trivial.
+            \item 
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(A=\prod_{i=1}^nA_i\) be the direct product of rings \(A_i\). Show that \(\spec(A)\) is the disjoint union of open (and closed) subspaces \(X_i\), where \(X_i\) is canonically homeomorphic with \(\spec(A_i)\).
+
+Conversely, let \(A\) be any ring. Show that the following statements are equivalent:
+\begin{enumerate}[label=(\roman*)]
+    \item \(X=\spec(A)\) is disconnected.
+    \item \(A\cong A_1\times A_2\) where neither of the rings \(A_1,A_2\) is the zero ring.
+    \item \(A\) contains an idempotent \(\neq0,1\).
+\end{enumerate}
+In particular, the spectrum of a local ring is always connected (Exercise~12).
+
+\begin{solution}
     \begin{enumerate}[label=({\alph*})]
-        \item $\forall k\in [1,n]\cap Z$,
-            $$
-            X_{k}=\left\{ A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}\mid \mathfrak{p}\in \spec(A_{k}) \right\} 
-            $$
-            So we can define a map
-            $$
-            \varphi:\spec(A_{k})\longrightarrow X_{k}
-            $$
-            by
-            $$
-            \mathfrak{p}\longmapsto A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}
-            $$
-            and the homeomorphic property is trivial in the Zariski topology defined in this way.
-        \item 
-            \begin{enumerate}[label=({\Roman*})]
-                \item $(ii)\Rightarrow(i):$
-                    From \emph{(a)} we see
-                    $$
-                    X_1=\left\{ \mathfrak{p}\times A_2\mid \mathfrak{p}\in \spec(A_1) \right\} ,X_2=\left\{ A_1\times \mathfrak{p}\mid \mathfrak{p}\in \spec(A_2) \right\} 
-                    $$
-                    So $X_1\cap X_2=\emptyset$.
-                \item $(iii)\Rightarrow(ii):$
-                    Suppose we have $e\in A,\text{s.t. }e^2=2,e\not\in \left\{ 0,1 \right\} $.
-                    Then $A\cong eA\times (1-e)A$.
-                \item $(i)\Rightarrow(iii):$
-                    $$
-                    X\text{ disconnect }
-                    $$
-                    $\Leftrightarrow$
-                    $$
-                    X\text{ is a union of disjoint nontrivial clopen set }
-                    $$
-                    $\Leftrightarrow$ 
-                    $$
-                    \exists \text{ideal }I,J,\text{s.t. }V(I)\cap V(J)=V(I+J)=\emptyset,V(I)\cup V(J)=V(IJ)=V(I\cap J)=X
-                    $$
-                    When such $I,J$ exist, let $a\in I,b\in J,\text{s.t. }a+b=1$.
-                    Since $V(IJ)=X,IJ\subseteq \nil(A)$, so $\exists n\in \mathbb{Z}^{+},\text{s.t. }(ab)^{n}=0$.
-                    Consider
-                    $$
-                    s_1=\mathrm{C}_{2n}^{0}a^{2n}+\mathrm{C}_{2n}^{1}a^{2n-1}b+\ldots +\mathrm{C}_{2n}^{n-1}a^{n+1}b^{n-1}
-                    $$
-                    $$
-                    s_2=\mathrm{C}_{2n}^{2n}b^{2n}+\mathrm{C}_{2n}^{2n-1}ab^{2n-1}+\ldots +\mathrm{C}_{2n}^{n+1}a^{n-1}b^{n+1}
-                    $$
-                    Now
-                    $$
-                    s_1+s_2=s_1+s_2+\mathrm{C}_{2n}^{n}a^{n}b^{n}=(a+b)^{2n}=1
-                    $$
-                    
-                    and
-                    $$
-                    s_1s_2=0
-                    $$
-                    So
-                    $$
-                    s_1(1-s_1)=0
-                    $$
-                    $s_1,s_2$ are nontrivial idempotent.
-            \end{enumerate}
-            \qed
-    \end{enumerate}
+            \item $\forall k\in [1,n]\cap Z$,
+                $$
+                X_{k}=\left\{ A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}\mid \mathfrak{p}\in \spec(A_{k}) \right\} 
+                $$
+                So we can define a map
+                $$
+                \varphi:\spec(A_{k})\longrightarrow X_{k}
+                $$
+                by
+                $$
+                \mathfrak{p}\longmapsto A_1\times \ldots \times A_{k-1}\times \mathfrak{p}\times A_{k+1}\times \ldots \times A_{n}
+                $$
+                and the homeomorphic property is trivial in the Zariski topology defined in this way.
+            \item 
+                \begin{enumerate}[label=({\Roman*})]
+                    \item $(ii)\Rightarrow(i):$
+                        From \emph{(a)} we see
+                        $$
+                        X_1=\left\{ \mathfrak{p}\times A_2\mid \mathfrak{p}\in \spec(A_1) \right\} ,X_2=\left\{ A_1\times \mathfrak{p}\mid \mathfrak{p}\in \spec(A_2) \right\} 
+                        $$
+                        So $X_1\cap X_2=\emptyset$.
+                    \item $(iii)\Rightarrow(ii):$
+                        Suppose we have $e\in A,\text{s.t. }e^2=2,e\not\in \left\{ 0,1 \right\} $.
+                        Then $A\cong eA\times (1-e)A$.
+                    \item $(i)\Rightarrow(iii):$
+                        $$
+                        X\text{ disconnect }
+                        $$
+                        $\Leftrightarrow$
+                        $$
+                        X\text{ is a union of disjoint nontrivial clopen set }
+                        $$
+                        $\Leftrightarrow$ 
+                        $$
+                        \exists \text{ideal }I,J,\text{s.t. }V(I)\cap V(J)=V(I+J)=\emptyset,V(I)\cup V(J)=V(IJ)=V(I\cap J)=X
+                        $$
+                        When such $I,J$ exist, let $a\in I,b\in J,\text{s.t. }a+b=1$.
+                        Since $V(IJ)=X,IJ\subseteq \nil(A)$, so $\exists n\in \mathbb{Z}^{+},\text{s.t. }(ab)^{n}=0$.
+                        Consider
+                        $$
+                        s_1=\mathrm{C}_{2n}^{0}a^{2n}+\mathrm{C}_{2n}^{1}a^{2n-1}b+\ldots +\mathrm{C}_{2n}^{n-1}a^{n+1}b^{n-1}
+                        $$
+                        $$
+                        s_2=\mathrm{C}_{2n}^{2n}b^{2n}+\mathrm{C}_{2n}^{2n-1}ab^{2n-1}+\ldots +\mathrm{C}_{2n}^{n+1}a^{n-1}b^{n+1}
+                        $$
+                        Now
+                        $$
+                        s_1+s_2=s_1+s_2+\mathrm{C}_{2n}^{n}a^{n}b^{n}=(a+b)^{2n}=1
+                        $$
+
+                        and
+                        $$
+                        s_1s_2=0
+                        $$
+                        So
+                        $$
+                        s_1(1-s_1)=0
+                        $$
+                        $s_1,s_2$ are nontrivial idempotent.
+                \end{enumerate}
+
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(A\) be a Boolean ring (Exercise~11), and let \(X=\spec(A)\).
+\begin{enumerate}[label=(\roman*)]
+    \item For each \(f\in A\), the set \(X_f\) (Exercise~17) is both open and closed in \(X\).
+    \item Let \(f_1,\ldots,f_n\in A\). Show that \(X_{f_1}\cup\cdots\cup X_{f_n}=X_f\) for some \(f\in A\).
+    \item The sets \(X_f\) are the only subsets of \(X\) which are both open and closed. [Let \(Y\subseteq X\) be both open and closed. Since \(Y\) is open, it is a union of basic open sets \(X_f\). Since \(Y\) is closed and \(X\) is quasi-compact (Exercise~17), \(Y\) is quasi-compact. Hence \(Y\) is a finite union of basic open sets; now use (ii) above.]
+    \item \(X\) is a compact Hausdorff space.
+\end{enumerate}
+
+\begin{solution}
     \begin{enumerate}[label=({\roman*})]
-        \item 
-            $X_{f}$ is open by definition, and we only have to prove that $X_{f}$ is closed.
+            \item 
+                $X_{f}$ is open by definition, and we only have to prove that $X_{f}$ is closed.
 
-            For any nonzero, non-unital $f\in A$ consider $1-f$.
-            Notice:
-            \begin{align*}
-                V(f)\cap V(1-f)
-                &= V((f)+(1-f)) \\
-                &= V(1) \\
-                &= \emptyset
-            \end{align*}
-            \begin{align*}
-                V(f)\cup V(1-f)&= V((f)(1-f)) \\
-                &= V(0) \\
-                &= X
-            \end{align*}
-            Therefore $V(f)=X_{1-f}$.
-        \item Because
-            $$
-            \bigcap_{k=1} ^{n}V(f_{k})=V\left( \sum_{k=1}^{n} \left( f_{k} \right)   \right) 
-            $$
-            where the ideal $\sum_{k=1}^{n} \left( f_{k} \right) $ is finitely generated, therefore principal by \emph{Ex-1.11(iii)}.
-            So $\exists f\in A,\text{s.t. }$ 
-            $$
-            (f)=(f_1,f_2,\ldots .,f_{n})=\sum_{k=1}^{n} \left( f_{k} \right) 
-            $$
-            and therefore
-            $$
-            V(f)=\bigcap_{k=1} ^{n}V(f_{k})
-            $$
-        \item For any clopen subset $Y\subseteq X$, let $Z=X\backslash Y$.
-            By definition $Z$ is also clopen.
-            From \emph{Prop-1.11(i)}, 
-            $$
-            \forall \mathfrak{p}\in Y,\mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q} \right) 
-            $$
-            is nonempty.
-            Thus we can pick out $f\in \mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q}\right) $ and consider $(1-f)$:
-            From \emph{(i)} we know $V(f),V(1-f)$ is a partition of $X$, so by $f\in \mathfrak{p},\mathfrak{p}\in Y$ we have
-            $$
-            V(f)=Y,V(1-f)=Z
-            $$
-            But since $f\not\in \bigcup_{\mathfrak{q} \in Y} \mathfrak{q}$, $V(f)\subsetneq Y$, contradictory.
-        \item $X$ is compact by \emph{Ex-17(iv)}.
+                For any nonzero, non-unital $f\in A$ consider $1-f$.
+                Notice:
+                \begin{align*}
+                    V(f)\cap V(1-f)
+                    &= V((f)+(1-f)) \\
+                    &= V(1) \\
+                    &= \emptyset
+                \end{align*}
+                \begin{align*}
+                    V(f)\cup V(1-f)&= V((f)(1-f)) \\
+                    &= V(0) \\
+                    &= X
+                \end{align*}
+                Therefore $V(f)=X_{1-f}$.
+            \item Because
+                $$
+                \bigcap_{k=1} ^{n}V(f_{k})=V\left( \sum_{k=1}^{n} \left( f_{k} \right)   \right) 
+                $$
+                where the ideal $\sum_{k=1}^{n} \left( f_{k} \right) $ is finitely generated, therefore principal by \emph{Ex-1.11(iii)}.
+                So $\exists f\in A,\text{s.t. }$ 
+                $$
+                (f)=(f_1,f_2,\ldots .,f_{n})=\sum_{k=1}^{n} \left( f_{k} \right) 
+                $$
+                and therefore
+                $$
+                V(f)=\bigcap_{k=1} ^{n}V(f_{k})
+                $$
+            \item For any clopen subset $Y\subseteq X$, let $Z=X\backslash Y$.
+                By definition $Z$ is also clopen.
+                From \emph{Prop-1.11(i)}, 
+                $$
+                \forall \mathfrak{p}\in Y,\mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q} \right) 
+                $$
+                is nonempty.
+                Thus we can pick out $f\in \mathfrak{p}\backslash \left( \bigcup_{\mathfrak{q} \in Y\backslash \mathfrak{p}} \mathfrak{q}\right) $ and consider $(1-f)$:
+                From \emph{(i)} we know $V(f),V(1-f)$ is a partition of $X$, so by $f\in \mathfrak{p},\mathfrak{p}\in Y$ we have
+                $$
+                V(f)=Y,V(1-f)=Z
+                $$
+                But since $f\not\in \bigcup_{\mathfrak{q} \in Y} \mathfrak{q}$, $V(f)\subsetneq Y$, contradictory.
+            \item $X$ is compact by \emph{Ex-17(iv)}.
 
-            To prove $X$ is Hausdorff, we need to prove for $\forall \mathfrak{p},\mathfrak{q}\in X,\mathfrak{p}\neq \mathfrak{q}$,
-            $$
-            \exists \text{open set }X_1,X_2,\text{s.t. }
-            \mathfrak{p}\in X_1,\mathfrak{q}\in X_2,X_1\cap X_2=\emptyset
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\not\in V_1,\mathfrak{q}\not\in V_2,V_1\cup V_2=X
-            $$
-            $\Leftrightarrow$ 
-            $$
-            \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\in V_2\backslash V_1,\mathfrak{q}\in V_1\backslash V_2,V_1\cup V_2=X
-            $$
-            Such $V_1,V_2$ can be obtained by
-            $$
-            V_1=X\backslash \left\{ \mathfrak{q} \right\} ,V_2=X\backslash \left\{ \mathfrak{p} \right\}
-            $$
-    \end{enumerate}
-    \qed
+                To prove $X$ is Hausdorff, we need to prove for $\forall \mathfrak{p},\mathfrak{q}\in X,\mathfrak{p}\neq \mathfrak{q}$,
+                $$
+                \exists \text{open set }X_1,X_2,\text{s.t. }
+                \mathfrak{p}\in X_1,\mathfrak{q}\in X_2,X_1\cap X_2=\emptyset
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\not\in V_1,\mathfrak{q}\not\in V_2,V_1\cup V_2=X
+                $$
+                $\Leftrightarrow$ 
+                $$
+                \exists \text{closed set }V_1,V_2,\text{s.t. }\mathfrak{p}\in V_2\backslash V_1,\mathfrak{q}\in V_1\backslash V_2,V_1\cup V_2=X
+                $$
+                Such $V_1,V_2$ can be obtained by
+                $$
+                V_1=X\backslash \left\{ \mathfrak{q} \right\} ,V_2=X\backslash \left\{ \mathfrak{p} \right\}
+                $$
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
-    \leavevmode \vspace{-\baselineskip}
+Let \(L\) be a lattice, in which the sup and inf of two elements \(a,b\) are denoted by \(a\vee b\) and \(a\wedge b\) respectively. \(L\) is a Boolean lattice (or Boolean algebra) if
+\begin{enumerate}[label=(\roman*)]
+    \item \(L\) has a least element and a greatest element (denoted by \(0,1\) respectively).
+    \item Each of \(\vee,\wedge\) is distributive over the other.
+    \item Each \(a\in L\) has a unique ``complement'' \(a'\in L\) such that \(a\vee a'=1\) and \(a\wedge a'=0\).
+\end{enumerate}
+(For example, the set of all subsets of a set, ordered by inclusion, is a Boolean lattice.)
+
+Let \(L\) be a Boolean lattice. Define addition and multiplication in \(L\) by the rules
+\[
+a+b=(a\wedge b')\vee(a'\wedge b),\qquad ab=a\wedge b.
+\]
+Verify that in this way \(L\) becomes a Boolean ring, say \(A(L)\).
+
+Conversely, starting from a Boolean ring \(A\), define an ordering on \(A\) as follows: \(a\le b\) means that \(a=ab\). Show that, with respect to this ordering, \(A\) is a Boolean lattice. [The sup and inf are given by \(a\vee b=a+b+ab\) and \(a\wedge b=ab\), and the complement by \(a'=1-a\).] In this way we obtain a one-to-one correspondence between (isomorphism classes of) Boolean rings and (isomorphism classes of) Boolean lattices.
+
+\begin{solution}
     \begin{enumerate}[label=({\alph*})]
-        \item 
-            \begin{enumerate}[label=({\Roman*})]
-                \item For addition:
-                    \begin{enumerate}[label=({\roman*})]
-                        \item $+$ is commutative because $\wedge, \vee $ are both commutative.
-                        \item 
-                            \begin{align*}
-                                a+0&= (a\wedge 1)\vee (a'\wedge 0) \\
-                                &= a\vee 0 \\
-                                &= a
-                            \end{align*}
-                        \item 
-                            \begin{align*}
-                                a+a'&= (a\wedge a')\vee (a'\wedge a) \\
-                                &= 0\vee 0 \\
-                                &=0
-                            \end{align*}
-                        \item 
-                            \begin{align*}
-                                (a+b)+c&= (ab'\vee a'b)+c \\
-                                &= (ab'\vee a'b)c\vee (ab+a'b')c \\
-                                &= abc\vee a'bc\vee ab'c\vee abc'
-                            \end{align*}
-                            Which is symmetric with respect to $a,b,c$, therefore addition is associative.
-                    \end{enumerate}
-                \item For multiplication:
-                    \begin{enumerate}[label=({\roman*})]
-                        \item 
-                            $$
-                            ab=a\wedge b=b\wedge a=ba
-                            $$
-                        \item 
-                            $$
-                            a\cdot 1=a\wedge 1=a
-                            $$
-                        \item Associative of multiplication is given by the associativity of $\vee $.
-                        \item 
-                            \begin{align*}
-                                a(b+c)&= a(bc'\vee b'c) \\
-                                &= abc'\vee ab'c
-                            \end{align*}
-                            \begin{align*}
-                                ab+ac&= ((a'\vee b')ac)\vee (ab(a'\vee c')) \\
-                                &= ab'c\vee abc'
-                            \end{align*}
-                            And we obtian the distributive law.
-                    \end{enumerate}
-                \item For Boolean property:
-                    $a^2=a\wedge a=a$.
-            \end{enumerate}
-        \item We'll prove one side, the other side cna be obtained by duality.
-            \begin{enumerate}[label=({\roman*})]
-                \item Associativity:
-                    \begin{align*}
-                        a\vee (b\vee c)&= a\vee (b+c+bc) \\
-                        &= a+b+c+bc+ab+ca+abc
-                    \end{align*}
-                    \begin{align*}
-                        (a\vee b)\vee c&= (a+b+ab)\vee c \\
-                        &= a+b+c+ab+ca+bc+abc \\
-                    \end{align*}
-                    So $(a\vee b)\vee c=a\vee (b\vee c)$.
-                \item Commutavity: Because multiplication is commutative.
-                \item Absorption:
-                    \begin{align*}
-                        a\vee (a\wedge b)&= a\vee (ab) \\
-                        &= a+ab+aab \\
-                        &= 3a \\
-                        &= a
-                    \end{align*}
-                \item Identity:
-                    $a\vee 0=a$ 
-                \item Distributivity:
-                    \begin{align*}
-                        a\vee (b\wedge c)&= a\vee (bc) \\
-                        &= a+bc+abc
-                    \end{align*}
-                    \begin{align*}
-                        (a\vee b)\wedge (a\vee c)&= (a+b+ab)(a+c+ac) \\
-                        &= a+ac+ac+ab+bc+abc+ab+abc+abc \\
-                        &= a+bc+abc
-                    \end{align*}
-                    So $a\vee (b\wedge c)=(a\vee b)\wedge (a\vee c)$.
-                \item Complements:
-                    \begin{align*}
-                        a\vee a'&= a+(1-a)+a(1-a) \\
-                        &= 1
-                    \end{align*}
-            \end{enumerate}
-    \end{enumerate}
-    \qed
+            \item 
+                \begin{enumerate}[label=({\Roman*})]
+                    \item For addition:
+                        \begin{enumerate}[label=({\roman*})]
+                            \item $+$ is commutative because $\wedge, \vee $ are both commutative.
+                            \item 
+                                \begin{align*}
+                                    a+0&= (a\wedge 1)\vee (a'\wedge 0) \\
+                                    &= a\vee 0 \\
+                                    &= a
+                                \end{align*}
+                            \item 
+                                \begin{align*}
+                                    a+a'&= (a\wedge a')\vee (a'\wedge a) \\
+                                    &= 0\vee 0 \\
+                                    &=0
+                                \end{align*}
+                            \item 
+                                \begin{align*}
+                                    (a+b)+c&= (ab'\vee a'b)+c \\
+                                    &= (ab'\vee a'b)c\vee (ab+a'b')c \\
+                                    &= abc\vee a'bc\vee ab'c\vee abc'
+                                \end{align*}
+                                Which is symmetric with respect to $a,b,c$, therefore addition is associative.
+                        \end{enumerate}
+                    \item For multiplication:
+                        \begin{enumerate}[label=({\roman*})]
+                            \item 
+                                $$
+                                ab=a\wedge b=b\wedge a=ba
+                                $$
+                            \item 
+                                $$
+                                a\cdot 1=a\wedge 1=a
+                                $$
+                            \item Associative of multiplication is given by the associativity of $\vee $.
+                            \item 
+                                \begin{align*}
+                                    a(b+c)&= a(bc'\vee b'c) \\
+                                    &= abc'\vee ab'c
+                                \end{align*}
+                                \begin{align*}
+                                    ab+ac&= ((a'\vee b')ac)\vee (ab(a'\vee c')) \\
+                                    &= ab'c\vee abc'
+                                \end{align*}
+                                And we obtian the distributive law.
+                        \end{enumerate}
+                    \item For Boolean property:
+                        $a^2=a\wedge a=a$.
+                \end{enumerate}
+            \item We'll prove one side, the other side cna be obtained by duality.
+                \begin{enumerate}[label=({\roman*})]
+                    \item Associativity:
+                        \begin{align*}
+                            a\vee (b\vee c)&= a\vee (b+c+bc) \\
+                            &= a+b+c+bc+ab+ca+abc
+                        \end{align*}
+                        \begin{align*}
+                            (a\vee b)\vee c&= (a+b+ab)\vee c \\
+                            &= a+b+c+ab+ca+bc+abc \\
+                        \end{align*}
+                        So $(a\vee b)\vee c=a\vee (b\vee c)$.
+                    \item Commutavity: Because multiplication is commutative.
+                    \item Absorption:
+                        \begin{align*}
+                            a\vee (a\wedge b)&= a\vee (ab) \\
+                            &= a+ab+aab \\
+                            &= 3a \\
+                            &= a
+                        \end{align*}
+                    \item Identity:
+                        $a\vee 0=a$ 
+                    \item Distributivity:
+                        \begin{align*}
+                            a\vee (b\wedge c)&= a\vee (bc) \\
+                            &= a+bc+abc
+                        \end{align*}
+                        \begin{align*}
+                            (a\vee b)\wedge (a\vee c)&= (a+b+ab)(a+c+ac) \\
+                            &= a+ac+ac+ab+bc+abc+ab+abc+abc \\
+                            &= a+bc+abc
+                        \end{align*}
+                        So $a\vee (b\wedge c)=(a\vee b)\wedge (a\vee c)$.
+                    \item Complements:
+                        \begin{align*}
+                            a\vee a'&= a+(1-a)+a(1-a) \\
+                            &= 1
+                        \end{align*}
+                \end{enumerate}
+        \end{enumerate}
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+From the last two exercises deduce Stone's theorem, that every Boolean lattice is isomorphic to the lattice of open-and-closed subsets of some compact Hausdorff topological space.
+
+\begin{solution}
     \emph{(Beautiful!)}
 
-    Every Boolean lattice, namely $L$, is isomorphic to $Y=\left\{ X_{f}\mid f\in A(L),X=\spec(A(L)) \right\} $
+        Every Boolean lattice, namely $L$, is isomorphic to $Y=\left\{ X_{f}\mid f\in A(L),X=\spec(A(L)) \right\} $
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(A\) be a ring. The subspace of \(\spec(A)\) consisting of the maximal ideals of \(A\), with the induced topology, is called the maximal spectrum of \(A\) and is denoted by \(\max(A)\). For arbitrary commutative rings it does not have the nice functorial properties of \(\spec(A)\) (see Exercise~21), because the inverse image of a maximal ideal under a ring homomorphism need not be maximal.
+
+Let \(X\) be a compact Hausdorff space and let \(C(X)\) denote the ring of all real-valued continuous functions on \(X\) (add and multiply functions by adding and multiplying their values). For each \(x\in X\), let \(\mathfrak m_x\) be the set of all \(f\in C(X)\) such that \(f(x)=0\). The ideal \(\mathfrak m_x\) is maximal, because it is the kernel of the (surjective) homomorphism \(C(X)\to\mathbb R\) which takes \(f\) to \(f(x)\). If \(\tilde X\) denotes \(\max(C(X))\), we have therefore defined a mapping \(\mu:X\to\tilde X\), namely \(x\mapsto\mathfrak m_x\).
+
+We shall show that \(\mu\) is a homeomorphism of \(X\) onto \(\tilde X\).
+\begin{enumerate}[label=(\roman*)]
+    \item Let \(\mathfrak m\) be any maximal ideal of \(C(X)\), and let \(V=V(\mathfrak m)\) be the set of common zeros of the functions in \(\mathfrak m\): that is,
+    \[
+    V=\{x\in X:f(x)=0\text{ for all }f\in\mathfrak m\}.
+    \]
+    Suppose that \(V\) is empty. Then for each \(x\in X\) there exists \(f_x\in\mathfrak m\) such that \(f_x(x)\neq0\). Since \(f_x\) is continuous, there is an open neighborhood \(U_x\) of \(x\) in \(X\) on which \(f_x\) does not vanish. By compactness a finite number of the neighborhoods, say \(U_{x_1},\ldots,U_{x_n}\), cover \(X\). Let
+    \[
+    f=f_{x_1}^2+\cdots+f_{x_n}^2.
+    \]
+    Then \(f\) does not vanish at any point of \(X\), hence is a unit in \(C(X)\). But this contradicts \(f\in\mathfrak m\), hence \(V\) is not empty.
+
+    Let \(x\) be a point of \(V\). Then \(\mathfrak m\subseteq\mathfrak m_x\), hence \(\mathfrak m=\mathfrak m_x\) because \(\mathfrak m\) is maximal. Hence \(\mu\) is surjective.
+    \item By Urysohn's lemma (this is the only non-trivial fact required in the argument) the continuous functions separate the points of \(X\). Hence \(x\neq y\Rightarrow\mathfrak m_x\neq\mathfrak m_y\), and therefore \(\mu\) is injective.
+    \item Let \(f\in C(X)\); let
+    \[
+    U_f=\{x\in X:f(x)\neq0\}
+    \]
+    and let
+    \[
+    \tilde U_f=\{\mathfrak m\in\tilde X:f\notin\mathfrak m\}.
+    \]
+    Show that \(\mu(U_f)=\tilde U_f\). The open sets \(U_f\) (resp.\ \(\tilde U_f\)) form a basis of the topology of \(X\) (resp.\ \(\tilde X\)) and therefore \(\mu\) is a homeomorphism.
+\end{enumerate}
+Thus \(X\) can be reconstructed from the ring of functions \(C(X)\).
+
+\begin{solution}
     \emph{(The hint is making the proble trivial enough.)}
 
-    Form \emph{(i),(ii)} we know $\mu$ is bijective.
+        Form \emph{(i),(ii)} we know $\mu$ is bijective.
 
-    On one hand, $\forall \mathfrak{m}\in \tilde{U}_{f},\exists y\in X,\text{s.t. }\mathfrak{m}=\mathfrak{m}_{y}$.
-    Since $\mathfrak{m}_{y}\in \tilde{U}_{f},f\in \mathfrak{m}_{y}\Rightarrow f(y)\neq 0$.
-    Therefore $\exists y\in U_{f},\text{s.t. }\mu(y)=\mathfrak{m}_{y}$.
-    Hence $\tilde{U}_{f}\subseteq \mu(U_{f})$.
+        On one hand, $\forall \mathfrak{m}\in \tilde{U}_{f},\exists y\in X,\text{s.t. }\mathfrak{m}=\mathfrak{m}_{y}$.
+        Since $\mathfrak{m}_{y}\in \tilde{U}_{f},f\in \mathfrak{m}_{y}\Rightarrow f(y)\neq 0$.
+        Therefore $\exists y\in U_{f},\text{s.t. }\mu(y)=\mathfrak{m}_{y}$.
+        Hence $\tilde{U}_{f}\subseteq \mu(U_{f})$.
 
-    On the otherhand, $\forall x\in U_{f}$,
-    we have $f(x)\neq 0$.
-    Therefore $f\not\in \mathfrak{m}_{x}\Rightarrow\exists \mathfrak{m}_{x}\in \tilde{U}_{f},\text{s.t. }\mu(x)=\mathfrak{m}_{x}$.
-    So $U_{f}\subseteq \tilde{U}_{f}$.
-
-    \qed
+        On the otherhand, $\forall x\in U_{f}$,
+        we have $f(x)\neq 0$.
+        Therefore $f\not\in \mathfrak{m}_{x}\Rightarrow\exists \mathfrak{m}_{x}\in \tilde{U}_{f},\text{s.t. }\mu(x)=\mathfrak{m}_{x}$.
+        So $U_{f}\subseteq \tilde{U}_{f}$.
+\end{solution}
 \end{exercise}
 
+\section*{Affine algebraic varieties}
+
 \begin{exercise}
+Let \(k\) be an algebraically closed field and let
+\[
+f_\alpha(t_1,\ldots,t_n)=0
+\]
+be a set of polynomial equations in \(n\) variables with coefficients in \(k\). The set \(X\) of all points \(x=(x_1,\ldots,x_n)\in k^n\) which satisfy these equations is an affine algebraic variety.
+
+Consider the set of all polynomials \(g\in k[t_1,\ldots,t_n]\) with the property that \(g(x)=0\) for all \(x\in X\). This set is an ideal \(I(X)\) in the polynomial ring, and is called the ideal of the variety \(X\). The quotient ring
+\[
+P(X)=k[t_1,\ldots,t_n]/I(X)
+\]
+is the ring of polynomial functions on \(X\), because two polynomials \(g,h\) define the same polynomial function on \(X\) if and only if \(g-h\) vanishes at every point of \(X\), that is, if and only if \(g-h\in I(X)\).
+
+Let \(\xi_i\) be the image of \(t_i\) in \(P(X)\). The \(\xi_i\) (\(1\le i\le n\)) are the coordinate functions on \(X\): if \(x\in X\), then \(\xi_i(x)\) is the \(i\)th coordinate of \(x\). \(P(X)\) is generated as a \(k\)-algebra by the coordinate functions, and is called the coordinate ring (or affine algebra) of \(X\).
+
+As in Exercise~26, for each \(x\in X\) let \(\mathfrak m_x\) be the ideal of all \(f\in P(X)\) such that \(f(x)=0\); it is a maximal ideal of \(P(X)\). Hence, if \(\tilde X=\max(P(X))\), we have defined a mapping \(\mu:X\to\tilde X\), namely \(x\mapsto\mathfrak m_x\).
+
+It is easy to show that \(\mu\) is injective: if \(x\neq y\), we must have \(x_i\neq y_i\) for some \(i\) (\(1\le i\le n\)), and hence \(\xi_i-x_i\) is in \(\mathfrak m_x\) but not in \(\mathfrak m_y\), so that \(\mathfrak m_x\neq\mathfrak m_y\). What is less obvious (but still true) is that \(\mu\) is surjective. This is one form of Hilbert's Nullstellensatz (see Chapter~7).
+
+\begin{solution}
     \emph{(I suppose the author wants me to prove }$\mu$\emph{ is surjective.) }
 
-    Recall that an ideal in the quotient ring is maximal iff the preimage of that ideal is maximal.
+        Recall that an ideal in the quotient ring is maximal iff the preimage of that ideal is maximal.
 
-    Denote the canonical map
-    $$
-    \varphi:X\longrightarrow X / I(X)
-    $$
-    So $\mathfrak{m}\in\tilde{X}=\max\left( k[t_1,\ldots ,t_{n}]/I(X) \right)$ is a maximal ideal in $\tilde{X}$ 
-    iff $\varphi^{-1}(\mathfrak{m})$ is a maximal ideal in $k[t_1,\ldots ,t_{n}]$ which contains $I(X)$.
+        Denote the canonical map
+        $$
+        \varphi:X\longrightarrow X / I(X)
+        $$
+        So $\mathfrak{m}\in\tilde{X}=\max\left( k[t_1,\ldots ,t_{n}]/I(X) \right)$ is a maximal ideal in $\tilde{X}$ 
+        iff $\varphi^{-1}(\mathfrak{m})$ is a maximal ideal in $k[t_1,\ldots ,t_{n}]$ which contains $I(X)$.
 
-    Therefore, for any maximal ideal $\mathfrak{m}\in \tilde{X}$,
-    since $\varphi^{-1}(\mathfrak{m})$ is a maximal ideal contianing $I(X)$,
-    $\exists x\in X,\text{s.t. }\varphi^{-1}(\mathfrak{m})$ correspond to the maximal vanishing ideal of $x$.
-    So $\mu(x)=\mathfrak{m}$.
+        Therefore, for any maximal ideal $\mathfrak{m}\in \tilde{X}$,
+        since $\varphi^{-1}(\mathfrak{m})$ is a maximal ideal contianing $I(X)$,
+        $\exists x\in X,\text{s.t. }\varphi^{-1}(\mathfrak{m})$ correspond to the maximal vanishing ideal of $x$.
+        So $\mu(x)=\mathfrak{m}$.
 
-    Since $\mathfrak{m}$ is arbitarily chosen, we know $\mu$ is surjective.
-    \qed
+        Since $\mathfrak{m}$ is arbitarily chosen, we know $\mu$ is surjective.
+\end{solution}
 \end{exercise}
 
 \begin{exercise}
+Let \(f_1,\ldots,f_m\) be elements of \(k[t_1,\ldots,t_n]\). They determine a polynomial mapping \(\phi:k^n\to k^m\): if \(x\in k^n\), the coordinates of \(\phi(x)\) are \(f_1(x),\ldots,f_m(x)\).
+
+Let \(X,Y\) be affine algebraic varieties in \(k^n,k^m\) respectively. A mapping \(\phi:X\to Y\) is said to be regular if \(\phi\) is the restriction to \(X\) of a polynomial mapping from \(k^n\) to \(k^m\).
+
+If \(\eta\) is a polynomial function on \(Y\), then \(\eta\circ\phi\) is a polynomial function on \(X\). Hence \(\phi\) induces a \(k\)-algebra homomorphism \(P(Y)\to P(X)\), namely \(\eta\mapsto\eta\circ\phi\). Show that in this way we obtain a one-to-one correspondence between the regular mappings \(X\to Y\) and the \(k\)-algebra homomorphisms \(P(Y)\to P(X)\).
+
+\begin{solution}
     \emph{(See [Abstract Algebra (third edition) - Dummit \& Foote])}
-    $$
-    \begin{tikzcd}
-    X\subseteq\mathbb{A}_k^n \arrow[rr, "\phi"] \arrow[d, no head, dashed] &  & Y\subseteq\mathbb{A}_{k}^m \arrow[d, no head, dashed] \\
-    \mathbb{A}_k^n \arrow[d, "/I(X)"]                                      &  & \mathbb{A}_k^m \arrow[ll] \arrow[d, "/I(Y)"]          \\
-    {P(X)=k[t_1,\dots,t_n]/I(X)}                                           &  & {P(Y)=[t_1,\dots,t_m]/I(Y)} \arrow[ll, "\Phi"']      
-    \end{tikzcd}
-    $$
+        $$
+        \begin{tikzcd}
+        X\subseteq\mathbb{A}_k^n \arrow[rr, "\phi"] \arrow[d, no head, dashed] &  & Y\subseteq\mathbb{A}_{k}^m \arrow[d, no head, dashed] \\
+        \mathbb{A}_k^n \arrow[d, "/I(X)"]                                      &  & \mathbb{A}_k^m \arrow[ll] \arrow[d, "/I(Y)"]          \\
+        {P(X)=k[t_1,\dots,t_n]/I(X)}                                           &  & {P(Y)=[t_1,\dots,t_m]/I(Y)} \arrow[ll, "\Phi"']      
+        \end{tikzcd}
+        $$
 
-    First, for any regular mapping $\phi:X\rightarrow Y$,
-    we have the induced $k$-algebra homomorphism $P(Y)\rightarrow P(X)$ by $\eta\longmapsto \eta\circ \phi$.
-    We'll prove such correspondence is bijective,
-    i.e. for all $k$-algebra homomorphism $\Phi:P(Y)\rightarrow P(X)$,
-    there exist a regular mapping $\phi:X\rightarrow Y$ such that $\Phi$ was induced by $\phi$.
+        First, for any regular mapping $\phi:X\rightarrow Y$,
+        we have the induced $k$-algebra homomorphism $P(Y)\rightarrow P(X)$ by $\eta\longmapsto \eta\circ \phi$.
+        We'll prove such correspondence is bijective,
+        i.e. for all $k$-algebra homomorphism $\Phi:P(Y)\rightarrow P(X)$,
+        there exist a regular mapping $\phi:X\rightarrow Y$ such that $\Phi$ was induced by $\phi$.
 
-    For any $k$-algebra homomorphism $\phi$, 
-    consider $\overline{t_1},\ldots ,\overline{t_{m}}\in P(Y)$ and their images
-    $$
-    F_1=\Phi(\overline{t_1}),\ldots ,F_{m}=\Phi(\overline{t_{m}})
-    $$
-    Now $(F_1,\ldots ,F_{m})$ defines a regular mapping $X\rightarrow Y$.
-    Since the $P(Y)$ was generated by $\overline{t_1},\ldots ,\overline{t_{m}}$,
-    any $k$-algebra homomorphism $P(Y)\rightarrow P(X)$ can be expressed by $\overline{t_1},\ldots ,\overline{t_{m}}$,
-    in this way we obtained the required regualr mapping
-    $$
-    \phi=(F_1,\ldots ,F_{m})
-    $$
-    \qed
+        For any $k$-algebra homomorphism $\phi$, 
+        consider $\overline{t_1},\ldots ,\overline{t_{m}}\in P(Y)$ and their images
+        $$
+        F_1=\Phi(\overline{t_1}),\ldots ,F_{m}=\Phi(\overline{t_{m}})
+        $$
+        Now $(F_1,\ldots ,F_{m})$ defines a regular mapping $X\rightarrow Y$.
+        Since the $P(Y)$ was generated by $\overline{t_1},\ldots ,\overline{t_{m}}$,
+        any $k$-algebra homomorphism $P(Y)\rightarrow P(X)$ can be expressed by $\overline{t_1},\ldots ,\overline{t_{m}}$,
+        in this way we obtained the required regualr mapping
+        $$
+        \phi=(F_1,\ldots ,F_{m})
+        $$
+\end{solution}
 \end{exercise}
 
 \end{document}
